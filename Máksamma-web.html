@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máksamma — Saga de Fantasía en 4 Tomos</title>
+    <!-- Metadescripción basada en el plan -->
+    <meta name="description" content="Descubre Máksamma, una saga de fantasía en 4 tomos. Explora un universo donde la luz y la ciencia se entrelazan con la magia.">
+    <!-- Carga de Tailwind CSS CDN para un desarrollo rápido y responsive -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración para usar la tipografía Inter (o similar) y colores personalizados -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap');
+
+        /* Definiciones de color y fuente personalizadas */
+        :root {
+            --color-carbon: #0f0f1a; /* Negro Carbón */
+            --color-cold-gray: #3b3b55; /* Gris Frío */
+            --color-cosmic-blue: #4a7cf5; /* Azul Cósmico principal */
+            --color-cosmic-blue-light: #6a96ff;
+            --color-crystal-light: #e0e0f0; /* Para textos y detalles claros */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-carbon);
+            color: var(--color-crystal-light);
+            /* Patrón de fondo sutil para el efecto cristalino/cósmico */
+            background-image: radial-gradient(circle at 10% 20%, rgba(20, 20, 40, 0.5) 0%, transparent 50%),
+                              radial-gradient(circle at 90% 80%, rgba(15, 15, 30, 0.5) 0%, transparent 50%);
+        }
+        .header-font {
+            font-family: 'Exo 2', sans-serif;
+        }
+        /* Clases para efectos de brillo y borde */
+        .crystal-border {
+            border: 1px solid rgba(74, 124, 245, 0.3); /* Borde azul suave */
+            box-shadow: 0 0 10px rgba(74, 124, 245, 0.1), 0 0 20px rgba(74, 124, 245, 0.05);
+            transition: all 0.3s ease;
+        }
+        .crystal-border:hover {
+            box-shadow: 0 0 15px rgba(74, 124, 245, 0.5), 0 0 30px rgba(74, 124, 245, 0.2);
+        }
+        /* Botón primario con gradiente azul cósmico */
+        .btn-cosmic {
+            background: linear-gradient(90deg, #4a7cf5 0%, #6a96ff 100%);
+            box-shadow: 0 4px 15px rgba(74, 124, 245, 0.4);
+            transition: all 0.3s ease;
+        }
+        .btn-cosmic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(74, 124, 245, 0.6);
+        }
+    </style>
+</head>
+<body class="min-h-screen antialiased">
+
+    <!-- Navegación Principal (Header) -->
+    <header class="sticky top-0 z-50 bg-carbon bg-opacity-95 backdrop-blur-sm shadow-lg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo / Título -->
+            <a href="#" class="header-font text-2xl font-bold text-white tracking-wider hover:text-cosmic-blue-light transition duration-300">
+                MÁKSAMMA
+            </a>
+
+            <!-- Botón de Menú (Solo en móvil) -->
+            <button id="menu-button" class="lg:hidden p-2 rounded-lg hover:bg-cold-gray focus:outline-none focus:ring-2 focus:ring-cosmic-blue-light">
+                <svg id="menu-icon-open" class="w-6 h-6 text-crystal-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg id="menu-icon-close" class="w-6 h-6 text-crystal-light hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <!-- Menú de Navegación (Desktop) -->
+            <nav id="nav-menu" class="hidden lg:flex space-x-6">
+                <!-- Links basados en el sitemap -->
+                <a href="#saga" class="text-crystal-light hover:text-cosmic-blue-light transition duration-300 font-medium">La Saga</a>
+                <a href="#universo" class="text-crystal-light hover:text-cosmic-blue-light transition duration-300 font-medium">Universo Narrativo</a>
+                <a href="#adelanto" class="text-crystal-light hover:text-cosmic-blue-light transition duration-300 font-medium">Lee un Adelanto</a>
+                <a href="#comprar" class="px-4 py-1.5 rounded-full text-white font-semibold btn-cosmic">Dónde Comprar</a>
+            </nav>
+        </div>
+
+        <!-- Menú Desplegable (Móvil) -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-carbon shadow-xl border-t border-cold-gray">
+            <nav class="flex flex-col p-4 space-y-2">
+                <a href="#saga" class="block py-2 text-crystal-light hover:bg-cold-gray/50 rounded-lg px-3">La Saga</a>
+                <a href="#universo" class="block py-2 text-crystal-light hover:bg-cold-gray/50 rounded-lg px-3">Clanes y Personajes</a>
+                <a href="#adelanto" class="block py-2 text-crystal-light hover:bg-cold-gray/50 rounded-lg px-3">Lee un Adelanto</a>
+                <a href="#comprar" class="block py-2 text-crystal-light hover:bg-cold-gray/50 rounded-lg px-3">Dónde Comprar</a>
+                <a href="#blog" class="block py-2 text-crystal-light hover:bg-cold-gray/50 rounded-lg px-3">Noticias / Blog</a>
+                <a href="#autor" class="block py-2 text-crystal-light hover:bg-cold-gray/50 rounded-lg px-3">Sobre el Autor</a>
+                <a href="#contacto" class="block py-2 text-crystal-light hover:bg-cold-gray/50 rounded-lg px-3">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección 1: Hero Principal (Inicio) -->
+        <section id="inicio" class="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <!-- Título basado en el SEO Base -->
+                <h1 class="header-font text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight text-white mb-4 drop-shadow-lg">
+                    Máksamma
+                </h1>
+                <!-- Subtítulo basado en el SEO Base -->
+                <p class="text-xl sm:text-2xl text-crystal-light/90 mb-8 max-w-3xl mx-auto">
+                    Una saga en 4 tomos sobre clanes, cristal y equilibrio. Explora un universo donde la luz y la ciencia se entrelazan con la magia.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
+                    <a href="#comprar" class="px-8 py-3 rounded-xl text-lg font-semibold btn-cosmic transition-transform">
+                        Comprar Tomo 1
+                    </a>
+                    <a href="#universo" class="px-8 py-3 rounded-xl text-lg font-semibold bg-cold-gray/50 text-crystal-light hover:bg-cold-gray transition duration-300 crystal-border">
+                        Explorar el Universo
+                    </a>
+                </div>
+
+                <!-- Placeholder para el logo principal / Imagen promocional -->
+                <div class="max-w-xl mx-auto mt-8">
+                    <!-- Usamos un placeholder con el estilo visual para simular la imagen del logo de Máksamma -->
+                    <div class="bg-cold-gray/50 rounded-2xl p-10 crystal-border aspect-video flex items-center justify-center">
+                        <span class="header-font text-4xl text-white/70">
+                            [Imagen del Logo Máksamma, con brillo]
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- Efecto de brillo sutil en el fondo -->
+            <div class="absolute inset-0 z-0 opacity-20">
+                <div class="w-96 h-96 bg-cosmic-blue-light rounded-full mix-blend-multiply filter blur-3xl opacity-30 absolute top-10 left-1/4 animate-pulse-slow"></div>
+                <div class="w-80 h-80 bg-crystal-light rounded-full mix-blend-multiply filter blur-3xl opacity-10 absolute bottom-10 right-1/4 animate-pulse-slow delay-500"></div>
+            </div>
+        </section>
+
+        <!-- Sección 2: La Saga (Grid de Tomos) -->
+        <section id="saga" class="py-20 md:py-28 border-t border-cold-gray/50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="header-font text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+                    Descubre la Saga
+                </h2>
+
+                <!-- Grid de 4 Tomos -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    <!-- Tomo 1: Disponible -->
+                    <div class="bg-cold-gray/30 p-6 rounded-2xl crystal-border flex flex-col items-center text-center hover:bg-cold-gray/50 transition duration-300">
+                        <span class="text-sm font-semibold mb-2 text-cosmic-blue-light uppercase">Tomo I</span>
+                        <h3 class="header-font text-2xl font-bold mb-4 text-white">El Nombre del Cristal</h3>
+                        <!-- Placeholder para la portada -->
+                        <div class="w-full max-w-[200px] aspect-[2/3] bg-cold-gray rounded-lg shadow-2xl mb-4 flex items-center justify-center border-2 border-cosmic-blue">
+                            <span class="text-sm text-crystal-light/50">Portada Placeholder</span>
+                        </div>
+                        <p class="text-sm text-crystal-light/70 mb-4">
+                            Sinopsis corta: La historia de un joven que descubre su conexión con la Maquiria, el cristal que lo conecta a un legado de clanes ancestrales.
+                        </p>
+                        <span class="bg-green-600/20 text-green-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                            Disponible
+                        </span>
+                        <a href="#comprar" class="w-full px-4 py-2 rounded-lg text-sm font-semibold btn-cosmic">
+                            Comprar Ahora
+                        </a>
+                    </div>
+
+                    <!-- Tomo 2: Próximamente -->
+                    <div class="bg-cold-gray/30 p-6 rounded-2xl crystal-border flex flex-col items-center text-center">
+                        <span class="text-sm font-semibold mb-2 text-cosmic-blue-light uppercase">Tomo II</span>
+                        <h3 class="header-font text-2xl font-bold mb-4 text-white/70">El Trono Quebrado</h3>
+                        <!-- Placeholder para la portada -->
+                        <div class="w-full max-w-[200px] aspect-[2/3] bg-cold-gray/50 rounded-lg shadow-lg mb-4 flex items-center justify-center border-2 border-cold-gray">
+                            <span class="text-sm text-crystal-light/30">Próximamente</span>
+                        </div>
+                        <p class="text-sm text-crystal-light/50 mb-4">
+                            En desarrollo. El universo se expande, las alianzas se ponen a prueba y el verdadero enemigo se revela.
+                        </p>
+                        <span class="bg-yellow-600/20 text-yellow-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                            En Desarrollo
+                        </span>
+                        <a href="#" class="w-full px-4 py-2 rounded-lg text-sm font-semibold bg-cold-gray/70 text-crystal-light/50 cursor-not-allowed">
+                            Añadir a lista de espera
+                        </a>
+                    </div>
+
+                    <!-- Tomo 3: Planeado -->
+                    <div class="bg-cold-gray/30 p-6 rounded-2xl crystal-border flex flex-col items-center text-center opacity-70">
+                        <span class="text-sm font-semibold mb-2 text-cosmic-blue-light/50 uppercase">Tomo III</span>
+                        <h3 class="header-font text-2xl font-bold mb-4 text-white/50">Título Planeado</h3>
+                        <!-- Placeholder para la portada -->
+                        <div class="w-full max-w-[200px] aspect-[2/3] bg-cold-gray/50 rounded-lg shadow-lg mb-4 flex items-center justify-center border-2 border-cold-gray">
+                            <span class="text-sm text-crystal-light/30">Planeado</span>
+                        </div>
+                        <p class="text-sm text-crystal-light/50 mb-4">
+                            Placeholder: El conflicto escala a niveles cósmicos. La profecía comienza a cumplirse.
+                        </p>
+                        <span class="bg-gray-600/20 text-gray-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                            Planeado
+                        </span>
+                        <button disabled class="w-full px-4 py-2 rounded-lg text-sm font-semibold bg-cold-gray/70 text-crystal-light/50 cursor-not-allowed">
+                            Ver Detalles
+                        </button>
+                    </div>
+
+                    <!-- Tomo 4: Planeado -->
+                    <div class="bg-cold-gray/30 p-6 rounded-2xl crystal-border flex flex-col items-center text-center opacity-70">
+                        <span class="text-sm font-semibold mb-2 text-cosmic-blue-light/50 uppercase">Tomo IV</span>
+                        <h3 class="header-font text-2xl font-bold mb-4 text-white/50">Título Planeado</h3>
+                        <!-- Placeholder para la portada -->
+                        <div class="w-full max-w-[200px] aspect-[2/3] bg-cold-gray/50 rounded-lg shadow-lg mb-4 flex items-center justify-center border-2 border-cold-gray">
+                            <span class="text-sm text-crystal-light/30">Planeado</span>
+                        </div>
+                        <p class="text-sm text-crystal-light/50 mb-4">
+                            Placeholder: El gran final. El destino de la Maquiria y los clanes se decide.
+                        </p>
+                        <span class="bg-gray-600/20 text-gray-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                            Planeado
+                        </span>
+                        <button disabled class="w-full px-4 py-2 rounded-lg text-sm font-semibold bg-cold-gray/70 text-crystal-light/50 cursor-not-allowed">
+                            Ver Detalles
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: Universo Narrativo (CTA) -->
+        <section id="universo" class="py-20 md:py-28">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="header-font text-3xl md:text-4xl font-bold mb-4 text-white">
+                    Clanes, Artefactos y Conceptos
+                </h2>
+                <p class="text-lg text-crystal-light/80 mb-8 max-w-2xl mx-auto">
+                    Sumérgete en el lore. Conoce los siete clanes, la energía del Migrid, y el origen de La Maquiria, el cristal que todo lo conecta.
+                </p>
+                <a href="#" class="px-8 py-3 rounded-xl text-lg font-semibold btn-cosmic">
+                    Explorar el Glosario A–Z
+                </a>
+
+                <!-- Placeholder para grid de clanes (futuro) -->
+                <div class="mt-12 grid grid-cols-3 md:grid-cols-7 gap-4 opacity-70 max-w-5xl mx-auto">
+                    <div class="p-3 bg-cold-gray/50 rounded-lg aspect-square flex items-center justify-center border border-cold-gray/70">Clan 1</div>
+                    <div class="p-3 bg-cold-gray/50 rounded-lg aspect-square flex items-center justify-center border border-cold-gray/70">Clan 2</div>
+                    <div class="p-3 bg-cold-gray/50 rounded-lg aspect-square flex items-center justify-center border border-cold-gray/70">Clan 3</div>
+                    <div class="p-3 bg-cold-gray/50 rounded-lg aspect-square flex items-center justify-center border border-cold-gray/70">Clan 4</div>
+                    <div class="p-3 bg-cold-gray/50 rounded-lg aspect-square flex items-center justify-center border border-cold-gray/70 hidden md:flex">Clan 5</div>
+                    <div class="p-3 bg-cold-gray/50 rounded-lg aspect-square flex items-center justify-center border border-cold-gray/70 hidden md:flex">Clan 6</div>
+                    <div class="p-3 bg-cold-gray/50 rounded-lg aspect-square flex items-center justify-center border border-cold-gray/70 hidden md:flex">Clan 7</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: Dónde Comprar (CTA) -->
+        <section id="comprar" class="py-20 md:py-28 bg-cold-gray/20 border-t border-b border-cold-gray/50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                <h2 class="header-font text-4xl font-bold text-center mb-12 text-white">
+                    Opciones de Compra
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Opción 1: Amazon (Internacional) -->
+                    <div class="bg-cold-gray/30 p-8 rounded-2xl crystal-border text-center">
+                        <h3 class="header-font text-2xl font-bold mb-3 text-cosmic-blue-light">Internacional</h3>
+                        <p class="text-crystal-light/80 mb-6">
+                            Obtén el Tomo 1 con envío a todo el mundo a través de la plataforma de Amazon.
+                        </p>
+                        <a href="https://amazon.com/maksamma-tomo1" target="_blank" class="w-full inline-block px-6 py-3 rounded-xl text-lg font-semibold bg-[#FF9900] text-black hover:bg-[#ffb047] transition duration-300">
+                            Comprar en Amazon
+                        </a>
+                        <p class="text-xs text-crystal-light/50 mt-4">
+                            Entrega internacional disponible según tu región.
+                        </p>
+                    </div>
+
+                    <!-- Opción 2: Pedido Directo (México) -->
+                    <div class="bg-cold-gray/30 p-8 rounded-2xl crystal-border text-center">
+                        <h3 class="header-font text-2xl font-bold mb-3 text-white">México</h3>
+                        <p class="text-crystal-light/80 mb-6">
+                            Pedido directo con opciones de Mercado Pago, SPEI y tarifas de envío preferenciales.
+                        </p>
+                        <!-- Usamos un ancla temporal al formulario (futura sección) -->
+                        <a href="#contacto" class="w-full inline-block px-6 py-3 rounded-xl text-lg font-semibold btn-cosmic">
+                            Pedir Directo en México
+                        </a>
+                        <p class="text-xs text-crystal-light/50 mt-4">
+                            Envío por paquetería (DHL/Estafeta).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-cold-gray/50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <!-- Redes Sociales (Placeholders) -->
+                <a href="#" class="text-crystal-light/70 hover:text-cosmic-blue-light transition duration-300">
+                    <!-- Icono de X/Twitter (Placeholder SVG) -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.25 5.667c-.676.3-1.405.5-2.17.6.777-.465 1.373-1.19 1.656-2.064-.735.435-1.55.75-2.42.924C18.667 3.6 17.674 3 16.5 3c-2.054 0-3.722 1.669-3.722 3.723 0 .292.033.578.1.854C9.563 7.828 6.54 6.22 4.47 3.636 4.14 4.195 3.95 4.815 3.95 5.467c0 1.29.654 2.428 1.644 3.09C4.85 8.528 4.24 8.35 3.7 8.05v.047c0 1.803 1.282 3.308 2.98 3.65-.31.085-.638.128-.98.128-.24 0-.47-.023-.69-.064.472 1.48 1.84 2.55 3.46 2.58-1.27.994-2.872 1.587-4.6 1.587-.3 0-.6-.02-.9-.056 1.64 1.05 3.58 1.665 5.666 1.665 6.793 0 10.51-5.624 10.51-10.51 0-.16 0-.32-.01-.48.72-.518 1.345-1.166 1.84-1.905z"/></svg>
+                </a>
+                <a href="#" class="text-crystal-light/70 hover:text-cosmic-blue-light transition duration-300">
+                    <!-- Icono de Instagram (Placeholder SVG) -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c2.71 0 3.056.012 4.123.058 1.07.046 1.66.244 2.058.39a3.87 3.87 0 011.416.924c.382.382.696.837.924 1.416.146.398.344.988.39 2.058.046 1.067.058 1.413.058 4.123s-.012 3.056-.058 4.123c-.046 1.07-.244 1.66-.39 2.058a3.87 3.87 0 01-.924 1.416c-.382.382-.837.696-1.416.924-.398.146-.988.344-2.058.39-1.067.046-1.413.058-4.123.058s-3.056-.012-4.123-.058c-1.07-.046-1.66-.244-2.058-.39a3.87 3.87 0 01-1.416-.924c-.382-.382-.696-.837-.924-1.416-.146-.398-.344-.988-.39-2.058C2.012 15.056 2 14.71 2 12s.012-3.056.058-4.123c.046-1.07.244-1.66.39-2.058a3.87 3.87 0 01.924-1.416c.382-.382.837-.696 1.416-.924.398-.146.988-.344 2.058-.39C8.944 2.012 9.29 2 12 2zm0 1.938c-2.673 0-2.99.01-4.043.056-1.036.044-1.503.23-1.81.353-.349.135-.61.345-.85.586-.24.24-.45.5-.586.85-.123.307-.309.774-.353 1.81-.046 1.053-.056 1.37-.056 4.043s.01 2.99.056 4.043c.044 1.036.23 1.503.353 1.81.135.349.345.61.586.85.24.24.5.45.85.586.307.123.774.309 1.81.353 1.053.046 1.37.056 4.043.056s2.99-.01 4.043-.056c1.036-.044 1.503-.23 1.81-.353.349-.135.61-.345.85-.586.24-.24.45-.5.586-.85.123-.307.309-.774.353-1.81.046-1.053.056-1.37.056-4.043s-.01-2.99-.056-4.043c-.044-1.036-.23-1.503-.353-1.81-.135-.349-.345-.61-.586-.85-.24-.24-.5-.45-.85-.586-.307-.123-.774-.309-1.81-.353-1.053-.046-1.37-.056-4.043-.056zM12 7a5 5 0 100 10 5 5 0 000-10zm0 1.938a3.062 3.062 0 110 6.124 3.062 3.062 0 010-6.124zM18.423 7.697a.89.89 0 100 1.78.89.89 0 000-1.78z"/></svg>
+                </a>
+                <a href="#" class="text-crystal-light/70 hover:text-cosmic-blue-light transition duration-300">
+                    <!-- Icono de Facebook (Placeholder SVG) -->
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24h11.493V14.545h-3.85v-4.43h3.85V7.472c0-3.842 2.343-5.93 5.76-5.93 1.637 0 3.04.122 3.447.177v4.004h-2.373c-1.85 0-2.209.879-2.209 2.17V10.11h4.43L21.14 14.545h-4.072V24h5.607c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
+                </a>
+            </div>
+            <p class="text-sm text-crystal-light/50">
+                &copy; <span id="current-year"></span> Máksamma. Todos los derechos reservados.
+            </p>
+            <p class="text-xs text-crystal-light/50 mt-2">
+                Desarrollado y optimizado para **Cloudflare Pages**.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript para interactividad -->
+    <script>
+        // Inicialización de la barra de navegación móvil
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        menuButton.addEventListener('click', () => {
+            const isMenuOpen = mobileMenu.classList.toggle('hidden');
+            menuIconOpen.classList.toggle('hidden', !isMenuOpen);
+            menuIconClose.classList.toggle('hidden', isMenuOpen);
+        });
+
+        // Configuración del año actual en el footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Pequeño script para el efecto de animación pulsante (Hero)
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse-slow {
+                0%, 100% { transform: scale(1); opacity: 0.3; }
+                50% { transform: scale(1.05); opacity: 0.5; }
+            }
+            .animate-pulse-slow {
+                animation: pulse-slow 15s infinite ease-in-out;
+            }
+        `;
+        document.head.append(style);
+
+        // Ocultar menú móvil después de hacer clic en un enlace
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
