@@ -403,7 +403,7 @@
             </div>
         </div>
     </section>
-    <!-- SECCIÓN COMPRA -->
+   <!-- SECCIÓN COMPRA -->
     <section id="comprar" class="py-24 px-6 bg-[#08080c]">
         <div class="container mx-auto max-w-5xl">
             <div class="text-center mb-16">
@@ -448,10 +448,6 @@
                     </div>
                     <input type="email" placeholder="Correo Electrónico" class="w-full bg-black/40 border border-gray-700 p-3 rounded text-white focus:border-blue-500 outline-none transition">
                     <textarea placeholder="Dirección de Envío Completa" rows="3" class="w-full bg-black/40 border border-gray-700 p-3 rounded text-white focus:border-blue-500 outline-none transition"></textarea>
-                    <div class="flex items-center gap-2">
-                        <input type="checkbox" id="dedicatoria" class="w-4 h-4 bg-black/40 border-gray-700 rounded focus:ring-blue-500">
-                        <label for="dedicatoria" class="text-sm text-gray-400">Quiero mi libro con dedicatoria (+ $0.00)</label>
-                    </div>
                     <button type="submit" class="w-full py-4 bg-green-600 hover:bg-green-500 text-white font-bold uppercase text-xs tracking-widest rounded transition shadow-lg">Enviar Solicitud</button>
                 </form>
             </div>
@@ -460,12 +456,10 @@
 
     <!-- FOOTER -->
     <footer class="py-12 bg-black border-t border-white/5 text-center relative z-10 flex flex-col items-center">
-        <!-- Logo Footer AJUSTADO -->
-        <!-- h-24 (96px) en móvil | md:h-32 (128px) en PC -->
-        <!-- mb-4 para dar un pequeño respiro antes de los iconos -->
-        <img src="images/LogoMaks.png" alt="Máksamma" class="h-24 md:h-32 w-auto mb-4 object-contain opacity-90 transition transform hover:scale-105" onerror="this.style.display='none'">
+        <!-- Logo Footer -->
+        <img src="images/LogoMaks.png" alt="Máksamma" class="h-24 w-auto mb-6 object-contain opacity-80" onerror="this.style.display='none'">
         
-        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-6 -mt-2">
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-8">
             <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="hover:text-white transition">Instagram</a>
             <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="hover:text-white transition">Facebook</a>
             <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="hover:text-white transition">TikTok</a>
@@ -473,7 +467,7 @@
         <p class="text-[10px] text-gray-700">© 2024 Máksamma. Autor: Carlos Enrique Rodríguez Mata.</p>
     </footer>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT PRINCIPAL -->
     <script>
         // 1. GENERADOR DE ESTRELLAS
         const starsContainer = document.getElementById('stars-bg');
@@ -491,8 +485,9 @@
 
         // 2. NAV SCROLL Y MENÚ MÓVIL
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) document.body.classList.add('scrolled');
-            else document.body.classList.remove('scrolled');
+            const body = document.body;
+            if (window.scrollY > 50) body.classList.add('scrolled');
+            else body.classList.remove('scrolled');
         });
 
         function toggleMenu() {
@@ -513,7 +508,7 @@
             if (slideIndex < 0) slideIndex = slides.length - 1;
             
             slides[slideIndex].classList.add('active');
-            dots[slideIndex].classList.add('active');
+            if (dots.length > 0) dots[slideIndex].classList.add('active');
         }
 
         function changeSlide(n) {
@@ -581,7 +576,7 @@
                 document.querySelectorAll('.tomo-btn').forEach((btn, i) => {
                     const span = btn.querySelector('span');
                     if(i === index) {
-                        btn.className = "tomo-btn active p-4 border border-blue-500/50 bg-blue-900/20 rounded hover:bg-blue-900/40 transition text-center w-full";
+                        btn.className = `tomo-btn active p-4 border ${data.bg} rounded transition text-center w-full`;
                         span.className = `text-xs md:text-sm ${data.coverClass} font-bold uppercase block`;
                     } else {
                         btn.className = "tomo-btn p-4 border border-white/10 rounded hover:bg-white/5 transition text-center opacity-60 hover:opacity-100 w-full";
@@ -590,7 +585,12 @@
                 });
                 container.style.opacity = '1';
             }, 300);
-            <script src="magic-cursor.js"></script> 
         }
+    </script>
+
+    <!-- SCRIPT MÁGICO (AURA MOUSE) -->
+    <!-- Este es el que conecta el archivo magic-cursor.js que creaste aparte -->
+    <script src="magic-cursor.js"></script>
+
 </body>
 </html>
