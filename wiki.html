@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki Oficial | Máksamma</title>
-    <meta name="description" content="Explora la enciclopedia del universo Máksamma: Clanes, Mapa, Personajes y la ciencia de la Maquiria.">
+    <meta name="description" content="Base de datos oficial del universo Máksamma: Clanes, Historia, Geografía y Personajes.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,12 +44,6 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
-        .nav-link {
-            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;
-            color: #94a3b8; transition: color 0.3s;
-        }
-        .nav-link:hover { color: white; border-bottom: 1px solid var(--accent-gold); }
-
         /* Cards Wiki */
         .wiki-card {
             background-color: var(--color-card);
@@ -64,14 +58,8 @@
             border-color: var(--accent-blue);
             box-shadow: 0 10px 30px -10px rgba(74, 124, 245, 0.2);
         }
-        .wiki-card::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            z-index: 1;
-        }
-        .wiki-content { position: relative; z-index: 2; }
-
-        /* Buscador */
+        
+        /* Input Buscador */
         .search-input {
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
@@ -84,173 +72,161 @@
             outline: none;
         }
 
-        /* Mapa Interactivo (Placeholder Style) */
+        /* Mapa Container */
         .map-container {
             position: relative;
             overflow: hidden;
             border-radius: 1rem;
             border: 1px solid rgba(255,255,255,0.1);
+            background-color: #0a0b10;
         }
-        .map-point {
-            position: absolute;
-            width: 12px; height: 12px;
-            background-color: var(--accent-gold);
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 10px var(--accent-gold);
-            transition: transform 0.3s;
-        }
-        .map-point:hover { transform: scale(1.5); background-color: white; }
-        .map-tooltip {
-            position: absolute;
-            bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.3s;
-        }
-        .map-point:hover .map-tooltip { opacity: 1; }
-
     </style>
 </head>
 <body>
 
-    <!-- FONDO -->
+    <!-- FONDO DE ESTRELLAS (Se llena con JS al final) -->
     <div class="stars-wrapper" id="stars-bg"></div>
 
-    <!-- NAV SIMPLIFICADA (Volver al Home) -->
+    <!-- NAVEGACIÓN SIMPLIFICADA -->
     <nav class="fixed w-full z-50 nav-container">
-        <div class="container mx-auto px-6 h-16 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-2 text-gray-400 hover:text-white transition">
-                <span>←</span> <span class="text-xs font-bold uppercase tracking-widest">Volver al Universo</span>
+        <div class="container mx-auto px-6 h-20 flex justify-between items-center">
+            
+            <!-- Izquierda: Volver -->
+            <a href="index.html" class="flex items-center gap-2 text-gray-400 hover:text-white transition group w-1/3">
+                <span class="group-hover:-translate-x-1 transition">←</span> 
+                <span class="text-xs font-bold uppercase tracking-widest hidden md:inline">Volver al Universo</span>
+                <span class="text-xs font-bold uppercase tracking-widest md:hidden">Volver</span>
             </a>
-            <div class="text-xl font-epic font-bold tracking-[0.2em] text-white">WIKI MÁKSAMMA</div>
-            <div class="w-24"></div> <!-- Espaciador para centrar logo -->
+
+            <!-- Centro: LOGO (Botón al Index) -->
+            <div class="w-1/3 flex justify-center">
+                <a href="index.html" class="hover:scale-105 transition duration-300">
+                    <img src="images/LogoMaks.png" alt="Máksamma Wiki" class="h-12 md:h-16 w-auto object-contain" onerror="this.style.display='none'; document.getElementById('text-logo-wiki').style.display='block'">
+                    <span id="text-logo-wiki" class="hidden text-xl font-epic font-bold text-white">MÁKSAMMA</span>
+                </a>
+            </div>
+
+            <!-- Derecha: Espaciador para centrar -->
+            <div class="w-1/3 text-right">
+                <span class="text-xs font-bold text-blue-500 uppercase tracking-widest border border-blue-500/30 px-3 py-1 rounded-full">Base de Datos</span>
+            </div>
         </div>
     </nav>
 
     <!-- HERO WIKI -->
-    <header class="pt-32 pb-16 px-6 text-center">
-        <h1 class="text-4xl md:text-6xl font-epic text-white mb-6">ARCHIVOS DE LA MAQUIRIA</h1>
+    <header class="pt-32 pb-16 px-6 text-center relative z-10">
+        <span class="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-4 block animate-pulse">Enciclopedia Oficial</span>
+        <h1 class="text-4xl md:text-6xl font-epic text-white mb-6 drop-shadow-lg">ARCHIVOS DE LA MAQUIRIA</h1>
         <p class="text-gray-400 max-w-2xl mx-auto text-lg font-light mb-8">
-            Bienvenido a la base de datos oficial. Aquí encontrarás la historia de los clanes, biografías de personajes y los secretos geográficos del mundo.
+            Bienvenido al nexo de conocimiento. Aquí encontrarás la historia de los clanes, biografías de personajes y los secretos geográficos del mundo.
         </p>
         
         <!-- Buscador -->
-        <div class="max-w-xl mx-auto relative">
-            <input type="text" placeholder="Buscar personaje, lugar o término..." class="search-input w-full py-4 px-6 rounded-full pl-12">
-            <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <div class="max-w-xl mx-auto relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+            <div class="relative">
+                <input type="text" placeholder="Buscar personaje, lugar o término..." class="search-input w-full py-4 px-6 rounded-full pl-12 text-sm md:text-base">
+                <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
         </div>
     </header>
-
-    <!-- MENÚ PRINCIPAL (GRID) -->
-    <section class="container mx-auto px-6 pb-24">
+    <!-- MENÚ PRINCIPAL (GRID DE NAVEGACIÓN) -->
+    <section class="container mx-auto px-6 pb-24 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             <!-- 1. CLANES -->
-            <a href="clanes.html" class="wiki-card h-64 group bg-gradient-to-br from-blue-900/20 to-black">
-                <div class="absolute inset-0 bg-[url('images/clanes-bg.jpg')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition duration-500"></div> <!-- Placeholder imagen -->
-                <div class="wiki-content">
+            <a href="clanes.html" class="wiki-card h-64 group bg-gradient-to-br from-blue-900/20 to-black hover:border-blue-500/50">
+                <!-- Imagen de fondo opcional -->
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition"></div>
+                <div class="relative z-10">
                     <span class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1 block">Sociedad</span>
                     <h3 class="text-2xl font-epic text-white group-hover:text-blue-200 transition">LOS 7 CLANES</h3>
-                    <p class="text-gray-400 text-sm mt-2">Astria, Fera, Terra, Aero, Ignis, Umbra y Lux.</p>
+                    <p class="text-gray-400 text-sm mt-2 group-hover:text-white transition">Astria, Fera, Terra, Aero, Ignis, Umbra y Lux.</p>
                 </div>
             </a>
 
-            <!-- 2. PERSONAJES (Futuro) -->
-            <a href="#" class="wiki-card h-64 group bg-gradient-to-br from-purple-900/20 to-black cursor-not-allowed opacity-70">
-                <div class="wiki-content">
+            <!-- 2. PERSONAJES (Link pendiente) -->
+            <a href="#" class="wiki-card h-64 group bg-gradient-to-br from-purple-900/20 to-black cursor-not-allowed opacity-80 hover:opacity-100 hover:border-purple-500/50">
+                <div class="relative z-10">
                     <span class="text-purple-400 text-xs font-bold uppercase tracking-widest mb-1 block">Biografías</span>
                     <h3 class="text-2xl font-epic text-white">PERSONAJES</h3>
-                    <p class="text-gray-400 text-sm mt-2">Próximamente: Perfiles de Gotzing, protagonistas y líderes.</p>
+                    <p class="text-gray-400 text-sm mt-2">Próximamente: Perfiles de protagonistas y líderes.</p>
                 </div>
             </a>
 
-            <!-- 3. GLOSARIO (Futuro) -->
-            <a href="#" class="wiki-card h-64 group bg-gradient-to-br from-green-900/20 to-black cursor-not-allowed opacity-70">
-                <div class="wiki-content">
+            <!-- 3. GLOSARIO (Link pendiente) -->
+            <a href="#" class="wiki-card h-64 group bg-gradient-to-br from-green-900/20 to-black cursor-not-allowed opacity-80 hover:opacity-100 hover:border-green-500/50">
+                <div class="relative z-10">
                     <span class="text-green-400 text-xs font-bold uppercase tracking-widest mb-1 block">Terminología</span>
                     <h3 class="text-2xl font-epic text-white">GLOSARIO</h3>
                     <p class="text-gray-400 text-sm mt-2">Diccionario de términos: Maquiria, Gridsku, Migrid...</p>
                 </div>
             </a>
 
-            <!-- 4. MAPA (Destacado) -->
+            <!-- 4. MAPA DEL MUNDO -->
             <div class="md:col-span-3 mt-12">
                 <div class="flex items-end justify-between mb-6">
                     <div>
                         <h2 class="text-3xl font-epic text-white">Cartografía</h2>
-                        <p class="text-gray-400 text-sm">Mapa interactivo de los territorios conocidos.</p>
+                        <p class="text-gray-400 text-sm">Mapa de los territorios conocidos.</p>
                     </div>
-                    <span class="text-xs font-bold bg-yellow-500/20 text-yellow-500 px-3 py-1 rounded border border-yellow-500/30">Fase 1: Vista Estática</span>
                 </div>
 
-                <!-- CONTENEDOR DEL MAPA -->
-                <div class="map-container h-[500px] w-full bg-[#0a0b10] relative group">
+                <!-- CONTENEDOR DEL MAPA (LLAMADO A IMAGEN) -->
+                <div class="map-container h-[500px] w-full flex items-center justify-center group relative">
                     
-                    <!-- IMAGEN DEL MAPA (Reemplazar 'mapa-mundo.jpg') -->
-                    <!-- Si no hay imagen, muestra un placeholder oscuro elegante -->
-                    <img src="images/MAPA.jpg" alt="Mapa de Máksamma" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-700" 
+                    <!-- IMAGEN MAPA: Se cargará cuando subas 'MAPA.jpg' a la carpeta images -->
+                    <img src="images/MAPA.jpg" alt="Mapa de Máksamma" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-700" 
                          onerror="this.style.display='none'; document.getElementById('map-placeholder').style.display='flex'">
                     
-                    <div id="map-placeholder" class="hidden absolute inset-0 flex-col items-center justify-center text-center">
-                        <span class="text-6xl mb-4">🗺️</span>
-                        <p class="text-gray-500">Mapa en proceso de cartografía...</p>
+                    <!-- Placeholder si no hay imagen -->
+                    <div id="map-placeholder" class="hidden flex-col items-center justify-center text-center">
+                        <span class="text-6xl mb-4 grayscale opacity-50">🗺️</span>
+                        <p class="text-gray-500 font-epic">El mapa se está trazando...</p>
                     </div>
 
-                    <!-- PUNTOS DE INTERÉS (EJEMPLO INTERACTIVO) -->
-                    <!-- Estos puntos se posicionan con % (top/left) sobre la imagen -->
-                    
-                    <!-- Punto 1: Hogar de Razzar -->
-                    <div class="map-point" style="top: 30%; left: 45%;">
-                        <div class="map-tooltip">
-                            <strong class="block text-yellow-400">Hogar de Razzar</strong>
-                            <span class="text-[10px]">Ver detalles →</span>
-                        </div>
+                    <!-- Overlay Interactivo (Ejemplo visual) -->
+                    <div class="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                        <button class="bg-black/70 text-white px-3 py-1 rounded text-xs hover:bg-blue-600 transition">Ver Pantalla Completa</button>
                     </div>
-
-                    <!-- Punto 2: Ciudadela Astria -->
-                    <div class="map-point" style="top: 60%; left: 70%; background-color: var(--accent-blue); box-shadow: 0 0 10px var(--accent-blue);">
-                        <div class="map-tooltip">
-                            <strong class="block text-blue-400">Torre Astria</strong>
-                            <span class="text-[10px]">Territorio Central</span>
-                        </div>
-                    </div>
-
-                    <!-- UI de Zoom (Decorativa por ahora) -->
-                    <div class="absolute bottom-6 right-6 flex flex-col gap-2">
-                        <button class="w-8 h-8 bg-black/50 text-white rounded hover:bg-white hover:text-black transition">+</button>
-                        <button class="w-8 h-8 bg-black/50 text-white rounded hover:bg-white hover:text-black transition">-</button>
-                    </div>
-
                 </div>
-                <p class="text-center text-xs text-gray-500 mt-4">*Explora el mapa. Haz clic en los puntos para ver información detallada.</p>
             </div>
 
         </div>
     </section>
 
-    <footer class="py-12 bg-black border-t border-white/5 text-center">
-        <p class="text-[10px] text-gray-700">© 2024 Máksamma. Carlos Enrique Rodríguez Mata.</p>
+    <!-- FOOTER (Idéntico al Index) -->
+    <footer class="py-12 bg-black border-t border-white/5 text-center relative z-10 flex flex-col items-center">
+        <!-- Logo Footer -->
+        <img src="images/LogoMaks.png" alt="Máksamma" class="h-24 w-auto mb-6 object-contain opacity-80 hover:opacity-100 transition" onerror="this.style.display='none'">
+        
+        <!-- Redes Sociales Enlazadas -->
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-8">
+            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="hover:text-white transition">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="hover:text-white transition">Facebook</a>
+            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="hover:text-white transition">TikTok</a>
+        </div>
+        <p class="text-[10px] text-gray-700">© 2024 Máksamma. Autor: Carlos Enrique Rodríguez Mata.</p>
     </footer>
 
-    <!-- Scripts simples -->
+    <!-- SCRIPTS -->
     <script>
-        // Estrellas
+        // Generador de Estrellas para Wiki
         const starsContainer = document.getElementById('stars-bg');
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 60; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
             star.style.left = `${Math.random() * 100}%`;
             star.style.top = `${Math.random() * 100}%`;
             star.style.width = `${Math.random() * 2}px`;
             star.style.height = star.style.width;
+            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+            star.style.setProperty('--opacity', Math.random());
             starsContainer.appendChild(star);
         }
+    </script>
+
+    <!-- SCRIPT MÁGICO -->
     <script src="magic-cursor.js"></script>
 
 </body>
