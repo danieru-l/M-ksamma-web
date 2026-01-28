@@ -42,14 +42,14 @@
             background: rgba(5, 5, 8, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         body.scrolled .nav-top-bar { height: 0; opacity: 0; padding: 0; overflow: hidden; border-bottom: none; }
         
         .nav-link {
-            position: relative; text-transform: uppercase; font-size: 0.85rem;
-            letter-spacing: 0.1em; font-weight: 600; color: #cbd5e1;
+            position: relative; text-transform: uppercase; font-size: 0.8rem;
+            letter-spacing: 0.15em; font-weight: 600; color: #cbd5e1;
             transition: color 0.3s; padding: 0.5rem 0;
         }
         .nav-link:hover { color: white; }
@@ -71,7 +71,7 @@
         .lang-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #151621; border: 1px solid #333; border-radius: 4px; padding: 0.5rem; z-index: 60; }
         .lang-btn:focus + .lang-dropdown, .lang-dropdown:hover { display: block; }
 
-        /* --- MARCO DECORATIVO (Estilo Plantas/Fantasía) --- */
+        /* --- MARCO DECORATIVO --- */
         .decorative-frame {
             position: relative;
             border: 2px solid #334155; 
@@ -128,8 +128,18 @@
     <!-- NAVEGACIÓN (EXACTA DEL INDEX) -->
     <nav class="fixed w-full z-50 nav-container" id="main-nav">
         
-        <!-- BARRA SUPERIOR (Se oculta al scroll) -->
-        <div class="nav-top-bar container mx-auto px-6 py-3 flex justify-between items-center transition-all duration-500 border-b border-white/5 relative z-50">
+        <!-- LOGO FLOTANTE GIGANTE (Mismo tamaño que en Index) -->
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 z-50">
+            <a href="index.html">
+                <img src="images/LogoMaks.png" 
+                     alt="Máksamma Wiki" 
+                     class="h-[120px] md:h-[200px] w-auto max-w-none object-contain drop-shadow-2xl hover:scale-105 transition duration-300 mt-1" 
+                     onerror="this.style.display='none';">
+            </a>
+        </div>
+
+        <!-- BARRA SUPERIOR -->
+        <div class="nav-top-bar container mx-auto px-6 py-3 flex justify-between items-center transition-all duration-500 border-b border-white/5 relative z-40">
             
             <!-- Izquierda: Redes Sociales -->
             <div class="flex gap-4 w-1/3 items-center">
@@ -144,22 +154,11 @@
                 </div>
             </div>
 
-            <!-- 2. CENTRO (LOGO FLOTANTE) -->
-            <div class="w-1/3 flex justify-center relative">
-                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 z-50">
-                    <a href="index.html">
-                        <img src="images/LogoMaks.png" 
-                             alt="Máksamma" 
-                             class="h-[120px] md:h-[200px] w-auto max-w-none object-contain drop-shadow-2xl hover:scale-105 transition duration-300 mt-1" 
-                             onerror="this.style.display='none';">
-                    </a>
-                </div>
-            </div>
+            <!-- Centro: Espacio vacío para balancear (Logo flota en absolute) -->
+            <div class="w-1/3"></div>
 
-            <!-- 3. DERECHA (Idioma + Botón) -->
+            <!-- Derecha: Idioma + Botón -->
             <div class="w-1/3 flex justify-end items-center gap-4">
-                
-                <!-- Selector Idioma -->
                 <div class="relative group">
                     <button class="lang-btn flex items-center gap-2 text-xs font-bold text-gray-300 hover:text-white uppercase tracking-wider focus:outline-none">
                         <span>ES</span> <span class="text-[10px]">▼</span>
@@ -169,21 +168,17 @@
                         <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 text-xs text-gray-300"><span>🇺🇸</span> English</a>
                     </div>
                 </div>
-
-                <!-- Botón Desktop -->
-                <a href="index.html#comprar" class="hidden md:inline-block btn-navy px-5 py-2 rounded-sm text-xs font-bold uppercase tracking-wider shadow-lg">
-                    Adquiere un libro
-                </a>
+                <a href="index.html#comprar" class="hidden md:inline-block btn-navy px-5 py-2 rounded-sm text-xs font-bold uppercase tracking-wider shadow-lg">Adquiere un libro</a>
             </div>
         </div>
 
         <!-- BARRA INFERIOR (Enlaces) -->
-        <div class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
+        <div class="hidden md:flex container mx-auto px-6 py-4 flex justify-center items-center gap-8 md:gap-16 overflow-x-auto whitespace-nowrap bg-black/20 backdrop-blur-sm">
             <a href="index.html#universo" class="nav-link">El Universo</a>
             <a href="index.html#saga" class="nav-link">La Saga</a>
             <!-- Wiki Activo -->
             <a href="wiki.html" class="nav-link text-white border-b border-blue-500">Wiki</a>
-            <a href="#" class="nav-link cursor-not-allowed text-gray-600">Tienda</a>
+            <a href="#" class="nav-link text-gray-500 cursor-not-allowed">Tienda</a>
         </div>
 
         <!-- MENÚ MÓVIL DESPLEGABLE -->
@@ -209,7 +204,7 @@
         
         <!-- BANNER PRINCIPAL (Marco Decorado + Personajes) -->
         <div class="max-w-5xl mx-auto h-64 md:h-96 relative decorative-frame rounded-lg overflow-hidden fade-in group">
-            <!-- Imagen de Fondo -->
+            <!-- Imagen de Fondo: Usando PNG como pediste -->
             <img src="images/BANNER_WIKI.png" alt="Personajes Máksamma" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700"
                  onerror="this.style.display='none'; document.getElementById('banner-fallback').style.display='flex'">
             
@@ -278,7 +273,7 @@
                 <div class="decorative-frame rounded-lg bg-[#0a0b10] relative group">
                     <div class="relative w-full h-[300px] md:h-[600px] overflow-hidden cursor-pointer" onclick="expandMap()">
                         
-                        <!-- IMAGEN MAPA (object-contain móvil / cover PC) -->
+                        <!-- IMAGEN MAPA -->
                         <img src="images/MAPA.jpg" id="wiki-map-img" alt="Mapa del Pigtandé" class="w-full h-full object-contain md:object-cover opacity-80 group-hover:opacity-100 transition duration-500" 
                              onerror="this.style.display='none'; document.getElementById('map-placeholder').style.display='flex'">
                         
