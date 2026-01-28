@@ -9,6 +9,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- FontAwesome para Iconos (Igual que en Index) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Fuentes -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap');
@@ -45,11 +48,14 @@
             transition: transform 0.4s ease;
         }
 
-        body.scrolled .nav-top-bar { height: 0; opacity: 0; padding: 0; overflow: hidden; border-bottom: none; }
+        /* Ocultar barra al bajar (Efecto Potter) */
+        body.scrolled .nav-container {
+            transform: translateY(-100%); 
+        }
         
         .nav-link {
-            position: relative; text-transform: uppercase; font-size: 0.8rem;
-            letter-spacing: 0.15em; font-weight: 600; color: #cbd5e1;
+            position: relative; text-transform: uppercase; font-size: 0.85rem;
+            letter-spacing: 0.1em; font-weight: 600; color: #cbd5e1;
             transition: color 0.3s; padding: 0.5rem 0;
         }
         .nav-link:hover { color: white; }
@@ -58,6 +64,10 @@
             background: var(--accent-gold); transition: width 0.3s;
         }
         .nav-link:hover::after { width: 100%; }
+
+        /* Link Activo en Wiki */
+        .nav-link.active { color: white; }
+        .nav-link.active::after { width: 100%; }
 
         /* --- UTILIDADES --- */
         .btn-navy {
@@ -125,75 +135,99 @@
     <!-- FONDO DE ESTRELLAS -->
     <div class="stars-wrapper" id="stars-bg"></div>
 
-    <!-- NAVEGACIÓN (EXACTA DEL INDEX) -->
+    <!-- NAVEGACIÓN PRINCIPAL (Copia exacta del Index) -->
     <nav class="fixed w-full z-50 nav-container" id="main-nav">
         
-        <!-- LOGO FLOTANTE GIGANTE (Mismo tamaño que en Index) -->
-        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 z-50">
-            <a href="index.html">
-                <img src="images/LogoMaks.png" 
-                     alt="Máksamma Wiki" 
-                     class="h-[120px] md:h-[200px] w-auto max-w-none object-contain drop-shadow-2xl hover:scale-105 transition duration-300 mt-1" 
-                     onerror="this.style.display='none';">
-            </a>
-        </div>
-
-        <!-- BARRA SUPERIOR -->
-        <div class="nav-top-bar container mx-auto px-6 py-3 flex justify-between items-center transition-all duration-500 border-b border-white/5 relative z-40">
+        <!-- Contenedor Principal Nav -->
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
             
-            <!-- Izquierda: Redes Sociales -->
-            <div class="flex gap-4 w-1/3 items-center">
+            <!-- 1. IZQUIERDA (Móvil: Hamburguesa / Desktop: Redes) -->
+            <div class="w-1/3 flex items-center justify-start">
+                
+                <!-- Botón Hamburguesa (Solo Móvil) -->
                 <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
 
+                <!-- Redes Sociales (Solo Desktop) -->
                 <div class="hidden md:flex gap-4">
-                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 1 0-1 13.6 6.84 6.84 0 0 0 6.25-5.48A4.86 4.86 0 0 1 19.59 6.69Z"/></svg></a>
+                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110">
+                        <i class="fa-brands fa-facebook-f text-lg"></i>
+                    </a>
+                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110">
+                        <i class="fa-brands fa-tiktok text-lg"></i>
+                    </a>
                 </div>
             </div>
 
-            <!-- Centro: Espacio vacío para balancear (Logo flota en absolute) -->
-            <div class="w-1/3"></div>
+            <!-- Centro: LOGO -->
+            <div class="w-1/3 flex justify-center relative">
+                <!-- LOGO FLOTANTE GIGANTE: 
+                     Usa 'absolute' para no deformar la barra.
+                     h-32 = Tamaño en Celular (~128px)
+                     md:h-56 = Tamaño en PC (~224px) 
+                -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 mt-2">
+                    <a href="index.html">
+                        <img src="images/LogoMaks.png" alt="Máksamma" class="h-32 md:h-56 w-auto object-contain hover:scale-105 transition drop-shadow-2xl filter drop-shadow-[0_0_15px_rgba(0,0,0,0.9)]" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block'">
+                    </a>
+                </div>
+                
+                <!-- Texto de respaldo (Invisible si carga la imagen) -->
+                <a href="index.html" id="text-logo" class="text-2xl font-epic font-black tracking-[0.25em] text-white hover:text-blue-300 transition hidden">MÁKSAMMA</a>
+            </div>
 
-            <!-- Derecha: Idioma + Botón -->
+            <!-- 3. DERECHA (Idioma + Botón Desktop) -->
             <div class="w-1/3 flex justify-end items-center gap-4">
+                
+                <!-- Selector Idioma -->
                 <div class="relative group">
                     <button class="lang-btn flex items-center gap-2 text-xs font-bold text-gray-300 hover:text-white uppercase tracking-wider focus:outline-none">
-                        <span>ES</span> <span class="text-[10px]">▼</span>
+                        <span>ES</span> <span class="text-lg">▼</span>
                     </button>
+                    <!-- Dropdown -->
                     <div class="lang-dropdown absolute right-0 mt-2 w-32 bg-[#151621] border border-white/10 rounded shadow-xl hidden group-hover:block">
-                        <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 text-xs text-gray-300"><span>🇪🇸</span> Español</a>
-                        <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 text-xs text-gray-300"><span>🇺🇸</span> English</a>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 text-xs text-gray-300">
+                            <span class="text-base">🇪🇸</span> Español
+                        </a>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 text-xs text-gray-300">
+                            <span class="text-base">🇺🇸</span> English
+                        </a>
                     </div>
                 </div>
-                <a href="index.html#comprar" class="hidden md:inline-block btn-navy px-5 py-2 rounded-sm text-xs font-bold uppercase tracking-wider shadow-lg">Adquiere un libro</a>
+
+                <!-- Botón Desktop -->
+                <a href="index.html#comprar" class="hidden md:inline-block btn-navy px-5 py-2 rounded-sm text-xs font-bold uppercase tracking-wider shadow-lg">
+                    Adquiere un libro
+                </a>
             </div>
         </div>
 
-        <!-- BARRA INFERIOR (Enlaces) -->
-        <div class="hidden md:flex container mx-auto px-6 py-4 flex justify-center items-center gap-8 md:gap-16 overflow-x-auto whitespace-nowrap bg-black/20 backdrop-blur-sm">
+        <!-- Barra Inferior Desktop (Links) -->
+        <div class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
             <a href="index.html#universo" class="nav-link">El Universo</a>
             <a href="index.html#saga" class="nav-link">La Saga</a>
-            <!-- Wiki Activo -->
-            <a href="wiki.html" class="nav-link text-white border-b border-blue-500">Wiki</a>
-            <a href="#" class="nav-link text-gray-500 cursor-not-allowed">Tienda</a>
+            <a href="wiki.html" class="nav-link active">Wiki</a>
+            <a href="#" class="nav-link cursor-not-allowed text-gray-600">Tienda</a>
         </div>
 
-        <!-- MENÚ MÓVIL DESPLEGABLE -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#0b0c15] border-t border-white/10 shadow-2xl h-screen flex flex-col p-8 z-40">
+        <!-- MENÚ MÓVIL DESPLEGABLE (Oculto por defecto) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#0b0c15] border-t border-white/10 shadow-2xl h-screen flex flex-col p-8">
             <div class="flex flex-col space-y-6 text-center text-lg font-bold uppercase tracking-widest font-epic mb-8">
-                <a href="index.html#universo" class="text-white hover:text-blue-400">El Universo</a>
-                <a href="index.html#saga" class="text-white hover:text-blue-400">La Saga</a>
+                <a href="index.html#universo" onclick="toggleMenu()" class="text-white hover:text-blue-400">El Universo</a>
+                <a href="index.html#saga" onclick="toggleMenu()" class="text-white hover:text-blue-400">La Saga</a>
                 <a href="wiki.html" class="text-blue-400 font-bold">Wiki</a>
                 <a href="#" class="text-gray-500">Tienda</a>
             </div>
+            
             <!-- Redes Móvil -->
             <div class="flex justify-center gap-8 border-t border-white/10 pt-8 text-gray-300">
-                <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                <a href="https://www.instagram.com/maksamma_oficial/" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                <a href="https://www.tiktok.com/@maksammaoficial" target="_blank"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 1 0-1 13.6 6.84 6.84 0 0 0 6.25-5.48A4.86 4.86 0 0 1 19.59 6.69Z"/></svg></a>
+                 <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+                 <a href="https://www.instagram.com/maksamma_oficial/" target="_blank"><i class="fa-brands fa-instagram text-xl"></i></a>
+                 <a href="https://www.tiktok.com/@maksammaoficial" target="_blank"><i class="fa-brands fa-tiktok text-xl"></i></a>
             </div>
         </div>
     </nav>
@@ -204,7 +238,7 @@
         
         <!-- BANNER PRINCIPAL (Marco Decorado + Personajes) -->
         <div class="max-w-5xl mx-auto h-64 md:h-96 relative decorative-frame rounded-lg overflow-hidden fade-in group">
-            <!-- Imagen de Fondo: Usando PNG como pediste -->
+            <!-- Imagen de Fondo: Usando PNG -->
             <img src="images/BANNER_WIKI.png" alt="Personajes Máksamma" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700"
                  onerror="this.style.display='none'; document.getElementById('banner-fallback').style.display='flex'">
             
@@ -271,9 +305,11 @@
 
                 <!-- CONTENEDOR DEL MAPA -->
                 <div class="decorative-frame rounded-lg bg-[#0a0b10] relative group">
+                    <!-- Ajuste de altura para móvil (300px) y PC (600px) -->
                     <div class="relative w-full h-[300px] md:h-[600px] overflow-hidden cursor-pointer" onclick="expandMap()">
                         
-                        <!-- IMAGEN MAPA -->
+                        <!-- IMAGEN MAPA (Adaptada a móvil y PC) -->
+                        <!-- object-contain en móvil para que no se recorte / cover en PC -->
                         <img src="images/MAPA.jpg" id="wiki-map-img" alt="Mapa del Pigtandé" class="w-full h-full object-contain md:object-cover opacity-80 group-hover:opacity-100 transition duration-500" 
                              onerror="this.style.display='none'; document.getElementById('map-placeholder').style.display='flex'">
                         
@@ -294,13 +330,13 @@
         </div>
     </section>
 
-    <!-- FOOTER (CON LOGO Y REDES - IDÉNTICO AL INDEX) -->
+    <!-- FOOTER (IDÉNTICO AL INDEX) -->
     <footer class="py-12 bg-black border-t border-white/5 text-center relative z-10 flex flex-col items-center">
         <!-- Logo Footer -->
-        <img src="images/LogoMaks.png" alt="Máksamma" class="h-24 w-auto mb-4 object-contain opacity-80" onerror="this.style.display='none'">
+        <img src="images/LogoMaks.png" alt="Máksamma" class="h-24 w-auto mb-6 object-contain opacity-80" onerror="this.style.display='none'">
         
         <!-- Redes Sociales Enlazadas -->
-        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-6 -mt-2">
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-8">
             <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="hover:text-white transition">Instagram</a>
             <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="hover:text-white transition">Facebook</a>
             <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="hover:text-white transition">TikTok</a>
@@ -336,8 +372,9 @@
 
         // Nav Scroll (Misma lógica que Index)
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) document.body.classList.add('scrolled');
-            else document.body.classList.remove('scrolled');
+            const body = document.body;
+            if (window.scrollY > 50) body.classList.add('scrolled');
+            else body.classList.remove('scrolled');
         });
 
         // Menú Móvil
