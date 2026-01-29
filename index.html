@@ -40,9 +40,18 @@
         .stars-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); overflow: hidden; }
         .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; }
 
-        /* Navegación */
-        .nav-container { background: rgba(5, 5, 8, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); transition: transform 0.4s ease; }
-        body.scrolled .nav-top-bar { height: 0; opacity: 0; padding: 0; overflow: hidden; border-bottom: none; }
+        /* --- NAVEGACIÓN (Estilo Wiki) --- */
+        .nav-container {
+            background: rgba(5, 5, 8, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.4s ease;
+        }
+
+        /* Ocultar barra al bajar */
+        body.scrolled .nav-container {
+            transform: translateY(-100%); 
+        }
         
         .nav-link { position: relative; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.1em; font-weight: 600; color: #cbd5e1; transition: color 0.3s; padding: 0.5rem 0; }
         .nav-link:hover { color: white; }
@@ -89,15 +98,25 @@
     <!-- FONDO DE ESTRELLAS -->
     <div class="stars-wrapper" id="stars-bg"></div>
 
-    <!-- NAVEGACIÓN PRINCIPAL -->
-    <nav class="fixed w-full z-50 nav-container" id="main-nav">
+    <!-- NAVEGACIÓN PRINCIPAL (Idéntica a Wiki) -->
+    <nav class="fixed w-full z-50 nav-container relative" id="main-nav">
         
-        <!-- Contenedor Principal Nav -->
-        <div class="nav-top-bar container mx-auto px-4 py-3 flex justify-between items-center relative z-40 transition-all duration-500 border-b border-white/5">
+        <!-- LOGO FLOTANTE GIGANTE -->
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 z-50">
+            <a href="#">
+                <img src="images/LogoMaks.png" 
+                     alt="Máksamma" 
+                     class="h-[120px] md:h-[200px] w-auto max-w-none object-contain drop-shadow-2xl hover:scale-105 transition duration-300 mt-1" 
+                     onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block'">
+            </a>
+        </div>
+
+        <!-- BARRA SUPERIOR -->
+        <div class="nav-top-bar container mx-auto px-6 py-3 flex justify-between items-center transition-all duration-500 border-b border-white/5 relative z-40">
             
             <!-- 1. IZQUIERDA (Móvil: Hamburguesa / Desktop: Redes) -->
             <div class="w-1/3 flex items-center justify-start">
-                <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
+                <button class="md:hidden text-white p-2 focus:outline-none hover:text-blue-400 transition" onclick="toggleMenu()">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
 
@@ -109,13 +128,8 @@
                 </div>
             </div>
 
-            <!-- 2. CENTRO (Logo Flotante) -->
-            <div class="w-1/3 flex justify-center relative">
-                <div class="absolute top-0 left-1/2 transform -translate-x-1/2 z-50">
-                    <a href="#">
-                        <img src="images/LogoMaks.png" alt="Máksamma" class="h-[120px] md:h-[200px] w-auto max-w-none object-contain drop-shadow-2xl hover:scale-105 transition duration-300 mt-1" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block'">
-                    </a>
-                </div>
+            <!-- 2. CENTRO (Espaciador para Logo) -->
+            <div class="w-1/3 text-center">
                 <a href="#" id="text-logo" class="text-2xl font-epic font-black tracking-[0.25em] text-white hover:text-blue-300 transition hidden">MÁKSAMMA</a>
             </div>
 
@@ -140,7 +154,6 @@
             <a href="#universo" class="nav-link">El Universo</a>
             <a href="#saga" class="nav-link">La Saga</a>
             <a href="wiki.html" class="nav-link">Wiki</a>
-            <!-- CAMBIO: Apunta a tienda.html -->
             <a href="tienda.html" class="nav-link">Tienda</a>
         </div>
 
@@ -169,7 +182,6 @@
         </div>
 
         <!-- GRIDSKUS FLOTANTES (Cristales) -->
-        <!-- Nota: Sube tus imagenes gridsku1.png a gridsku7.png a la carpeta images -->
         <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
             <img src="images/gridsku1.png" class="absolute top-[15%] left-[10%] w-16 md:w-24 opacity-60 animate-float" alt="">
             <img src="images/gridsku2.png" class="absolute top-[25%] right-[15%] w-12 md:w-20 opacity-50 animate-float-slow" alt="">
