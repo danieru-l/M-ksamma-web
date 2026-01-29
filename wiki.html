@@ -6,6 +6,9 @@
     <title>Wiki Oficial | Máksamma</title>
     <meta name="description" content="Base de datos oficial del universo Máksamma: Clanes, Historia, Geografía y Personajes.">
     
+    <!-- Favicon (Icono de la pestaña) -->
+    <link rel="icon" type="image/png" href="images/LogoMaks.png">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -210,7 +213,8 @@
         <div class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
             <a href="index.html#universo" class="nav-link">El Universo</a>
             <a href="index.html#saga" class="nav-link">La Saga</a>
-            <a href="wiki.html" class="nav-link active">Wiki</a>
+            <!-- Wiki Activo -->
+            <a href="wiki.html" class="nav-link active text-white border-b border-blue-500">Wiki</a>
             <a href="#" class="nav-link cursor-not-allowed text-gray-600">Tienda</a>
         </div>
 
@@ -333,10 +337,10 @@
     <!-- FOOTER (IDÉNTICO AL INDEX) -->
     <footer class="py-12 bg-black border-t border-white/5 text-center relative z-10 flex flex-col items-center">
         <!-- Logo Footer -->
-        <img src="images/LogoMaks.png" alt="Máksamma" class="h-24 w-auto mb-6 object-contain opacity-80" onerror="this.style.display='none'">
+        <img src="images/LogoMaks.png" alt="Máksamma" class="h-24 w-auto mb-4 object-contain opacity-80" onerror="this.style.display='none'">
         
         <!-- Redes Sociales Enlazadas -->
-        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-8">
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-6 -mt-2">
             <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="hover:text-white transition">Instagram</a>
             <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="hover:text-white transition">Facebook</a>
             <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="hover:text-white transition">TikTok</a>
@@ -372,9 +376,8 @@
 
         // Nav Scroll (Misma lógica que Index)
         window.addEventListener('scroll', () => {
-            const body = document.body;
-            if (window.scrollY > 50) body.classList.add('scrolled');
-            else body.classList.remove('scrolled');
+            if (window.scrollY > 50) document.body.classList.add('scrolled');
+            else document.body.classList.remove('scrolled');
         });
 
         // Menú Móvil
