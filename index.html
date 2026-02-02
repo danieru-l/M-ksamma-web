@@ -1,347 +1,294 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Máksamma | El Universo Oficial</title>
-    <meta name="description" content="Una saga de fantasía en 4 tomos sobre clanes, cristal y equilibrio. Autor: Carlos Enrique Rodríguez Mata.">
+    <title>Lector de Máksamma | Capítulos Gratuitos</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/Maquiria.png">
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- FontAwesome (Iconos Redes Sociales) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <!-- Fuentes -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap');
-
-        :root {
-            --color-bg: #050508;
-            --color-card: #151621;
-            --accent-gold: #c5a059;
-            --accent-blue: #4a7cf5;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
 
         body {
-            background-color: var(--color-bg);
+            background-color: #050508;
             color: #e2e8f0;
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .font-epic { font-family: 'Cinzel', serif; }
-        .font-serif-text { font-family: 'Playfair Display', serif; }
-
-        /* Estrellas de fondo */
-        .stars-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); overflow: hidden; }
-        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; }
-
-        /* --- NAVEGACIÓN --- */
-        .nav-container {
-            background: rgba(5, 5, 8, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.4s ease;
-        }
-
-        body.scrolled .nav-container { transform: translateY(-100%); }
-        
-        .nav-link {
-            position: relative; text-transform: uppercase; font-size: 0.85rem;
-            letter-spacing: 0.1em; font-weight: 600; color: #cbd5e1;
-            transition: color 0.3s; padding: 0.5rem 0;
-        }
-        .nav-link:hover { color: white; }
-        .nav-link::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-            background: var(--accent-gold); transition: width 0.3s;
-        }
-        .nav-link:hover::after { width: 100%; }
-
-        .btn-navy {
-            background-color: #0f172a; border: 1px solid #1e3a8a; color: white; transition: all 0.3s;
-        }
-        .btn-navy:hover {
-            background-color: #1e3a8a; box-shadow: 0 0 15px rgba(30, 58, 138, 0.5);
-        }
-
-        /* Slider Lore */
-        .slider-item { display: none; opacity: 0; transition: opacity 0.5s; height: 100%; }
-        .slider-item.active { display: flex; opacity: 1; }
-        .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: gray; cursor: pointer; transition: all 0.3s; }
-        .slider-dot.active { background: white; transform: scale(1.2); }
-
-        /* Animaciones Cristales */
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-float-slow { animation: float 8s ease-in-out infinite; }
-        .animate-float-fast { animation: float 4s ease-in-out infinite; }
-
-        .cover-glow:hover { box-shadow: 0 0 30px rgba(74, 124, 245, 0.6); border-color: var(--accent-blue); }
-
-        .lang-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #151621; border: 1px solid #333; border-radius: 4px; padding: 0.5rem; z-index: 60; }
-        .group:hover .lang-dropdown { display: block; }
-
-        /* Contenedor Reel */
-        .video-wrapper {
-            max-width: 320px;
-            margin: 0 auto;
-            border-radius: 20px;
+            margin: 0;
             overflow: hidden;
-            box-shadow: 0 0 40px rgba(0,0,0,0.7);
-            border: 1px solid rgba(255,255,255,0.1);
-            aspect-ratio: 9/16;
-            background: #000;
+            touch-action: manipulation;
+        }
+
+        .font-epic { font-family: 'Cinzel', serif; }
+
+        /* Fondo de estrellas sutil */
+        .stars-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(ellipse at bottom, #090a0f 0%, #050508 100%);
+        }
+
+        /* Contenedor del Libro */
+        .book-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+            perspective: 2000px; /* Para efecto 3D */
+        }
+
+        /* Estilo de la Página */
+        .page-wrapper {
+            position: relative;
+            height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-style: preserve-3d;
+        }
+
+        .page-image {
+            max-height: 100%;
+            max-width: 100%;
+            height: auto;
+            width: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            user-select: none;
+            -webkit-user-drag: none;
+            background-color: #000;
+            backface-visibility: hidden;
+        }
+
+        /* Efecto Doblez (Hoja de libro) */
+        .turn-next {
+            transform: rotateY(-20deg) translateX(-30px);
+            opacity: 0;
+        }
+        .turn-prev {
+            transform: rotateY(20deg) translateX(30px);
+            opacity: 0;
+        }
+
+        /* Zonas de Interacción */
+        .tap-zone {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            z-index: 20;
+            cursor: pointer;
+        }
+        .tap-prev { left: 0; width: 30%; }
+        .tap-center { left: 30%; width: 40%; } /* Zona para el menú */
+        .tap-next { right: 0; width: 30%; }
+
+        /* UI Inmersiva (Header & Progress) */
+        header {
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            transform: translateY(0);
+        }
+        .progress-bar-container {
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            transform: translateY(0);
+        }
+
+        .ui-hidden header {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .ui-hidden .progress-bar-container {
+            transform: translateY(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Barra de progreso inferior */
+        .progress-bar-container {
+            height: 4px;
+            background: rgba(255,255,255,0.05);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #4a7cf5, #c5a059);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        /* Spread para PC */
+        .spread-view {
+            display: flex;
+            gap: 4px;
+            height: 100%;
+            align-items: center;
         }
     </style>
 </head>
-<body>
+<body class="ui-hidden"> <!-- Inicia en modo inmersivo (UI oculta) -->
 
-    <div class="stars-wrapper" id="stars-bg"></div>
+    <div class="stars-bg"></div>
 
-    <!-- NAVEGACIÓN PRINCIPAL -->
-    <nav class="fixed w-full z-50 nav-container" id="main-nav">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
-            
-            <!-- Izquierda: Redes -->
-            <div class="w-1/3 flex items-center justify-start">
-                <button class="md:hidden text-white p-2" onclick="toggleMenu()">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-                <div class="hidden md:flex gap-4">
-                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i class="fa-brands fa-facebook-f text-lg"></i></a>
-                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i class="fa-brands fa-instagram text-lg"></i></a>
-                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110"><i class="fa-brands fa-tiktok text-lg"></i></a>
-                </div>
-            </div>
-
-            <!-- Centro: Logo Flotante -->
-            <div class="w-1/3 flex justify-center relative">
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 mt-2">
-                    <a href="index.html">
-                        <img src="images/LogoMaks.png" alt="Máksamma" class="h-32 md:h-56 w-auto object-contain hover:scale-105 transition drop-shadow-2xl">
-                    </a>
-                </div>
-            </div>
-
-            <!-- Derecha: Idioma -->
-            <div class="w-1/3 flex justify-end items-center gap-4">
-                <div class="relative group">
-                    <button class="flex items-center gap-2 text-xs font-bold text-gray-300 hover:text-white uppercase">ES ▼</button>
-                    <div class="lang-dropdown absolute right-0 mt-2 w-32 bg-[#151621] border border-white/10 rounded shadow-xl">
-                        <a href="#" class="block px-4 py-2 hover:bg-white/5 text-xs text-gray-300">🇪🇸 Español</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-white/5 text-xs text-gray-300">🇺🇸 English</a>
-                    </div>
-                </div>
-                <a href="tienda.html" class="hidden md:inline-block btn-navy px-5 py-2 rounded-sm text-xs font-bold uppercase tracking-wider">Adquiere un libro</a>
-            </div>
+    <!-- CABECERA INMERSIVA -->
+    <header class="fixed top-0 w-full h-16 flex items-center justify-between px-6 bg-black/80 backdrop-blur-lg border-b border-white/5 z-40">
+        <a href="index.html" class="w-1/3 text-[10px] font-bold tracking-[0.2em] text-gray-400 hover:text-white transition flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            SALIR
+        </a>
+        
+        <div class="w-1/3 flex justify-center">
+            <img src="images/LogoMaks.png" alt="Máksamma" class="h-10 md:h-12 w-auto object-contain">
         </div>
 
-        <div class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
-            <a href="#universo" class="nav-link">El Universo</a>
-            <a href="#saga" class="nav-link">La Saga</a>
-            <a href="wiki.html" class="nav-link">Wiki</a>
-            <a href="tienda.html" class="nav-link">Tienda</a>
-        </div>
-
-        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-[#0b0c15] h-screen flex flex-col p-8 z-40">
-            <a href="#universo" onclick="toggleMenu()" class="text-white text-xl uppercase mb-6 text-center">El Universo</a>
-            <a href="#saga" onclick="toggleMenu()" class="text-white text-xl uppercase mb-6 text-center">La Saga</a>
-            <a href="wiki.html" class="text-white text-xl uppercase mb-6 text-center">Wiki</a>
-            <a href="tienda.html" class="text-white text-xl uppercase mb-6 text-center">Tienda</a>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <header class="relative min-h-screen flex items-center justify-center pt-40 px-6 overflow-hidden">
-        <!-- Nebulosa -->
-        <div class="absolute inset-0 bg-blue-900/5 blur-[100px] rounded-full"></div>
-        <!-- Cristales (Asegura que los 7 existan en tu carpeta images) -->
-        <div class="absolute inset-0 pointer-events-none">
-            <img src="images/gridsku1.png" class="absolute top-[15%] left-[10%] w-16 md:w-24 opacity-60 animate-float">
-            <img src="images/gridsku2.png" class="absolute top-[25%] right-[15%] w-12 md:w-20 opacity-50 animate-float-slow">
-            <img src="images/gridsku3.png" class="absolute bottom-[20%] left-[20%] w-20 md:w-32 opacity-40 animate-float-fast">
-            <img src="images/gridsku4.png" class="absolute top-[60%] right-[8%] w-14 md:w-24 opacity-60 animate-float">
-            <img src="images/gridsku5.png" class="absolute top-[10%] left-[80%] w-10 md:w-16 opacity-30 animate-float-slow">
-            <img src="images/gridsku6.png" class="absolute bottom-[10%] right-[30%] w-16 md:w-28 opacity-40 animate-float">
-            <img src="images/gridsku7.png" class="absolute top-[40%] left-[5%] w-12 md:w-20 opacity-50 animate-float-fast">
-        </div>
-
-        <div class="relative z-10 text-center max-w-5xl">
-            <h1 class="font-epic text-5xl md:text-8xl text-white mb-8 drop-shadow-2xl">EL EQUILIBRIO <br> SE HA ROTO</h1>
-            <h2 class="font-serif-text italic text-2xl text-gray-300 mb-8">Siete clanes. Un mundo antiguo. <br> <span class="text-blue-400">Una decisión que desata el conflicto.</span></h2>
-            <div class="w-32 h-1 bg-blue-500/50 mx-auto mb-10"></div>
-            <p class="text-gray-400 text-lg max-w-2xl mx-auto"><strong>Máksamma — Tomo I</strong> inicia el colapso de un orden que se sostuvo durante generaciones.</p>
+        <div class="w-1/3 text-right text-[10px] font-bold text-gray-400 tracking-widest" id="page-indicator">
+            1 / 84
         </div>
     </header>
 
-    <!-- UNIVERSO -->
-    <section id="universo" class="py-24 px-6 bg-gradient-to-b from-transparent to-[#0b0c15]">
-        <div class="container mx-auto">
-            <h2 class="font-epic text-3xl text-white mb-12 border-b border-gray-800 pb-4">Descubre el Universo</h2>
+    <!-- ÁREA DE LECTURA -->
+    <main class="book-container" id="book-area">
+        
+        <!-- Zonas de Tap -->
+        <div class="tap-zone tap-prev" onclick="prevPage()"></div>
+        <div class="tap-zone tap-center" onclick="toggleUI()"></div>
+        <div class="tap-zone tap-next" onclick="nextPage()"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-5 h-auto md:h-[600px] mb-16">
-                <!-- Slider Lore -->
-                <div class="md:col-span-2 md:row-span-2 rounded-xl bg-[#0f111a] border border-white/5 overflow-hidden relative">
-                    <div class="slider-item active flex flex-col justify-end p-8 h-full absolute inset-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                        <div class="relative z-10">
-                            <span class="text-blue-400 text-xs font-bold uppercase block mb-2">Lore Destacado</span>
-                            <h3 class="font-epic text-3xl text-white mb-4">La Maquiria</h3>
-                            <p class="text-gray-400 text-sm mb-4">El cristal que conecta a todos los seres vivos.</p>
-                            <a href="wiki.html" class="text-white border-b border-blue-500 pb-1 text-xs">Leer Artículo →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Galería Automática -->
-                <a href="ilustraciones.html" class="md:col-span-2 md:row-span-1 rounded-xl bg-[#0f111a] border border-white/5 overflow-hidden relative group">
-                    <img id="illus-carousel-img" src="images/Ilus1.png" class="w-full h-full object-cover transition-opacity duration-1000" onerror="this.src='https://via.placeholder.com/800x450?text=Cargando...'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    <div class="absolute bottom-6 left-8">
-                        <span class="text-blue-400 text-xs font-bold uppercase block">Galería de Arte</span>
-                        <h3 class="font-epic text-2xl text-white">El Pigtandé en Imágenes</h3>
-                    </div>
-                </a>
-
-                <!-- Lectura Gratuita -->
-                <div class="md:col-span-2 md:row-span-1 rounded-xl p-8 flex items-center justify-between bg-gradient-to-r from-[#0f1016] to-[#1e1b4b] border border-white/5 cursor-pointer">
-                    <div>
-                        <span class="text-blue-300 text-xs font-bold uppercase block mb-1">Lectura Gratuita</span>
-                        <h3 class="font-epic text-2xl text-white">Lee el Prólogo</h3>
-                    </div>
-                    <div class="h-12 w-12 rounded-full border border-gray-500 flex items-center justify-center text-white">➜</div>
-                </div>
-            </div>
-
-            <!-- REEL CRÓNICAS -->
-            <div class="py-12 border-t border-white/5 text-center">
-                <h2 class="font-epic text-3xl text-white mb-8">Crónicas del Pigtandé</h2>
-                <div class="video-wrapper">
-                    <iframe src="https://drive.google.com/file/d/1dvOVy_aPZK3JvgzptoRq9QQNoHJCYxPy/preview" width="100%" height="100%" allow="autoplay" frameborder="0"></iframe>
-                </div>
-            </div>
+        <!-- Contenedor de Imágenes -->
+        <div class="page-wrapper" id="reader-view">
+            <!-- Las imágenes se cargan dinámicamente aquí -->
         </div>
-    </section>
 
-    <!-- SAGA -->
-    <section id="saga" class="py-24 bg-[#08090f] border-t border-white/5">
-        <div class="container mx-auto px-6">
-            <div id="book-display" class="flex flex-col lg:flex-row items-center gap-16 transition-opacity">
-                <div class="w-full lg:w-1/2 flex justify-center perspective-[1000px]">
-                    <a href="tienda.html" class="relative w-64 md:w-80 aspect-[2/3] shadow-2xl transform rotate-y-[-15deg] hover:rotate-y-0 transition duration-700">
-                        <img id="book-img" src="images/PORTADA.png" class="w-full h-full object-cover rounded-r-md">
-                        <div id="book-fallback" class="hidden absolute inset-0 bg-[#151621] flex flex-col items-center justify-center p-8 text-center border border-white/10">
-                            <h3 class="font-epic text-2xl text-white">MÁKSAMMA II</h3>
-                            <p class="text-gray-500 italic mt-4">Próximamente...</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="w-full lg:w-1/2">
-                    <span id="book-status" class="px-3 py-1 bg-green-900/30 text-green-400 border border-green-500/30 text-[10px] font-bold uppercase rounded">Disponible Ahora</span>
-                    <h2 id="book-title" class="font-epic text-5xl text-white my-6">El Nombre del Cristal</h2>
-                    <p id="book-desc" class="text-gray-400 text-lg mb-8 font-light">Elegida por la Maquiria para restaurar el equilibrio entre el poder y el sentimiento.</p>
-                    <a href="tienda.html" class="btn-navy px-8 py-3 rounded-sm text-xs font-bold uppercase inline-block">Obtener Libro</a>
-                </div>
-            </div>
-            
-            <div class="mt-20 flex gap-4 max-w-md mx-auto">
-                <button onclick="switchTomo(0)" class="tomo-btn flex-1 p-4 border border-blue-500/50 bg-blue-900/20 text-blue-400 font-bold rounded">TOMO I</button>
-                <button onclick="switchTomo(1)" class="tomo-btn flex-1 p-4 border border-white/10 text-gray-500 font-bold rounded">TOMO II</button>
-            </div>
-        </div>
-    </section>
+    </main>
 
-    <!-- FOOTER -->
-    <footer class="py-12 bg-black text-center flex flex-col items-center">
-        <img src="images/LogoMaks.png" class="h-24 mb-6 opacity-80">
-        <div class="flex gap-8 text-gray-500 mb-8">
-            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank"><i class="fa-brands fa-instagram text-xl"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"><i class="fa-brands fa-facebook-f text-xl"></i></a>
-            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank"><i class="fa-brands fa-tiktok text-xl"></i></a>
-        </div>
-        <p class="text-[10px] text-gray-700">© 2024 Máksamma. Autor: Carlos Enrique Rodríguez Mata.</p>
-    </footer>
-
-    <!-- ANGE -->
-    <div class="fixed bottom-6 right-6 z-50 w-20 h-20 cursor-pointer" onclick="changeFace()">
-        <img id="agent-face" src="images/Ange1.png" class="w-full h-full object-contain">
+    <!-- PROGRESO -->
+    <div class="progress-bar-container">
+        <div class="progress-fill" id="progress-bar"></div>
     </div>
 
     <script>
-        // Estrellas
-        const starsContainer = document.getElementById('stars-bg');
-        for (let i = 0; i < 80; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.width = `${Math.random() * 2}px`;
-            star.style.height = star.style.width;
-            starsContainer.appendChild(star);
+        const totalPages = 84;
+        let currentPage = 1;
+        const readerView = document.getElementById('reader-view');
+        const pageIndicator = document.getElementById('page-indicator');
+        const progressBar = document.getElementById('progress-bar');
+        let isUIVisible = false;
+
+        function isMobile() {
+            return window.innerWidth < 1024;
         }
 
-        // Scroll
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) document.body.classList.add('scrolled');
-            else document.body.classList.remove('scrolled');
+        // Alternar visualización de la barra de menú
+        function toggleUI() {
+            isUIVisible = !isUIVisible;
+            if (isUIVisible) {
+                document.body.classList.remove('ui-hidden');
+            } else {
+                document.body.classList.add('ui-hidden');
+            }
+        }
+
+        function renderPages(directionClass = "") {
+            // Aplicar efecto de transición
+            if (directionClass) {
+                readerView.classList.add(directionClass);
+            }
+            
+            setTimeout(() => {
+                readerView.innerHTML = '';
+                readerView.className = 'page-wrapper'; // Reset clases de animación
+                
+                if (isMobile()) {
+                    const img = createPageImg(currentPage);
+                    readerView.appendChild(img);
+                    pageIndicator.innerText = `${currentPage} / ${totalPages}`;
+                } else {
+                    if (currentPage > 1 && currentPage % 2 === 0) currentPage--;
+                    
+                    const spread = document.createElement('div');
+                    spread.className = 'spread-view';
+                    
+                    const leftImg = createPageImg(currentPage);
+                    spread.appendChild(leftImg);
+
+                    if (currentPage + 1 <= totalPages) {
+                        const rightImg = createPageImg(currentPage + 1);
+                        spread.appendChild(rightImg);
+                        pageIndicator.innerText = `${currentPage}-${currentPage + 1} / ${totalPages}`;
+                    } else {
+                        pageIndicator.innerText = `${currentPage} / ${totalPages}`;
+                    }
+                    readerView.appendChild(spread);
+                }
+
+                // Barra de progreso
+                const progress = (currentPage / totalPages) * 100;
+                progressBar.style.width = `${progress}%`;
+            }, directionClass ? 300 : 0);
+        }
+
+        function createPageImg(num) {
+            const img = document.createElement('img');
+            img.src = `caps/${num}.png`;
+            img.alt = `Página ${num}`;
+            img.className = 'page-image';
+            img.onerror = () => {
+                img.src = 'https://via.placeholder.com/1536x2400/0a0b10/333?text=Página+' + num;
+            };
+            return img;
+        }
+
+        function nextPage() {
+            const step = isMobile() ? 1 : 2;
+            if (currentPage + step <= totalPages) {
+                currentPage += step;
+                renderPages('turn-next');
+            } else if (!isMobile() && currentPage + 1 === totalPages) {
+                currentPage = totalPages;
+                renderPages('turn-next');
+            }
+        }
+
+        function prevPage() {
+            const step = isMobile() ? 1 : 2;
+            if (currentPage - step >= 1) {
+                currentPage -= step;
+                renderPages('turn-prev');
+            } else {
+                currentPage = 1;
+                renderPages('turn-prev');
+            }
+        }
+
+        // Atajos de teclado
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextPage();
+            if (e.key === 'ArrowLeft') prevPage();
+            if (e.key === 'm' || e.key === 'Escape') toggleUI();
         });
 
-        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+        // Swipe para móvil
+        let touchStartX = 0;
+        document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, false);
+        document.addEventListener('touchend', e => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 60) {
+                if (diff > 0) nextPage();
+                else prevPage();
+            }
+        }, false);
 
-        // Carrusel Ilustraciones (11 imágenes)
-        let illusCurrent = 1;
-        setInterval(() => {
-            const img = document.getElementById('illus-carousel-img');
-            if(!img) return;
-            img.style.opacity = '0';
-            setTimeout(() => {
-                illusCurrent = (illusCurrent % 11) + 1;
-                img.src = `images/Ilus${illusCurrent}.png`;
-                img.style.opacity = '1';
-            }, 1000);
-        }, 5000);
+        window.addEventListener('resize', () => renderPages());
 
-        // Ange
-        let face = 1;
-        function changeFace() {
-            face = (face % 10) + 1;
-            document.getElementById('agent-face').src = `images/Ange${face}.png`;
-        }
-
-        // Switcher Tomos
-        const bookData = [
-            { title: "El Nombre del Cristal", desc: "Elegida para restaurar el equilibrio.", status: "Disponible Ahora", statusClass: "text-green-400 bg-green-900/30 border-green-500/30", cover: "images/PORTADA.png" },
-            { title: "Próximamente", desc: "La historia continúa...", status: "En Desarrollo", statusClass: "text-yellow-400 bg-yellow-900/30 border-yellow-500/30", cover: "" }
-        ];
-
-        function switchTomo(idx) {
-            const data = bookData[idx];
-            const display = document.getElementById('book-display');
-            display.style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('book-title').innerText = data.title;
-                document.getElementById('book-desc').innerText = data.desc;
-                const badge = document.getElementById('book-status');
-                badge.innerText = data.status;
-                badge.className = `px-3 py-1 text-[10px] font-bold uppercase rounded border ${data.statusClass}`;
-                
-                const img = document.getElementById('book-img');
-                const fallback = document.getElementById('book-fallback');
-                if(data.cover) { img.src = data.cover; img.classList.remove('hidden'); fallback.classList.add('hidden'); }
-                else { img.classList.add('hidden'); fallback.classList.remove('hidden'); }
-
-                document.querySelectorAll('.tomo-btn').forEach((btn, i) => {
-                    btn.className = i === idx ? "tomo-btn flex-1 p-4 border border-blue-500/50 bg-blue-900/20 text-blue-400 font-bold rounded" : "tomo-btn flex-1 p-4 border border-white/10 text-gray-500 font-bold rounded";
-                });
-                display.style.opacity = '1';
-            }, 300);
-        }
+        // Carga inicial
+        renderPages();
     </script>
-    <script src="magic-cursor.js"></script>
 </body>
 </html>
