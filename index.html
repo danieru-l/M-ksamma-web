@@ -40,18 +40,38 @@
         .stars-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); overflow: hidden; }
         .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; }
 
-        /* Navegación */
-        .nav-container { background: rgba(5, 5, 8, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); transition: transform 0.4s ease; }
-        body.scrolled .nav-container { transform: translateY(-100%); }
+        /* --- NAVEGACIÓN (SINCRONIZADA CON WIKI) --- */
+        .nav-container {
+            background: rgba(5, 5, 8, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.4s ease;
+        }
+
+        /* Ocultar barra al bajar */
+        body.scrolled .nav-container {
+            transform: translateY(-100%); 
+        }
         
-        .nav-link { position: relative; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.1em; font-weight: 600; color: #cbd5e1; transition: color 0.3s; padding: 0.5rem 0; }
+        .nav-link {
+            position: relative; text-transform: uppercase; font-size: 0.85rem;
+            letter-spacing: 0.1em; font-weight: 600; color: #cbd5e1;
+            transition: color 0.3s; padding: 0.5rem 0;
+        }
         .nav-link:hover { color: white; }
-        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--accent-gold); transition: width 0.3s; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--accent-gold); transition: width 0.3s;
+        }
         .nav-link:hover::after { width: 100%; }
 
         /* Utilidades */
-        .btn-navy { background-color: #0f172a; border: 1px solid #1e3a8a; color: white; transition: all 0.3s; }
-        .btn-navy:hover { background-color: #1e3a8a; box-shadow: 0 0 15px rgba(30, 58, 138, 0.5); }
+        .btn-navy {
+            background-color: #0f172a; border: 1px solid #1e3a8a; color: white; transition: all 0.3s;
+        }
+        .btn-navy:hover {
+            background-color: #1e3a8a; box-shadow: 0 0 15px rgba(30, 58, 138, 0.5);
+        }
 
         /* Slider */
         .slider-item { display: none; opacity: 0; transition: opacity 0.5s; height: 100%; }
@@ -63,7 +83,7 @@
         .bento-card { background-color: var(--color-card); border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
         .bento-card:hover { border-color: var(--accent-blue); transform: translateY(-4px); }
 
-        /* Dropdown Idioma */
+        /* Idioma Dropdown */
         .lang-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #151621; border: 1px solid #333; border-radius: 4px; padding: 0.5rem; z-index: 60; }
         .lang-btn:focus + .lang-dropdown, .lang-dropdown:hover { display: block; }
 
@@ -89,56 +109,74 @@
     <!-- FONDO DE ESTRELLAS -->
     <div class="stars-wrapper" id="stars-bg"></div>
 
-    <!-- NAVEGACIÓN PRINCIPAL -->
-    <nav class="fixed w-full z-50 nav-container relative" id="main-nav">
+    <!-- NAVEGACIÓN PRINCIPAL (Copia exacta del estilo Wiki) -->
+    <nav class="fixed w-full z-50 nav-container" id="main-nav">
         
-        <!-- BARRA SUPERIOR -->
-        <div class="nav-top-bar container mx-auto px-4 py-3 flex justify-between items-center relative z-40 transition-all duration-500 border-b border-white/5">
+        <!-- Contenedor Principal Nav -->
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
             
             <!-- 1. IZQUIERDA (Móvil: Hamburguesa / Desktop: Redes) -->
             <div class="w-1/3 flex items-center justify-start">
+                
+                <!-- Botón Hamburguesa (Solo Móvil) -->
                 <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
 
-                <!-- Redes Sociales (FontAwesome) -->
-                <div class="hidden md:flex gap-5">
-                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i class="fa-brands fa-facebook-f text-lg"></i></a>
-                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i class="fa-brands fa-instagram text-lg"></i></a>
-                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                <!-- Redes Sociales (Solo Desktop) -->
+                <div class="hidden md:flex gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110">
+                        <i class="fa-brands fa-facebook-f text-lg"></i>
+                    </a>
+                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110">
+                        <i class="fa-brands fa-tiktok text-lg"></i>
+                    </a>
                 </div>
             </div>
 
-            <!-- 2. CENTRO (Logo Contenido - NO Flotante) -->
-            <div class="w-1/3 text-center flex justify-center">
-                <a href="#" class="block">
-                    <!-- Tamaño ajustado: h-12 (móvil) / h-16 (escritorio) -->
-                    <img src="images/LogoMaks.png" 
-                         alt="Máksamma" 
-                         class="h-12 md:h-16 w-auto object-contain hover:scale-105 transition" 
-                         onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block'">
-                </a>
-                <a href="#" id="text-logo" class="text-2xl font-epic font-black tracking-[0.25em] text-white hover:text-blue-300 transition hidden">MÁKSAMMA</a>
+            <!-- Centro: LOGO FLOTANTE -->
+            <div class="w-1/3 flex justify-center relative">
+                <!-- LOGO FLOTANTE GIGANTE (Medidas exactas Wiki) -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 mt-2">
+                    <a href="index.html">
+                        <img src="images/LogoMaks.png" alt="Máksamma" class="h-32 md:h-56 w-auto object-contain hover:scale-105 transition drop-shadow-2xl filter drop-shadow-[0_0_15px_rgba(0,0,0,0.9)]" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block'">
+                    </a>
+                </div>
+                <!-- Texto de respaldo -->
+                <a href="index.html" id="text-logo" class="text-2xl font-epic font-black tracking-[0.25em] text-white hover:text-blue-300 transition hidden">MÁKSAMMA</a>
             </div>
 
             <!-- 3. DERECHA (Idioma + Botón) -->
             <div class="w-1/3 flex justify-end items-center gap-4">
+                
+                <!-- Selector Idioma -->
                 <div class="relative group">
                     <button class="lang-btn flex items-center gap-2 text-xs font-bold text-gray-300 hover:text-white uppercase tracking-wider focus:outline-none">
                         <span>ES</span> <span class="text-lg">▼</span>
                     </button>
+                    <!-- Dropdown -->
                     <div class="lang-dropdown absolute right-0 mt-2 w-32 bg-[#151621] border border-white/10 rounded shadow-xl hidden group-hover:block">
-                        <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 text-xs text-gray-300"><span class="text-base">🇪🇸</span> Español</a>
-                        <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 text-xs text-gray-300"><span class="text-base">🇺🇸</span> English</a>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 text-xs text-gray-300">
+                            <span class="text-base">🇪🇸</span> Español
+                        </a>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 text-xs text-gray-300">
+                            <span class="text-base">🇺🇸</span> English
+                        </a>
                     </div>
                 </div>
-                <!-- Apunta a tienda.html -->
-                <a href="tienda.html" class="hidden md:inline-block btn-navy px-5 py-2 rounded-sm text-xs font-bold uppercase tracking-wider shadow-lg">Adquiere un libro</a>
+
+                <!-- Botón Desktop -->
+                <a href="tienda.html" class="hidden md:inline-block btn-navy px-5 py-2 rounded-sm text-xs font-bold uppercase tracking-wider shadow-lg">
+                    Adquiere un libro
+                </a>
             </div>
         </div>
 
-        <!-- BARRA INFERIOR (Enlaces) -->
-        <div class="hidden md:flex container mx-auto px-6 py-4 flex justify-center items-center gap-8 md:gap-16 overflow-x-auto whitespace-nowrap bg-black/20 backdrop-blur-sm">
+        <!-- Barra Inferior Desktop (Links - Medidas Wiki) -->
+        <div class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
             <a href="#universo" class="nav-link">El Universo</a>
             <a href="#saga" class="nav-link">La Saga</a>
             <a href="wiki.html" class="nav-link">Wiki</a>
@@ -162,7 +200,7 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (Con Cristales Flotantes) -->
+    <!-- HERO SECTION -->
     <header class="relative min-h-screen flex items-center justify-center pt-40 px-6 overflow-hidden">
         <!-- Nebulosa de fondo -->
         <div class="absolute inset-0 z-0 pointer-events-none">
@@ -205,7 +243,9 @@
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </div>
         </div>
-        <!-- SECCIÓN UNIVERSO (Slider) -->
+    </header>
+
+    <!-- SECCIÓN UNIVERSO (Slider) -->
     <section id="universo" class="py-24 px-6 relative z-10 bg-gradient-to-b from-transparent to-[#0b0c15]">
         <div class="container mx-auto">
             <div class="flex items-center justify-between mb-12 border-b border-gray-800 pb-4">
@@ -221,12 +261,10 @@
                 
                 <!-- 1. SLIDER ARTÍCULOS -->
                 <div class="md:col-span-2 md:row-span-2 rounded-xl bg-[#0f111a] border border-white/5 overflow-hidden relative group">
-                    <!-- Botones flotantes internos -->
                     <button onclick="changeSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white bg-black/50 hover:bg-white hover:text-black rounded-full w-10 h-10 flex items-center justify-center transition">←</button>
                     <button onclick="changeSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white bg-black/50 hover:bg-white hover:text-black rounded-full w-10 h-10 flex items-center justify-center transition">→</button>
 
                     <div class="slider-container w-full h-full relative">
-                        <!-- Slide 1 -->
                         <div class="slider-item active flex flex-col justify-end p-8 h-full w-full absolute inset-0">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-[#0b0c15]/80 to-transparent z-0"></div>
                             <div class="relative z-10">
@@ -236,7 +274,6 @@
                                 <a href="wiki.html" class="text-white border-b border-blue-500 pb-1 text-sm inline-block hover:text-blue-300">Leer Artículo →</a>
                             </div>
                         </div>
-                        <!-- Slide 2 -->
                         <div class="slider-item flex flex-col justify-end p-8 h-full w-full absolute inset-0">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-[#0b0c15]/80 to-transparent z-0"></div>
                             <div class="relative z-10">
@@ -246,7 +283,6 @@
                                 <a href="#" class="text-white border-b border-yellow-500 pb-1 text-sm inline-block hover:text-yellow-300">Ver Biografía →</a>
                             </div>
                         </div>
-                        <!-- Slide 3 -->
                         <div class="slider-item flex flex-col justify-end p-8 h-full w-full absolute inset-0">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-[#0b0c15]/80 to-transparent z-0"></div>
                             <div class="relative z-10">
@@ -265,21 +301,18 @@
                     </div>
                 </div>
 
-                <!-- 2. LÍDERES -->
                 <div class="md:col-span-1 md:row-span-1 rounded-xl p-6 bg-[#111] border border-white/5 flex flex-col justify-center items-center text-center cursor-pointer hover:border-blue-500 transition hover:-translate-y-1">
                     <div class="text-4xl mb-3">👑</div>
                     <h4 class="font-epic text-xl text-white">Líderes de Clanes</h4>
                     <p class="text-xs text-gray-500 mt-2">Jerarquías actuales.</p>
                 </div>
 
-                <!-- 3. CLANES LINK -->
                 <a href="clanes.html" class="md:col-span-1 md:row-span-1 rounded-xl p-6 bg-gradient-to-br from-[#422006] to-black border border-white/5 flex flex-col justify-center items-center text-center group hover:scale-[1.02] transition hover:border-yellow-600">
                     <div class="text-5xl mb-4 group-hover:scale-110 transition">🛡️</div>
                     <h4 class="font-epic text-xl text-white">Los 7 Clanes</h4>
                     <span class="text-[10px] text-yellow-500 font-bold uppercase mt-2 border-b border-yellow-500">Conocer Linajes</span>
                 </a>
 
-                <!-- 4. CAPÍTULO GRATUITO -->
                 <div class="md:col-span-2 md:row-span-1 rounded-xl p-8 flex items-center justify-between bg-gradient-to-r from-[#0f1016] to-[#1e1b4b] border border-white/5 cursor-pointer hover:border-blue-400 transition">
                     <div>
                         <span class="text-[10px] text-blue-300 font-bold uppercase tracking-wider mb-1 block">Lectura Gratuita</span>
@@ -292,24 +325,15 @@
         </div>
     </section>
 
-    <!-- SECCIÓN SAGA (Tomos Interactivos) -->
+    <!-- SECCIÓN SAGA -->
     <section id="saga" class="py-24 bg-[#08090f] border-t border-white/5 relative z-10">
         <div class="container mx-auto px-6">
-            
-            <!-- Visor del Libro -->
             <div class="flex flex-col lg:flex-row items-center gap-16 transition-opacity duration-300" id="book-display">
-                
-                <!-- Portada 3D (Link a Tienda) -->
                 <div class="w-full lg:w-1/2 flex justify-center perspective-[1000px]">
-                    <!-- Envoltura de enlace para ir a la tienda -->
                     <a href="tienda.html" class="relative w-64 md:w-80 aspect-[2/3] bg-[#1a1b26] rounded-r-md shadow-2xl transform rotate-y-[-15deg] transition-all duration-700 border-l-4 border-gray-800 flex flex-col items-center justify-center text-center p-6 ring-1 ring-white/10 group hover:rotate-y-0 cursor-pointer cover-glow">
-                        
-                        <!-- IMAGEN DE PORTADA -->
                         <div class="absolute inset-0 z-0 overflow-hidden rounded-r-sm">
                             <img id="book-img" src="images/PORTADA.png" alt="Portada Libro" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
                         </div>
-
-                        <!-- Contenido CSS (Solo visible para Tomo 2) -->
                         <div id="book-fallback" class="hidden relative z-10 border border-white/20 h-full w-full p-4 flex flex-col justify-between items-center bg-gradient-to-br from-white/5 to-transparent">
                             <div class="text-xs text-gray-500 uppercase tracking-[0.3em]">Carlos E. Rodríguez</div>
                             <div>
@@ -322,27 +346,21 @@
                     </a>
                 </div>
 
-                <!-- Info -->
                 <div class="w-full lg:w-1/2">
                     <div class="flex items-center gap-4 mb-6">
                         <span id="book-status" class="px-3 py-1 bg-green-900/30 text-green-400 border border-green-500/30 text-[10px] font-bold uppercase tracking-wider rounded">Disponible Ahora</span>
                         <div class="h-px flex-1 bg-gray-800"></div>
                     </div>
-                    
                     <h2 id="book-title" class="font-epic text-4xl md:text-5xl text-white mb-6 leading-tight">El Nombre del Cristal</h2>
-                    
                     <p id="book-desc" class="text-gray-400 text-lg leading-relaxed mb-8 font-light">
                         Máksamma es el relato de una joven de 17 años del séptimo clan, elegida por la Maquiria para restaurar el equilibrio entre el poder y el sentimiento en un universo que jamás conoció la emoción.
                     </p>
-
                     <div class="flex flex-wrap gap-4" id="book-buttons">
-                        <!-- CAMBIO: Apunta a tienda.html -->
                         <a href="tienda.html" class="btn-navy px-8 py-3 rounded-sm text-xs font-bold uppercase tracking-widest">Obtener Libro</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Selector de Tomos -->
             <div class="mt-24 pt-12 border-t border-white/5">
                 <p class="text-center text-gray-500 text-xs font-bold uppercase tracking-widest mb-8">El Camino de la Saga</p>
                 <div class="grid grid-cols-2 gap-4 max-w-lg mx-auto">
@@ -352,10 +370,10 @@
             </div>
         </div>
     </section>
-        <!-- FOOTER -->
+
+    <!-- FOOTER -->
     <footer class="py-12 bg-black border-t border-white/5 text-center relative z-10 flex flex-col items-center">
         <img src="images/LogoMaks.png" alt="Máksamma" class="h-24 w-auto mb-6 object-contain opacity-80" onerror="this.style.display='none'">
-        
         <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-8">
             <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-instagram text-xl"></i></a>
             <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-facebook-f text-xl"></i></a>
@@ -365,7 +383,6 @@
     </footer>
 
     <!-- AGENTE FLOTANTE (Ange) -->
-    <!-- Imágenes requeridas: Ange1.png ... Ange10.png en carpeta images -->
     <div id="agent-widget" class="fixed bottom-6 right-6 z-50 w-20 h-20 md:w-24 md:h-24 cursor-pointer transition hover:scale-110 drop-shadow-2xl" onclick="changeFace()">
         <img id="agent-face" src="images/Ange1.png" class="w-full h-full object-contain" alt="Agente" onerror="this.style.display='none'">
     </div>
@@ -386,13 +403,16 @@
             starsContainer.appendChild(star);
         }
 
-        // 2. Nav Scroll y Menu
+        // 2. Nav Scroll (Misma lógica que Wiki)
         window.addEventListener('scroll', () => {
-            const body = document.body;
-            if (window.scrollY > 50) body.classList.add('scrolled');
-            else body.classList.remove('scrolled');
+            if (window.scrollY > 50) document.body.classList.add('scrolled');
+            else document.body.classList.remove('scrolled');
         });
-        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+
+        // Menú Móvil
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
 
         // 3. Slider Universo
         let slideIndex = 0;
@@ -413,11 +433,8 @@
         // 4. Agente Flotante (Ange)
         let currentFace = 1;
         function changeFace() {
-            // Cicla del 1 al 10
             currentFace = (currentFace % 10) + 1;
             const img = document.getElementById('agent-face');
-            
-            // Efecto de rebote al cambiar
             img.style.transform = 'scale(0.8)';
             setTimeout(() => {
                 img.src = `images/Ange${currentFace}.png`;
@@ -425,12 +442,11 @@
             }, 100);
         }
 
-        // 5. Lógica de Tomos (Solo 2)
+        // 5. Lógica de Tomos
         const bookData = [
             {
                 label: "TOMO I",
                 title: "El Nombre del Cristal",
-                sub: "\"El Nombre del Cristal\"",
                 desc: "Máksamma es el relato de una joven de 17 años del séptimo clan, elegida por la Maquiria para restaurar el equilibrio entre el poder y el sentimiento en un universo que jamás conoció la emoción.",
                 status: "Disponible Ahora",
                 statusClass: "text-green-400 border-green-500/30 bg-green-900/30",
@@ -440,7 +456,6 @@
             {
                 label: "TOMO II",
                 title: "Próximamente",
-                sub: "",
                 desc: "La historia continúa...",
                 status: "En Desarrollo",
                 statusClass: "text-yellow-400 border-yellow-500/30 bg-yellow-900/30",
@@ -464,7 +479,6 @@
                 statusBadge.innerText = data.status;
                 statusBadge.className = `px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded border ${data.statusClass}`;
                 
-                // Mostrar/Ocultar Portada según disponibilidad
                 if(data.hasCover) {
                     document.getElementById('book-img').style.display = 'block';
                     document.getElementById('book-fallback').classList.add('hidden');
@@ -475,7 +489,6 @@
                     document.getElementById('book-fallback').classList.add('flex');
                 }
 
-                // Actualizar estilo de botones
                 document.querySelectorAll('.tomo-btn').forEach((btn, i) => {
                     const span = btn.querySelector('span');
                     if(i === index) {
@@ -497,4 +510,3 @@
 
 </body>
 </html>
-    </header>
