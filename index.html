@@ -217,7 +217,7 @@
 
                 <!-- 2. GALERÍA AUTOMÁTICA DE ILUSTRACIONES -->
                 <a href="ilustraciones.html" class="md:col-span-2 md:row-span-1 rounded-xl bg-[#0f111a] border border-white/5 overflow-hidden relative group cursor-pointer shadow-2xl">
-                    <img id="illus-carousel-img" src="images/Ilus1.png" class="w-full h-full object-cover transition-opacity duration-1000 opacity-100" alt="Ilustración Máksamma" onerror="this.src='https://via.placeholder.com/800x450?text=Cargando+Arte...'">
+                    <img id="illus-carousel-img" src="images/Ilus1.png" class="w-full h-full object-cover transition-all duration-1000 opacity-100" alt="Ilustración Máksamma" onerror="this.src='https://via.placeholder.com/800x450?text=Error+al+cargar+ilustración'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                     <div class="absolute bottom-6 left-8">
                         <span class="text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-1 block">Galería de Arte</span>
@@ -281,11 +281,6 @@
         <p class="text-[10px] text-gray-700">© 2024 Máksamma. Autor: Carlos Enrique Rodríguez Mata.</p>
     </footer>
 
-    <!-- ANGE AGENT -->
-    <div id="agent-widget" class="fixed bottom-6 right-6 z-50 w-20 h-20 md:w-24 cursor-pointer hover:scale-110 transition" onclick="changeFace()">
-        <img id="agent-face" src="images/Ange1.png" class="w-full h-full object-contain">
-    </div>
-
     <script>
         // Estrellas
         const starsContainer = document.getElementById('stars-bg');
@@ -314,18 +309,37 @@
         }
         function changeSlide(n) { showSlide(slideIndex + n); }
 
-        // Carrusel Ilustraciones
+        // Carrusel Ilustraciones (1 a 11)
         let illusCurrent = 1;
-        setInterval(() => {
+        const totalIllus = 11;
+        
+        // Función para cambiar ilustración con lógica de carga
+        function rotateIllus() {
             const img = document.getElementById('illus-carousel-img');
             if(!img) return;
+            
             img.style.opacity = '0';
+            
             setTimeout(() => {
-                illusCurrent = (illusCurrent % 11) + 1;
-                img.src = `images/Ilus${illusCurrent}.png`;
-                img.style.opacity = '1';
+                illusCurrent = (illusCurrent % totalIllus) + 1;
+                // Pre-carga la imagen antes de mostrarla para evitar el parpadeo blanco
+                const nextSrc = `images/Ilus${illusCurrent}.png`;
+                const tempImg = new Image();
+                tempImg.onload = () => {
+                    img.src = nextSrc;
+                    img.style.opacity = '1';
+                };
+                tempImg.onerror = () => {
+                    // Si falla, intenta con la siguiente
+                    illusCurrent = (illusCurrent % totalIllus) + 1;
+                    img.src = `images/Ilus${illusCurrent}.png`;
+                    img.style.opacity = '1';
+                };
+                tempImg.src = nextSrc;
             }, 1000);
-        }, 5000);
+        }
+        
+        setInterval(rotateIllus, 5000);
 
         // Switcher Tomos
         const bookData = [
@@ -362,13 +376,7 @@
             }, 300);
         }
 
-        let face = 1;
-        function changeFace() {
-            face = (face % 10) + 1;
-            document.getElementById('agent-face').src = `images/Ange${face}.png`;
-        }
-
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
     </script>
 </body>
-</html>
+</html>m
