@@ -205,4 +205,296 @@
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </div>
         </div>
+        <!-- SECCIÓN UNIVERSO (Slider) -->
+    <section id="universo" class="py-24 px-6 relative z-10 bg-gradient-to-b from-transparent to-[#0b0c15]">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between mb-12 border-b border-gray-800 pb-4">
+                <h2 class="font-epic text-3xl text-white">Descubre el Universo</h2>
+                
+                <div class="flex gap-3">
+                    <button onclick="changeSlide(-1)" class="w-10 h-10 border border-gray-600 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition">←</button>
+                    <button onclick="changeSlide(1)" class="w-10 h-10 border border-gray-600 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition">→</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-5 h-auto md:h-[600px]">
+                
+                <!-- 1. SLIDER ARTÍCULOS -->
+                <div class="md:col-span-2 md:row-span-2 rounded-xl bg-[#0f111a] border border-white/5 overflow-hidden relative group">
+                    <!-- Botones flotantes internos -->
+                    <button onclick="changeSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white bg-black/50 hover:bg-white hover:text-black rounded-full w-10 h-10 flex items-center justify-center transition">←</button>
+                    <button onclick="changeSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white bg-black/50 hover:bg-white hover:text-black rounded-full w-10 h-10 flex items-center justify-center transition">→</button>
+
+                    <div class="slider-container w-full h-full relative">
+                        <!-- Slide 1 -->
+                        <div class="slider-item active flex flex-col justify-end p-8 h-full w-full absolute inset-0">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-[#0b0c15]/80 to-transparent z-0"></div>
+                            <div class="relative z-10">
+                                <span class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-2 block">Lore Destacado</span>
+                                <h3 class="font-epic text-3xl text-white mb-4">La Verdad sobre la Maquiria</h3>
+                                <p class="text-gray-400 text-sm mb-4 line-clamp-3">¿Es solo una fuente de energía o algo vivo? Descubre el origen del cristal que conecta a todos los seres vivos y por qué los clanes luchan desesperadamente por su control.</p>
+                                <a href="wiki.html" class="text-white border-b border-blue-500 pb-1 text-sm inline-block hover:text-blue-300">Leer Artículo →</a>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="slider-item flex flex-col justify-end p-8 h-full w-full absolute inset-0">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-[#0b0c15]/80 to-transparent z-0"></div>
+                            <div class="relative z-10">
+                                <span class="text-yellow-500 text-xs font-bold uppercase tracking-widest mb-2 block">El Creador</span>
+                                <h3 class="font-epic text-3xl text-white mb-4">Acerca del Autor</h3>
+                                <p class="text-gray-400 text-sm mb-4">Conoce a Carlos Enrique Rodríguez Mata, la mente detrás de los siete clanes y la arquitectura de un universo donde la ciencia se vuelve leyenda.</p>
+                                <a href="#" class="text-white border-b border-yellow-500 pb-1 text-sm inline-block hover:text-yellow-300">Ver Biografía →</a>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="slider-item flex flex-col justify-end p-8 h-full w-full absolute inset-0">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-[#0b0c15]/80 to-transparent z-0"></div>
+                            <div class="relative z-10">
+                                <span class="text-purple-400 text-xs font-bold uppercase tracking-widest mb-2 block">Historia</span>
+                                <h3 class="font-epic text-3xl text-white mb-4">La Caída del Primer Orden</h3>
+                                <p class="text-gray-400 text-sm mb-4">Antes de los clanes actuales, existía una unidad perfecta. ¿Qué causó la fractura original hace mil años?</p>
+                                <a href="wiki.html" class="text-white border-b border-purple-500 pb-1 text-sm inline-block hover:text-purple-300">Leer Crónica →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                        <div class="slider-dot active" onclick="setSlide(0)"></div>
+                        <div class="slider-dot" onclick="setSlide(1)"></div>
+                        <div class="slider-dot" onclick="setSlide(2)"></div>
+                    </div>
+                </div>
+
+                <!-- 2. LÍDERES -->
+                <div class="md:col-span-1 md:row-span-1 rounded-xl p-6 bg-[#111] border border-white/5 flex flex-col justify-center items-center text-center cursor-pointer hover:border-blue-500 transition hover:-translate-y-1">
+                    <div class="text-4xl mb-3">👑</div>
+                    <h4 class="font-epic text-xl text-white">Líderes de Clanes</h4>
+                    <p class="text-xs text-gray-500 mt-2">Jerarquías actuales.</p>
+                </div>
+
+                <!-- 3. CLANES LINK -->
+                <a href="clanes.html" class="md:col-span-1 md:row-span-1 rounded-xl p-6 bg-gradient-to-br from-[#422006] to-black border border-white/5 flex flex-col justify-center items-center text-center group hover:scale-[1.02] transition hover:border-yellow-600">
+                    <div class="text-5xl mb-4 group-hover:scale-110 transition">🛡️</div>
+                    <h4 class="font-epic text-xl text-white">Los 7 Clanes</h4>
+                    <span class="text-[10px] text-yellow-500 font-bold uppercase mt-2 border-b border-yellow-500">Conocer Linajes</span>
+                </a>
+
+                <!-- 4. CAPÍTULO GRATUITO -->
+                <div class="md:col-span-2 md:row-span-1 rounded-xl p-8 flex items-center justify-between bg-gradient-to-r from-[#0f1016] to-[#1e1b4b] border border-white/5 cursor-pointer hover:border-blue-400 transition">
+                    <div>
+                        <span class="text-[10px] text-blue-300 font-bold uppercase tracking-wider mb-1 block">Lectura Gratuita</span>
+                        <h3 class="font-epic text-2xl text-white mb-2">Lee el Prólogo</h3>
+                        <p class="text-xs text-gray-400">Descarga PDF o Lee Online.</p>
+                    </div>
+                    <div class="h-12 w-12 rounded-full border border-gray-500 flex items-center justify-center text-white text-xl hover:bg-white hover:text-black transition">➜</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN SAGA (Tomos Interactivos) -->
+    <section id="saga" class="py-24 bg-[#08090f] border-t border-white/5 relative z-10">
+        <div class="container mx-auto px-6">
+            
+            <!-- Visor del Libro -->
+            <div class="flex flex-col lg:flex-row items-center gap-16 transition-opacity duration-300" id="book-display">
+                
+                <!-- Portada 3D (Link a Tienda) -->
+                <div class="w-full lg:w-1/2 flex justify-center perspective-[1000px]">
+                    <!-- Envoltura de enlace para ir a la tienda -->
+                    <a href="tienda.html" class="relative w-64 md:w-80 aspect-[2/3] bg-[#1a1b26] rounded-r-md shadow-2xl transform rotate-y-[-15deg] transition-all duration-700 border-l-4 border-gray-800 flex flex-col items-center justify-center text-center p-6 ring-1 ring-white/10 group hover:rotate-y-0 cursor-pointer cover-glow">
+                        
+                        <!-- IMAGEN DE PORTADA -->
+                        <div class="absolute inset-0 z-0 overflow-hidden rounded-r-sm">
+                            <img id="book-img" src="images/PORTADA.png" alt="Portada Libro" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition">
+                        </div>
+
+                        <!-- Contenido CSS (Solo visible para Tomo 2) -->
+                        <div id="book-fallback" class="hidden relative z-10 border border-white/20 h-full w-full p-4 flex flex-col justify-between items-center bg-gradient-to-br from-white/5 to-transparent">
+                            <div class="text-xs text-gray-500 uppercase tracking-[0.3em]">Carlos E. Rodríguez</div>
+                            <div>
+                                <h3 class="font-epic text-3xl text-white mb-1">MÁKSAMMA</h3>
+                                <p id="book-tomo-label" class="text-blue-400 text-[10px] font-bold tracking-widest uppercase">Tomo I</p>
+                            </div>
+                            <div class="w-16 h-16 border border-white/10 rounded-full flex items-center justify-center bg-blue-500/10 text-2xl animate-pulse">💎</div>
+                            <p class="font-serif-text italic text-gray-400">Próximamente</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Info -->
+                <div class="w-full lg:w-1/2">
+                    <div class="flex items-center gap-4 mb-6">
+                        <span id="book-status" class="px-3 py-1 bg-green-900/30 text-green-400 border border-green-500/30 text-[10px] font-bold uppercase tracking-wider rounded">Disponible Ahora</span>
+                        <div class="h-px flex-1 bg-gray-800"></div>
+                    </div>
+                    
+                    <h2 id="book-title" class="font-epic text-4xl md:text-5xl text-white mb-6 leading-tight">El Nombre del Cristal</h2>
+                    
+                    <p id="book-desc" class="text-gray-400 text-lg leading-relaxed mb-8 font-light">
+                        Máksamma es el relato de una joven de 17 años del séptimo clan, elegida por la Maquiria para restaurar el equilibrio entre el poder y el sentimiento en un universo que jamás conoció la emoción.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4" id="book-buttons">
+                        <!-- CAMBIO: Apunta a tienda.html -->
+                        <a href="tienda.html" class="btn-navy px-8 py-3 rounded-sm text-xs font-bold uppercase tracking-widest">Obtener Libro</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selector de Tomos -->
+            <div class="mt-24 pt-12 border-t border-white/5">
+                <p class="text-center text-gray-500 text-xs font-bold uppercase tracking-widest mb-8">El Camino de la Saga</p>
+                <div class="grid grid-cols-2 gap-4 max-w-lg mx-auto">
+                    <button onclick="switchTomo(0)" class="tomo-btn active p-4 border border-blue-500/50 bg-blue-900/20 rounded hover:bg-blue-900/40 transition text-center"><span class="text-xs md:text-sm text-blue-400 font-bold uppercase block">TOMO I</span></button>
+                    <button onclick="switchTomo(1)" class="tomo-btn p-4 border border-white/10 rounded hover:bg-white/5 transition text-center opacity-60 hover:opacity-100"><span class="text-xs md:text-sm text-gray-400 font-bold uppercase block">TOMO II</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- FOOTER -->
+    <footer class="py-12 bg-black border-t border-white/5 text-center relative z-10 flex flex-col items-center">
+        <img src="images/LogoMaks.png" alt="Máksamma" class="h-24 w-auto mb-6 object-contain opacity-80" onerror="this.style.display='none'">
+        
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-8">
+            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-instagram text-xl"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-tiktok text-xl"></i></a>
+        </div>
+        <p class="text-[10px] text-gray-700">© 2024 Máksamma. Autor: Carlos Enrique Rodríguez Mata.</p>
+    </footer>
+
+    <!-- AGENTE FLOTANTE (Ange) -->
+    <!-- Imágenes requeridas: Ange1.png ... Ange10.png en carpeta images -->
+    <div id="agent-widget" class="fixed bottom-6 right-6 z-50 w-20 h-20 md:w-24 md:h-24 cursor-pointer transition hover:scale-110 drop-shadow-2xl" onclick="changeFace()">
+        <img id="agent-face" src="images/Ange1.png" class="w-full h-full object-contain" alt="Agente" onerror="this.style.display='none'">
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // 1. Estrellas
+        const starsContainer = document.getElementById('stars-bg');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.width = `${Math.random() * 2}px`;
+            star.style.height = star.style.width;
+            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+            star.style.setProperty('--opacity', Math.random());
+            starsContainer.appendChild(star);
+        }
+
+        // 2. Nav Scroll y Menu
+        window.addEventListener('scroll', () => {
+            const body = document.body;
+            if (window.scrollY > 50) body.classList.add('scrolled');
+            else body.classList.remove('scrolled');
+        });
+        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+
+        // 3. Slider Universo
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slider-item');
+        const dots = document.querySelectorAll('.slider-dot');
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            slideIndex = n;
+            if (slideIndex >= slides.length) slideIndex = 0;
+            if (slideIndex < 0) slideIndex = slides.length - 1;
+            slides[slideIndex].classList.add('active');
+            if(dots.length > 0) dots[slideIndex].classList.add('active');
+        }
+        function changeSlide(n) { showSlide(slideIndex + n); }
+        function setSlide(n) { showSlide(n); }
+
+        // 4. Agente Flotante (Ange)
+        let currentFace = 1;
+        function changeFace() {
+            // Cicla del 1 al 10
+            currentFace = (currentFace % 10) + 1;
+            const img = document.getElementById('agent-face');
+            
+            // Efecto de rebote al cambiar
+            img.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                img.src = `images/Ange${currentFace}.png`;
+                img.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        // 5. Lógica de Tomos (Solo 2)
+        const bookData = [
+            {
+                label: "TOMO I",
+                title: "El Nombre del Cristal",
+                sub: "\"El Nombre del Cristal\"",
+                desc: "Máksamma es el relato de una joven de 17 años del séptimo clan, elegida por la Maquiria para restaurar el equilibrio entre el poder y el sentimiento en un universo que jamás conoció la emoción.",
+                status: "Disponible Ahora",
+                statusClass: "text-green-400 border-green-500/30 bg-green-900/30",
+                coverClass: "text-blue-400",
+                hasCover: true
+            },
+            {
+                label: "TOMO II",
+                title: "Próximamente",
+                sub: "",
+                desc: "La historia continúa...",
+                status: "En Desarrollo",
+                statusClass: "text-yellow-400 border-yellow-500/30 bg-yellow-900/30",
+                coverClass: "text-yellow-400",
+                hasCover: false
+            }
+        ];
+
+        function switchTomo(index) {
+            const data = bookData[index];
+            const container = document.getElementById('book-display');
+            container.style.opacity = '0';
+            
+            setTimeout(() => {
+                document.getElementById('book-tomo-label').innerText = data.label;
+                document.getElementById('book-tomo-label').className = `${data.coverClass} text-[10px] font-bold tracking-widest uppercase`;
+                document.getElementById('book-title').innerText = data.title;
+                document.getElementById('book-desc').innerText = data.desc;
+                
+                const statusBadge = document.getElementById('book-status');
+                statusBadge.innerText = data.status;
+                statusBadge.className = `px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded border ${data.statusClass}`;
+                
+                // Mostrar/Ocultar Portada según disponibilidad
+                if(data.hasCover) {
+                    document.getElementById('book-img').style.display = 'block';
+                    document.getElementById('book-fallback').classList.add('hidden');
+                    document.getElementById('book-fallback').classList.remove('flex');
+                } else {
+                    document.getElementById('book-img').style.display = 'none';
+                    document.getElementById('book-fallback').classList.remove('hidden');
+                    document.getElementById('book-fallback').classList.add('flex');
+                }
+
+                // Actualizar estilo de botones
+                document.querySelectorAll('.tomo-btn').forEach((btn, i) => {
+                    const span = btn.querySelector('span');
+                    if(i === index) {
+                        btn.className = `tomo-btn active p-4 border ${data.statusClass.includes('green') ? 'border-blue-500/50 bg-blue-900/20' : 'border-yellow-500/50 bg-yellow-900/20'} rounded transition text-center w-full`;
+                        span.className = `text-xs md:text-sm ${data.coverClass} font-bold uppercase block`;
+                    } else {
+                        btn.className = "tomo-btn p-4 border border-white/10 rounded hover:bg-white/5 transition text-center opacity-60 hover:opacity-100 w-full";
+                        span.className = "text-xs md:text-sm text-gray-400 font-bold uppercase block";
+                    }
+                });
+                
+                container.style.opacity = '1';
+            }, 300);
+        }
+    </script>
+
+    <!-- Script Mágico -->
+    <script src="magic-cursor.js"></script>
+
+</body>
+</html>
     </header>
