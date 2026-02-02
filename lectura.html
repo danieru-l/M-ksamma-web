@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lector de Máksamma | Capítulos Gratuitos</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fuentes -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+        body {
+            background-color: #050508;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden; /* Evita el scroll del navegador para usar el sistema de páginas */
+        }
+
+        .font-epic { font-family: 'Cinzel', serif; }
+
+        /* Fondo de estrellas sutil */
+        .stars-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(ellipse at bottom, #090a0f 0%, #050508 100%);
+        }
+
+        /* Contenedor del Libro */
+        .book-container {
+            height: calc(100vh - 70px); /* Espacio para el header y barra de progreso */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .page-image {
+            max-height: 100%;
+            max-width: 100%;
+            height: auto;
+            width: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            transition: opacity 0.4s ease;
+            user-select: none;
+            -webkit-user-drag: none;
+            background-color: #000;
+        }
+
+        /* Zonas de Interacción (Invisibles) */
+        .tap-zone {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 35%;
+            z-index: 20;
+            cursor: pointer;
+        }
+        .tap-prev { left: 0; }
+        .tap-next { right: 0; }
+
+        /* Flechas (Solo visibles en Desktop al pasar el ratón) */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.03);
+            padding: 2rem 1rem;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s, background 0.3s;
+            pointer-events: none;
+            z-index: 30;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .book-container:hover .nav-arrow { opacity: 1; }
+
+        /* Barra de progreso inferior */
+        .progress-bar-container {
+            height: 4px;
+            background: rgba(255,255,255,0.05);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #4a7cf5, #c5a059);
+            width: 0%;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Ajuste para 2 páginas en PC */
+        .spread-container {
+            display: flex;
+            gap: 2px;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars-bg"></div>
+
+    <!-- CABECERA -->
+    <header class="h-14 flex items-center justify-between px-6 bg-black/60 backdrop-blur-md border-b border-white/5 relative z-40">
+        <a href="index.html" class="text-[10px] font-bold tracking-[0.2em] text-gray-500 hover:text-white transition flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            VOLVER AL INICIO
+        </a>
+        
+        <div class="text-center absolute left-1/2 transform -translate-x-1/2">
+            <h1 class="font-epic text-xs md:text-sm tracking-[0.3em] text-white">MÁKSAMMA</h1>
+            <p class="text-[9px] text-gray-500 uppercase tracking-widest hidden md:block">Prólogo: Capítulos I - III</p>
+        </div>
+
+        <div class="text-[10px] font-bold text-gray-400 tracking-widest" id="page-indicator">
+            1 / 80
+        </div>
+    </header>
+
+    <!-- ÁREA DE LECTURA -->
+    <main class="book-container" id="book-area">
+        
+        <!-- Zonas de Click/Tap -->
+        <div class="tap-zone tap-prev" onclick="prevPage()"></div>
+        <div class="tap-zone tap-next" onclick="nextPage()"></div>
+
+        <!-- Flechas Visuales (Desktop) -->
+        <div class="nav-arrow left-6 hidden md:flex">
+            <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </div>
+        <div class="nav-arrow right-6 hidden md:flex">
+            <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </div>
+
+        <!-- Contenedor de Imágenes -->
+        <div class="spread-container" id="reader-view">
+            <!-- Las imágenes se cargan dinámicamente aquí -->
+        </div>
+
+    </main>
+
+    <!-- PROGRESO -->
+    <div class="progress-bar-container">
+        <div class="progress-fill" id="progress-bar"></div>
+    </div>
+
+    <script>
+        const totalPages = 80;
+        let currentPage = 1; // En modo escritorio representa la página de la izquierda
+        const readerView = document.getElementById('reader-view');
+        const pageIndicator = document.getElementById('page-indicator');
+        const progressBar = document.getElementById('progress-bar');
+
+        function isMobile() {
+            return window.innerWidth < 1024;
+        }
+
+        function renderPages() {
+            readerView.style.opacity = '0';
+            
+            setTimeout(() => {
+                readerView.innerHTML = '';
+                
+                if (isMobile()) {
+                    // MODO MÓVIL: Una sola página
+                    const img = createPageImg(currentPage);
+                    readerView.appendChild(img);
+                    pageIndicator.innerText = `${currentPage} / ${totalPages}`;
+                } else {
+                    // MODO ESCRITORIO: Dos páginas (Spread)
+                    // Siempre intentamos empezar en página impar a la izquierda (1-2, 3-4...)
+                    if (currentPage > 1 && currentPage % 2 === 0) {
+                        currentPage--;
+                    }
+
+                    const leftImg = createPageImg(currentPage);
+                    readerView.appendChild(leftImg);
+
+                    if (currentPage + 1 <= totalPages) {
+                        const rightImg = createPageImg(currentPage + 1);
+                        readerView.appendChild(rightImg);
+                        pageIndicator.innerText = `${currentPage}-${currentPage + 1} / ${totalPages}`;
+                    } else {
+                        pageIndicator.innerText = `${currentPage} / ${totalPages}`;
+                    }
+                }
+
+                // Actualizar barra de progreso
+                const progress = (currentPage / totalPages) * 100;
+                progressBar.style.width = `${progress}%`;
+                
+                readerView.style.opacity = '1';
+            }, 200);
+        }
+
+        function createPageImg(num) {
+            const img = document.createElement('img');
+            img.src = `caps/${num}.png`;
+            img.alt = `Página ${num}`;
+            img.className = 'page-image';
+            // Placeholder si la imagen no existe
+            img.onerror = () => {
+                img.src = 'https://via.placeholder.com/1536x2400/0a0b10/333?text=Página+' + num;
+            };
+            return img;
+        }
+
+        function nextPage() {
+            const step = isMobile() ? 1 : 2;
+            if (currentPage + step <= totalPages) {
+                currentPage += step;
+                renderPages();
+            } else if (!isMobile() && currentPage + 1 === totalPages) {
+                // Caso última página impar en PC
+                currentPage = totalPages;
+                renderPages();
+            }
+        }
+
+        function prevPage() {
+            const step = isMobile() ? 1 : 2;
+            if (currentPage - step >= 1) {
+                currentPage -= step;
+                renderPages();
+            } else {
+                currentPage = 1;
+                renderPages();
+            }
+        }
+
+        // Navegación por Teclado
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextPage();
+            if (e.key === 'ArrowLeft') prevPage();
+        });
+
+        // Soporte de Gestos (Swipe) para Móvil
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 60) nextPage();
+            if (touchEndX > touchStartX + 60) prevPage();
+        }
+
+        // Re-renderizar si cambia el tamaño de la pantalla (Rotación de móvil, etc)
+        window.addEventListener('resize', renderPages);
+
+        // Carga inicial
+        renderPages();
+    </script>
+</body>
+</html>
