@@ -113,11 +113,9 @@
             
             <!-- 1. IZQUIERDA (Redes / Móvil) -->
             <div class="w-1/3 flex items-center justify-start">
-                <!-- Botón Hamburguesa corregido -->
                 <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()" aria-label="Abrir menú">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
-                <!-- Redes Desktop -->
                 <div class="hidden md:flex gap-4">
                     <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i class="fa-brands fa-facebook-f text-lg"></i></a>
                     <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i class="fa-brands fa-instagram text-lg"></i></a>
@@ -162,7 +160,6 @@
                 <a href="wiki.html" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">Wiki</a>
                 <a href="tienda.html" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">Tienda</a>
             </div>
-            <!-- Redes Móvil -->
             <div class="flex justify-center gap-10 border-t border-white/10 mt-12 pt-10 text-gray-400">
                 <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"><i class="fa-brands fa-facebook-f text-2xl"></i></a>
                 <a href="https://www.instagram.com/maksamma_oficial/" target="_blank"><i class="fa-brands fa-instagram text-2xl"></i></a>
@@ -194,7 +191,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-5 h-auto md:h-[600px] mb-16">
                 
-                <!-- 1. SLIDER ARTÍCULOS (FLECHAS INTERNAS) -->
+                <!-- 1. SLIDER ARTÍCULOS -->
                 <div class="md:col-span-2 md:row-span-2 rounded-xl bg-[#0f111a] border border-white/5 overflow-hidden relative group">
                     <div class="slider-container w-full h-full relative">
                         <!-- Slide 1 -->
@@ -229,8 +226,8 @@
                 </div>
 
                 <!-- 2. GALERÍA AUTOMÁTICA DE ILUSTRACIONES -->
-                <a href="ilustraciones.html" class="md:col-span-2 md:row-span-1 rounded-xl bg-[#0f111a] border border-white/5 overflow-hidden relative group cursor-pointer shadow-2xl">
-                    <img id="illus-carousel-img" src="images/Ilus1.png" class="w-full h-full object-cover transition-opacity duration-1000 opacity-100" alt="Ilustración Máksamma" onerror="this.src='https://via.placeholder.com/800x450?text=Arte+Maksamma'">
+                <a href="ilustraciones.html" class="md:col-span-2 md:row-span-1 rounded-xl bg-[#0b0c15] border border-white/5 overflow-hidden relative group cursor-pointer shadow-2xl">
+                    <img id="illus-carousel-img" src="images/Ilus1.png" class="w-full h-full object-cover transition-all duration-1000 opacity-100" alt="Ilustración Máksamma" onerror="this.src='https://via.placeholder.com/1536x2400/0b0c15/ffffff?text=Cargando+Arte...'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                     <div class="absolute bottom-6 left-8">
                         <span class="text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-1 block">Galería de Arte</span>
@@ -238,7 +235,7 @@
                     </div>
                 </a>
 
-                <!-- 3. LECTURA GRATUITA (Vínculo a lectura.html) -->
+                <!-- 3. LECTURA GRATUITA -->
                 <a href="lectura.html" class="md:col-span-2 md:row-span-1 rounded-xl p-8 flex items-center justify-between bg-gradient-to-r from-[#0f1016] to-[#1e1b4b] border border-white/5 group hover:border-blue-400 transition cursor-pointer">
                     <div>
                         <span class="text-blue-300 text-xs font-bold uppercase block mb-1">Lectura Gratuita</span>
@@ -308,23 +305,19 @@
             starsContainer.appendChild(star);
         }
 
-        // 2. Control de Nav al Scroll
+        // 2. Nav al Scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) document.body.classList.add('scrolled');
             else document.body.classList.remove('scrolled');
         });
 
-        // 3. Menú Hamburguesa Móvil (Corregido)
+        // 3. Menú Hamburguesa
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-            } else {
-                menu.classList.add('hidden');
-            }
+            menu.classList.toggle('hidden');
         }
 
-        // 4. Slider de Lore
+        // 4. Slider Lore
         let slideIndex = 0;
         function showSlide(n) {
             const slides = document.querySelectorAll('.slider-item');
@@ -334,29 +327,39 @@
         }
         function changeSlide(n) { showSlide(slideIndex + n); }
 
-        // 5. Carrusel de Ilustraciones (Lógica de Pre-carga)
+        // 5. Carrusel de Ilustraciones (Sincronizado con Ilus1.png a Ilus11.png)
         let illusCurrent = 1;
         const totalIllus = 11;
+        
         function rotateIllus() {
             const img = document.getElementById('illus-carousel-img');
             if(!img) return;
+            
+            // Incrementamos para el siguiente ciclo
+            illusCurrent = (illusCurrent % totalIllus) + 1;
+            const nextSrc = `images/Ilus${illusCurrent}.png`;
+            
+            // Creamos un efecto de fade out
             img.style.opacity = '0';
-            setTimeout(() => {
+            
+            // Precarga de la imagen para asegurar que aparezca
+            const tempImg = new Image();
+            tempImg.src = nextSrc;
+            
+            tempImg.onload = () => {
+                img.src = nextSrc;
+                img.style.opacity = '1';
+            };
+            
+            tempImg.onerror = () => {
+                console.error("No se pudo cargar la imagen:", nextSrc);
+                // Si falla una, intentamos cargar la siguiente inmediatamente
                 illusCurrent = (illusCurrent % totalIllus) + 1;
-                const nextSrc = `images/Ilus${illusCurrent}.png`;
-                const tempImg = new Image();
-                tempImg.onload = () => {
-                    img.src = nextSrc;
-                    img.style.opacity = '1';
-                };
-                tempImg.onerror = () => {
-                    illusCurrent = (illusCurrent % totalIllus) + 1;
-                    img.src = `images/Ilus${illusCurrent}.png`;
-                    img.style.opacity = '1';
-                };
-                tempImg.src = nextSrc;
-            }, 1000);
+                img.src = `images/Ilus${illusCurrent}.png`;
+                img.style.opacity = '1';
+            };
         }
+        
         setInterval(rotateIllus, 5000);
 
         // 6. Switcher de Tomos
