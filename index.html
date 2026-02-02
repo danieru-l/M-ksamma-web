@@ -69,7 +69,7 @@
         .slider-item { display: none; opacity: 0; transition: opacity 0.5s; height: 100%; }
         .slider-item.active { display: flex; opacity: 1; }
 
-        /* Animaciones */
+        /* Animaciones Cristales */
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
         .animate-float { animation: float 6s ease-in-out infinite; }
         .animate-float-slow { animation: float 8s ease-in-out infinite; }
@@ -107,19 +107,21 @@
 
     <div class="stars-wrapper" id="stars-bg"></div>
 
-    <!-- NAVEGACIÓN PRINCIPAL (Sincronizada con Wiki) -->
+    <!-- NAVEGACIÓN PRINCIPAL -->
     <nav class="fixed w-full z-50 nav-container" id="main-nav">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
             
-            <!-- 1. IZQUIERDA (Redes) -->
+            <!-- 1. IZQUIERDA (Redes / Móvil) -->
             <div class="w-1/3 flex items-center justify-start">
-                <button class="md:hidden text-white p-2" onclick="toggleMenu()">
+                <!-- Botón Hamburguesa corregido -->
+                <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()" aria-label="Abrir menú">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
+                <!-- Redes Desktop -->
                 <div class="hidden md:flex gap-4">
-                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition"><i class="fa-brands fa-facebook-f text-lg"></i></a>
-                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition"><i class="fa-brands fa-instagram text-lg"></i></a>
-                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110"><i class="fa-brands fa-tiktok text-lg"></i></a>
                 </div>
             </div>
 
@@ -150,6 +152,22 @@
             <a href="#saga" class="nav-link">La Saga</a>
             <a href="wiki.html" class="nav-link">Wiki</a>
             <a href="tienda.html" class="nav-link">Tienda</a>
+        </div>
+
+        <!-- MENÚ MÓVIL DESPLEGABLE -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-[#0b0c15]/95 backdrop-blur-xl h-screen flex flex-col p-8 z-40 border-t border-white/10">
+            <div class="flex flex-col space-y-8 text-center text-xl font-bold uppercase tracking-widest font-epic mt-10">
+                <a href="#universo" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">El Universo</a>
+                <a href="#saga" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">La Saga</a>
+                <a href="wiki.html" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">Wiki</a>
+                <a href="tienda.html" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">Tienda</a>
+            </div>
+            <!-- Redes Móvil -->
+            <div class="flex justify-center gap-10 border-t border-white/10 mt-12 pt-10 text-gray-400">
+                <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"><i class="fa-brands fa-facebook-f text-2xl"></i></a>
+                <a href="https://www.instagram.com/maksamma_oficial/" target="_blank"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                <a href="https://www.tiktok.com/@maksammaoficial" target="_blank"><i class="fa-brands fa-tiktok text-2xl"></i></a>
+            </div>
         </div>
     </nav>
 
@@ -182,13 +200,10 @@
                         <!-- Slide 1 -->
                         <div class="slider-item active flex flex-col justify-end p-8 h-full absolute inset-0">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                            
-                            <!-- Navegación Interna -->
                             <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition duration-300">
                                 <button onclick="changeSlide(-1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
                                 <button onclick="changeSlide(1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
                             </div>
-
                             <div class="relative z-10">
                                 <span class="text-blue-400 text-xs font-bold uppercase block mb-2">Lore Destacado</span>
                                 <h3 class="font-epic text-3xl text-white mb-4">La Verdad sobre la Maquiria</h3>
@@ -199,12 +214,10 @@
                         <!-- Slide 2 -->
                         <div class="slider-item flex flex-col justify-end p-8 h-full absolute inset-0">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                            
                             <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition duration-300">
                                 <button onclick="changeSlide(-1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
                                 <button onclick="changeSlide(1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
                             </div>
-
                             <div class="relative z-10">
                                 <span class="text-yellow-500 text-xs font-bold uppercase block mb-2">El Creador</span>
                                 <h3 class="font-epic text-3xl text-white mb-4">Acerca del Autor</h3>
@@ -217,7 +230,7 @@
 
                 <!-- 2. GALERÍA AUTOMÁTICA DE ILUSTRACIONES -->
                 <a href="ilustraciones.html" class="md:col-span-2 md:row-span-1 rounded-xl bg-[#0f111a] border border-white/5 overflow-hidden relative group cursor-pointer shadow-2xl">
-                    <img id="illus-carousel-img" src="images/Ilus1.png" class="w-full h-full object-cover transition-all duration-1000 opacity-100" alt="Ilustración Máksamma" onerror="this.src='https://via.placeholder.com/800x450?text=Error+al+cargar+ilustración'">
+                    <img id="illus-carousel-img" src="images/Ilus1.png" class="w-full h-full object-cover transition-opacity duration-1000 opacity-100" alt="Ilustración Máksamma" onerror="this.src='https://via.placeholder.com/800x450?text=Arte+Maksamma'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                     <div class="absolute bottom-6 left-8">
                         <span class="text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-1 block">Galería de Arte</span>
@@ -281,8 +294,9 @@
         <p class="text-[10px] text-gray-700">© 2024 Máksamma. Autor: Carlos Enrique Rodríguez Mata.</p>
     </footer>
 
+    <!-- SCRIPTS -->
     <script>
-        // Estrellas
+        // 1. Estrellas
         const starsContainer = document.getElementById('stars-bg');
         for (let i = 0; i < 80; i++) {
             const star = document.createElement('div');
@@ -294,12 +308,23 @@
             starsContainer.appendChild(star);
         }
 
+        // 2. Control de Nav al Scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) document.body.classList.add('scrolled');
             else document.body.classList.remove('scrolled');
         });
 
-        // Slider Lore
+        // 3. Menú Hamburguesa Móvil (Corregido)
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+
+        // 4. Slider de Lore
         let slideIndex = 0;
         function showSlide(n) {
             const slides = document.querySelectorAll('.slider-item');
@@ -309,20 +334,15 @@
         }
         function changeSlide(n) { showSlide(slideIndex + n); }
 
-        // Carrusel Ilustraciones (1 a 11)
+        // 5. Carrusel de Ilustraciones (Lógica de Pre-carga)
         let illusCurrent = 1;
         const totalIllus = 11;
-        
-        // Función para cambiar ilustración con lógica de carga
         function rotateIllus() {
             const img = document.getElementById('illus-carousel-img');
             if(!img) return;
-            
             img.style.opacity = '0';
-            
             setTimeout(() => {
                 illusCurrent = (illusCurrent % totalIllus) + 1;
-                // Pre-carga la imagen antes de mostrarla para evitar el parpadeo blanco
                 const nextSrc = `images/Ilus${illusCurrent}.png`;
                 const tempImg = new Image();
                 tempImg.onload = () => {
@@ -330,7 +350,6 @@
                     img.style.opacity = '1';
                 };
                 tempImg.onerror = () => {
-                    // Si falla, intenta con la siguiente
                     illusCurrent = (illusCurrent % totalIllus) + 1;
                     img.src = `images/Ilus${illusCurrent}.png`;
                     img.style.opacity = '1';
@@ -338,15 +357,13 @@
                 tempImg.src = nextSrc;
             }, 1000);
         }
-        
         setInterval(rotateIllus, 5000);
 
-        // Switcher Tomos
+        // 6. Switcher de Tomos
         const bookData = [
             { title: "El nacimiento del equilibrio", desc: "Elegida por la Maquiria para restaurar el equilibrio entre el poder y el sentimiento.", status: "Disponible Ahora", statusClass: "text-green-400 bg-green-900/30 border-green-500/30", cover: "images/PORTADA.png" },
             { title: "Próximamente", desc: "La historia continúa en un nuevo tomo lleno de misterios sobre el cristal.", status: "En Desarrollo", statusClass: "text-yellow-400 bg-yellow-900/30 border-yellow-500/30", cover: "" }
         ];
-
         function switchTomo(idx) {
             const data = bookData[idx];
             const display = document.getElementById('book-display');
@@ -357,7 +374,6 @@
                 const badge = document.getElementById('book-status');
                 badge.innerText = data.status;
                 badge.className = `px-3 py-1 text-[10px] font-bold uppercase rounded border ${data.statusClass}`;
-                
                 const img = document.getElementById('book-img');
                 const fallback = document.getElementById('book-fallback');
                 if(data.cover) {
@@ -368,15 +384,15 @@
                     img.classList.add('hidden');
                     fallback.classList.remove('hidden');
                 }
-
                 document.querySelectorAll('.tomo-btn').forEach((btn, i) => {
                     btn.className = i === idx ? "tomo-btn flex-1 p-4 border border-blue-500/50 bg-blue-900/20 text-blue-400 font-bold rounded" : "tomo-btn flex-1 p-4 border border-white/10 text-gray-500 font-bold rounded";
                 });
                 display.style.opacity = '1';
             }, 300);
         }
-
-        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
     </script>
+    
+    <!-- Script Mágico -->
+    <script src="magic-cursor.js"></script>
 </body>
-</html>m
+</html>
