@@ -36,9 +36,19 @@
         h1, h2, h3, .font-epic { font-family: 'Cinzel', serif; }
         .font-serif-text { font-family: 'Playfair Display', serif; }
 
-        /* Estrellas de fondo */
+        /* Estrellas de fondo con parpadeo */
         .stars-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); overflow: hidden; }
-        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; }
+        .star { 
+            position: absolute; 
+            background: white; 
+            border-radius: 50%; 
+            opacity: 0.5; 
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: var(--opacity); transform: scale(1); }
+            50% { opacity: 0.2; transform: scale(0.8); }
+        }
 
         /* --- NAVEGACIÓN ESTILO WIKI --- */
         .nav-container {
@@ -73,6 +83,7 @@
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
         .animate-float { animation: float 6s ease-in-out infinite; }
         .animate-float-slow { animation: float 8s ease-in-out infinite; }
+        .animate-float-fast { animation: float 4s ease-in-out infinite; }
 
         .cover-glow:hover { box-shadow: 0 0 30px rgba(74, 124, 245, 0.6); border-color: var(--accent-blue); }
 
@@ -171,10 +182,13 @@
     <!-- HERO SECTION -->
     <header class="relative min-h-screen flex items-center justify-center pt-40 px-6 overflow-hidden">
         <div class="absolute inset-0 pointer-events-none">
-            <img src="images/gridsku1.png" class="absolute top-[15%] left-[10%] w-16 md:w-24 opacity-60 animate-float" onerror="this.style.display='none'">
-            <img src="images/gridsku2.png" class="absolute top-[25%] right-[15%] w-12 md:w-20 opacity-50 animate-float-slow" onerror="this.style.display='none'">
-            <img src="images/gridsku3.png" class="absolute bottom-[20%] left-[20%] w-20 md:w-32 opacity-40 animate-float" onerror="this.style.display='none'">
-            <img src="images/gridsku6.png" class="absolute bottom-[10%] right-[30%] w-16 md:w-28 opacity-40 animate-float" onerror="this.style.display='none'">
+            <img src="images/GridCrosour.png" class="absolute top-[15%] left-[10%] w-16 md:w-24 opacity-60 animate-float" onerror="this.style.display='none'">
+            <img src="images/GridDemocks.png" class="absolute top-[25%] right-[15%] w-12 md:w-20 opacity-50 animate-float-slow" onerror="this.style.display='none'">
+            <img src="images/GridMarius.png" class="absolute bottom-[20%] left-[20%] w-20 md:w-32 opacity-40 animate-float" onerror="this.style.display='none'">
+            <img src="images/GridParunis.png" class="absolute top-[60%] right-[8%] w-14 md:w-24 opacity-60 animate-float" onerror="this.style.display='none'">
+            <img src="images/GridRazzar.png" class="absolute top-[10%] left-[80%] w-10 md:w-16 opacity-30 animate-float-slow" onerror="this.style.display='none'">
+            <img src="images/GridVitros.png" class="absolute bottom-[10%] right-[30%] w-16 md:w-28 opacity-40 animate-float" onerror="this.style.display='none'">
+            <img src="images/GridTrisis.png" class="absolute top-[40%] left-[5%] w-12 md:w-20 opacity-50 animate-float-fast" onerror="this.style.display='none'">
         </div>
         <div class="container mx-auto relative z-10 text-center max-w-5xl">
             <h1 class="font-epic text-5xl md:text-8xl text-white mb-8">EL EQUILIBRIO <br> SE HA ROTO</h1>
@@ -211,10 +225,12 @@
                         <!-- Slide 2 -->
                         <div class="slider-item flex flex-col justify-end p-8 h-full absolute inset-0">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                            
                             <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition duration-300">
                                 <button onclick="changeSlide(-1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
                                 <button onclick="changeSlide(1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
                             </div>
+
                             <div class="relative z-10">
                                 <span class="text-yellow-500 text-xs font-bold uppercase block mb-2">El Creador</span>
                                 <h3 class="font-epic text-3xl text-white mb-4">Acerca del Autor</h3>
@@ -293,15 +309,19 @@
 
     <!-- SCRIPTS -->
     <script>
-        // 1. Estrellas
+        // 1. Estrellas con parpadeo
         const starsContainer = document.getElementById('stars-bg');
         for (let i = 0; i < 80; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
             star.style.left = `${Math.random() * 100}%`;
             star.style.top = `${Math.random() * 100}%`;
-            star.style.width = `${Math.random() * 2}px`;
-            star.style.height = star.style.width;
+            // Estrellas un poco más grandes (hasta 4px)
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+            star.style.setProperty('--opacity', Math.random() * 0.7 + 0.3);
             starsContainer.appendChild(star);
         }
 
@@ -335,14 +355,11 @@
             const img = document.getElementById('illus-carousel-img');
             if(!img) return;
             
-            // Incrementamos para el siguiente ciclo
             illusCurrent = (illusCurrent % totalIllus) + 1;
             const nextSrc = `images/Ilus${illusCurrent}.png`;
             
-            // Creamos un efecto de fade out
             img.style.opacity = '0';
             
-            // Precarga de la imagen para asegurar que aparezca
             const tempImg = new Image();
             tempImg.src = nextSrc;
             
@@ -352,8 +369,6 @@
             };
             
             tempImg.onerror = () => {
-                console.error("No se pudo cargar la imagen:", nextSrc);
-                // Si falla una, intentamos cargar la siguiente inmediatamente
                 illusCurrent = (illusCurrent % totalIllus) + 1;
                 img.src = `images/Ilus${illusCurrent}.png`;
                 img.style.opacity = '1';
