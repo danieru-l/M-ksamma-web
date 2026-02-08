@@ -24,6 +24,7 @@
             --color-card: #151621;
             --accent-gold: #c5a059;
             --accent-blue: #4a7cf5;
+            --accent-vine: #5e8c61; /* Verde místico */
         }
 
         body {
@@ -36,21 +37,22 @@
         h1, h2, h3, .font-epic { font-family: 'Cinzel', serif; }
         .font-serif-text { font-family: 'Playfair Display', serif; }
 
-        /* Estrellas de fondo con parpadeo */
+        /* Estrellas de fondo con parpadeo y tamaño aumentado */
         .stars-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); overflow: hidden; }
         .star { 
             position: absolute; 
             background: white; 
             border-radius: 50%; 
-            opacity: 0.5; 
+            opacity: 0.8; 
             animation: twinkle var(--duration) infinite ease-in-out;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
         }
         @keyframes twinkle {
             0%, 100% { opacity: var(--opacity); transform: scale(1); }
-            50% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 0.3; transform: scale(0.5); }
         }
 
-        /* --- NAVEGACIÓN ESTILO WIKI --- */
+        /* --- NAVEGACIÓN --- */
         .nav-container {
             background: rgba(5, 5, 8, 0.95);
             backdrop-filter: blur(10px);
@@ -87,30 +89,50 @@
 
         .cover-glow:hover { box-shadow: 0 0 30px rgba(74, 124, 245, 0.6); border-color: var(--accent-blue); }
 
+        /* --- MARCO DE ENREDADERAS MÍSTICAS (PLANT FRAME) --- */
+        .vine-frame {
+            position: relative;
+            background-color: var(--color-card);
+            /* Borde base sutil */
+            border: 1px solid rgba(94, 140, 97, 0.3); 
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+            /* Decoración de esquinas con SVG en Base64 para simular enredaderas */
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 60 V 20 Q 2 2 20 2 H 60' stroke='%235e8c61' stroke-width='3' fill='none' opacity='0.7'/%3E%3Cpath d='M20 20 Q 30 10 40 20 T 60 20' stroke='%23c5a059' stroke-width='1.5' fill='none' opacity='0.6'/%3E%3Ccircle cx='20' cy='20' r='3' fill='%23c5a059'/%3E%3Cpath d='M10 30 Q 0 40 10 50' fill='%235e8c61' opacity='0.8'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M58 60 V 20 Q 58 2 40 2 H 0' stroke='%235e8c61' stroke-width='3' fill='none' opacity='0.7'/%3E%3Ccircle cx='40' cy='20' r='3' fill='%23c5a059'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 0 V 40 Q 2 58 20 58 H 60' stroke='%235e8c61' stroke-width='3' fill='none' opacity='0.7'/%3E%3Ccircle cx='20' cy='40' r='3' fill='%23c5a059'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M58 0 V 40 Q 58 58 40 58 H 0' stroke='%235e8c61' stroke-width='3' fill='none' opacity='0.7'/%3E%3Cpath d='M40 40 Q 30 50 20 40' stroke='%23c5a059' stroke-width='1.5' fill='none' opacity='0.6'/%3E%3Ccircle cx='40' cy='40' r='3' fill='%23c5a059'/%3E%3C/svg%3E");
+            background-position: top left, top right, bottom left, bottom right;
+            background-repeat: no-repeat;
+            background-size: 60px 60px;
+            transition: all 0.4s ease;
+        }
+
+        .vine-frame:hover {
+            border-color: rgba(197, 160, 89, 0.6); /* Brillo dorado al hover */
+            box-shadow: 0 0 30px rgba(94, 140, 97, 0.2);
+        }
+
         /* EFECTOS DE CRISTALES (HERO) */
         .crystal-glow {
-            filter: drop-shadow(0 0 15px rgba(74, 124, 245, 0.4)); /* Aura mística */
-            transition: filter 0.3s ease, transform 0.2s ease;
+            filter: drop-shadow(0 0 20px rgba(74, 124, 245, 0.6)); /* Aura más intensa */
+            transition: all 0.4s ease-in-out;
             cursor: pointer;
         }
         .crystal-glow:hover {
-            filter: drop-shadow(0 0 25px rgba(74, 124, 245, 0.8));
-            transform: scale(1.1);
+            filter: drop-shadow(0 0 40px rgba(100, 200, 255, 0.9)); /* Brillo intenso al hover */
+            transform: scale(1.15) translateY(-5px);
             z-index: 20;
         }
-        .crystal-glow:active {
-            transform: scale(0.95);
-        }
+        .crystal-glow:active { transform: scale(0.95); }
 
-        /* Partículas de cristal al hacer clic */
+        /* Partículas */
         .crystal-particle {
             position: fixed;
-            width: 6px;
-            height: 6px;
+            width: 6px; height: 6px;
             background: white;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Forma de rombo */
-            pointer-events: none;
-            z-index: 50;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            pointer-events: none; z-index: 50;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
             animation: particleFade 1s forwards cubic-bezier(0, .9, .57, 1);
         }
@@ -119,68 +141,25 @@
             100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0) rotate(180deg); }
         }
 
-        /* MARCOS PERSONALIZADOS (ESTILO NATURALEZA/FANTASÍA) */
-        .nature-frame {
-            position: relative;
-            border: 1px solid rgba(197, 160, 89, 0.2); /* Borde dorado sutil */
-            box-shadow: 0 0 30px rgba(0,0,0,0.5) inset; /* Profundidad interna */
-            background-color: var(--color-card); /* Fondo base */
-        }
-        
-        /* Esquinas Decorativas */
-        .nature-frame::before, .nature-frame::after {
-            content: ''; 
-            position: absolute; 
-            width: 20px; 
-            height: 20px;
-            border: 2px solid #c5a059; /* Color Oro */
-            transition: all 0.4s ease;
-            pointer-events: none;
-            opacity: 0.7;
-        }
-        
-        /* Esquina Superior Izquierda */
-        .nature-frame::before { 
-            top: -1px; left: -1px; 
-            border-right: none; border-bottom: none; 
-        }
-        /* Esquina Inferior Derecha */
-        .nature-frame::after { 
-            bottom: -1px; right: -1px; 
-            border-left: none; border-top: none; 
-        }
-
-        /* Hover Effect en Marcos */
-        .nature-frame:hover {
-            border-color: rgba(74, 124, 245, 0.4); /* Azul al pasar mouse */
-        }
-        .nature-frame:hover::before, .nature-frame:hover::after {
-            width: 100%; height: 100%; /* El marco se cierra completo */
-            opacity: 0.2;
-            border-color: #4a7cf5;
-        }
-
         /* Reel Container */
         .video-wrapper {
             max-width: 320px;
             margin: 0 auto;
-            border-radius: 4px; /* Menos radio para ajustar al marco */
+            border-radius: 10px; /* Redondeado suave para el marco */
             overflow: hidden;
             aspect-ratio: 9/16;
             background: #000;
+            /* Aplicar marco vine al wrapper */
+            @apply vine-frame; 
         }
 
         /* Botones de navegación interna */
         .inner-nav-btn {
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
-            width: 40px; height: 40px;
-            border-radius: 50%;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+            width: 40px; height: 40px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            transition: all 0.3s;
-            z-index: 30;
+            border: 1px solid rgba(255,255,255,0.2); color: white;
+            transition: all 0.3s; z-index: 30;
         }
         .inner-nav-btn:hover { background: var(--accent-blue); transform: scale(1.1); }
     </style>
@@ -192,8 +171,7 @@
     <!-- NAVEGACIÓN PRINCIPAL -->
     <nav class="fixed w-full z-50 nav-container" id="main-nav">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
-            
-            <!-- 1. IZQUIERDA (Redes / Móvil) -->
+            <!-- Izquierda -->
             <div class="w-1/3 flex items-center justify-start">
                 <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()" aria-label="Abrir menú">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -204,8 +182,7 @@
                     <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110"><i class="fa-brands fa-tiktok text-lg"></i></a>
                 </div>
             </div>
-
-            <!-- 2. CENTRO: LOGO FLOTANTE GIGANTE -->
+            <!-- Centro -->
             <div class="w-1/3 flex justify-center relative">
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 mt-2">
                     <a href="index.html">
@@ -213,8 +190,7 @@
                     </a>
                 </div>
             </div>
-
-            <!-- 3. DERECHA (Idioma + Botón) -->
+            <!-- Derecha -->
             <div class="w-1/3 flex justify-end items-center gap-4">
                 <div class="relative group">
                     <button class="text-xs font-bold text-gray-300 hover:text-white uppercase">ES ▼</button>
@@ -226,15 +202,12 @@
                 <a href="tienda.html" class="hidden md:inline-block btn-navy px-5 py-2 rounded-sm text-xs font-bold uppercase tracking-wider shadow-lg">Adquiere un libro</a>
             </div>
         </div>
-
         <div class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
             <a href="#universo" class="nav-link">El Universo</a>
             <a href="#saga" class="nav-link">La Saga</a>
             <a href="wiki.html" class="nav-link">Wiki</a>
             <a href="tienda.html" class="nav-link">Tienda</a>
         </div>
-
-        <!-- MENÚ MÓVIL DESPLEGABLE -->
         <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-[#0b0c15]/95 backdrop-blur-xl h-screen flex flex-col p-8 z-40 border-t border-white/10">
             <div class="flex flex-col space-y-8 text-center text-xl font-bold uppercase tracking-widest font-epic mt-10">
                 <a href="#universo" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">El Universo</a>
@@ -250,37 +223,35 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (Actualizado con Cristales Interactivos) -->
+    <!-- HERO SECTION (Cristales reorganizados) -->
     <header class="relative min-h-screen flex items-center justify-center pt-40 px-6 overflow-hidden">
         
         <!-- Capa de Cristales Flotantes -->
         <div class="absolute inset-0 z-10 pointer-events-none">
-            <!-- NOTA: Se ha aumentado la opacidad (opacity-80/90) y añadido la clase 'crystal-glow' y 'pointer-events-auto' para interacción -->
+            <!-- 1. Arriba Izquierda (Más abierto) -->
+            <img src="images/GridCrosour.png" class="absolute top-[15%] left-[5%] w-16 md:w-32 opacity-90 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Crosour">
             
-            <!-- 1. Arriba Izquierda (Más separado del centro) -->
-            <img src="images/GridCrosour.png" class="absolute top-[12%] left-[8%] w-16 md:w-28 opacity-80 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Cristal Crosour">
+            <!-- 2. Arriba Derecha (Más abierto) -->
+            <img src="images/GridDemocks.png" class="absolute top-[15%] right-[5%] w-14 md:w-28 opacity-90 animate-float-slow crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Democks">
             
-            <!-- 2. Arriba Derecha (Equilibrado) -->
-            <img src="images/GridDemocks.png" class="absolute top-[18%] right-[8%] w-14 md:w-24 opacity-80 animate-float-slow crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Cristal Democks">
+            <!-- 3. Medio Izquierda -->
+            <img src="images/GridMarius.png" class="absolute top-[45%] left-[8%] w-12 md:w-24 opacity-80 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Marius">
             
-            <!-- 3. Centro Izquierda (Alejado del texto) -->
-            <img src="images/GridMarius.png" class="absolute top-[45%] left-[5%] w-12 md:w-20 opacity-70 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Cristal Marius">
-            
-            <!-- 4. Centro Derecha (Alejado del texto) -->
-            <img src="images/GridParunis.png" class="absolute top-[50%] right-[5%] w-14 md:w-24 opacity-70 animate-float-slow crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Cristal Parunis">
+            <!-- 4. Medio Derecha -->
+            <img src="images/GridParunis.png" class="absolute top-[45%] right-[8%] w-14 md:w-28 opacity-80 animate-float-slow crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Parunis">
             
             <!-- 5. Abajo Izquierda -->
-            <img src="images/GridRazzar.png" class="absolute bottom-[20%] left-[15%] w-16 md:w-32 opacity-90 animate-float-fast crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Cristal Razzar">
+            <img src="images/GridRazzar.png" class="absolute bottom-[20%] left-[15%] w-16 md:w-36 opacity-90 animate-float-fast crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Razzar">
             
             <!-- 6. Abajo Derecha -->
-            <img src="images/GridVitros.png" class="absolute bottom-[15%] right-[15%] w-16 md:w-28 opacity-80 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Cristal Vitros">
+            <img src="images/GridVitros.png" class="absolute bottom-[20%] right-[15%] w-16 md:w-32 opacity-90 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Vitros">
             
-            <!-- 7. Flotando Alto (Fondo sutil) -->
-            <img src="images/GridTrisis.png" class="absolute top-[5%] left-[45%] w-8 md:w-16 opacity-60 animate-float-fast crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Cristal Trisis">
+            <!-- 7. Central Superior (Fondo sutil) -->
+            <img src="images/GridTrisis.png" class="absolute top-[8%] left-[50%] transform -translate-x-1/2 w-10 md:w-20 opacity-60 animate-float-fast crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Trisis">
         </div>
 
         <div class="container mx-auto relative z-10 text-center max-w-5xl">
-            <h1 class="font-epic text-5xl md:text-8xl text-white mb-8 drop-shadow-[0_0_15px_rgba(74,124,245,0.3)]">EL EQUILIBRIO <br> SE HA ROTO</h1>
+            <h1 class="font-epic text-5xl md:text-8xl text-white mb-8 drop-shadow-[0_0_20px_rgba(74,124,245,0.5)]">EL EQUILIBRIO <br> SE HA ROTO</h1>
             <h2 class="font-serif-text italic text-2xl text-gray-300 mb-8">Siete clanes. Un mundo antiguo. <br> <span class="text-blue-400">Una decisión que desata el conflicto.</span></h2>
             <div class="w-32 h-1 bg-blue-500/50 mx-auto mb-10"></div>
             <p class="text-gray-400 text-lg max-w-2xl mx-auto"><strong>Máksamma — Tomo I</strong> inicia el colapso de un orden que se sostuvo durante generaciones.</p>
@@ -294,8 +265,8 @@
 
             <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-8 h-auto md:h-[600px] mb-16">
                 
-                <!-- 1. SLIDER ARTÍCULOS (Con Marco Nature) -->
-                <div class="md:col-span-2 md:row-span-2 nature-frame rounded-lg overflow-hidden relative group">
+                <!-- 1. SLIDER ARTÍCULOS (Con Marco Vine) -->
+                <div class="md:col-span-2 md:row-span-2 vine-frame rounded-lg overflow-hidden relative group">
                     <div class="slider-container w-full h-full relative">
                         <!-- Slide 1 -->
                         <div class="slider-item active flex flex-col justify-end p-8 h-full absolute inset-0">
@@ -328,8 +299,8 @@
                     </div>
                 </div>
 
-                <!-- 2. GALERÍA AUTOMÁTICA DE ILUSTRACIONES (Con Marco Nature) -->
-                <a href="ilustraciones.html" class="md:col-span-2 md:row-span-1 nature-frame rounded-lg overflow-hidden relative group cursor-pointer">
+                <!-- 2. GALERÍA AUTOMÁTICA (Con Marco Vine) -->
+                <a href="ilustraciones.html" class="md:col-span-2 md:row-span-1 vine-frame rounded-lg overflow-hidden relative group cursor-pointer">
                     <img id="illus-carousel-img" src="images/Ilus1.png" class="w-full h-full object-cover transition-all duration-1000 opacity-100" alt="Ilustración Máksamma" onerror="this.src='https://via.placeholder.com/1536x2400/0b0c15/ffffff?text=Cargando+Arte...'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                     <div class="absolute bottom-6 left-8">
@@ -338,8 +309,8 @@
                     </div>
                 </a>
 
-                <!-- 3. LECTURA GRATUITA (Con Marco Nature) -->
-                <a href="lectura.html" class="md:col-span-2 md:row-span-1 nature-frame rounded-lg p-8 flex items-center justify-between bg-gradient-to-r from-[#0f1016] to-[#1e1b4b] group hover:border-blue-400 transition cursor-pointer">
+                <!-- 3. LECTURA GRATUITA (Con Marco Vine) -->
+                <a href="lectura.html" class="md:col-span-2 md:row-span-1 vine-frame rounded-lg p-8 flex items-center justify-between bg-gradient-to-r from-[#0f1016] to-[#1e1b4b] group hover:border-blue-400 transition cursor-pointer">
                     <div>
                         <span class="text-blue-300 text-xs font-bold uppercase block mb-1">Lectura Gratuita</span>
                         <h3 class="font-epic text-2xl text-white">Lee el Prólogo</h3>
@@ -349,11 +320,11 @@
                 </a>
             </div>
 
-            <!-- REEL CRÓNICAS (Con Marco Nature) -->
+            <!-- REEL CRÓNICAS (Con Marco Vine) -->
             <div class="py-12 border-t border-white/5 text-center">
                 <span class="text-blue-400 text-xs font-bold uppercase tracking-[0.3em] mb-2 block">Multimedia</span>
                 <h2 class="font-epic text-3xl text-white mb-10">Conoce más acerca de Máksamma</h2>
-                <div class="video-wrapper nature-frame p-1 bg-black/50">
+                <div class="video-wrapper vine-frame p-1 bg-black/50 mx-auto">
                     <iframe src="https://drive.google.com/file/d/1dvOVy_aPZK3JvgzptoRq9QQNoHJCYxPy/preview" width="100%" height="100%" allow="autoplay" frameborder="0"></iframe>
                 </div>
             </div>
@@ -403,8 +374,7 @@
             star.classList.add('star');
             star.style.left = `${Math.random() * 100}%`;
             star.style.top = `${Math.random() * 100}%`;
-            // Estrellas un poco más grandes (hasta 4px)
-            const size = Math.random() * 3 + 1;
+            const size = Math.random() * 3 + 2; // Más grandes
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
             star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
@@ -456,8 +426,6 @@
         // 6. Efecto de Cristales (Partículas)
         function spawnCrystals(e) {
             const count = 10;
-            const rect = e.target.getBoundingClientRect();
-            // Centro relativo del clic o del elemento si se prefiere, aquí usamos coordenadas del evento
             const centerX = e.clientX;
             const centerY = e.clientY;
 
@@ -467,7 +435,6 @@
                 p.style.left = centerX + 'px';
                 p.style.top = centerY + 'px';
                 
-                // Dirección aleatoria
                 const angle = Math.random() * Math.PI * 2;
                 const dist = 60 + Math.random() * 60;
                 const tx = Math.cos(angle) * dist + 'px';
@@ -476,7 +443,6 @@
                 p.style.setProperty('--tx', tx);
                 p.style.setProperty('--ty', ty);
                 
-                // Variación sutil de color (blanco a azulado)
                 const hue = 200 + Math.random() * 40; 
                 p.style.background = `hsl(${hue}, 100%, 85%)`; 
                 
