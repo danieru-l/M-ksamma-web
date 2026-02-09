@@ -24,7 +24,9 @@
             --color-card: #151621;
             --accent-gold: #c5a059;
             --accent-blue: #4a7cf5;
-            --accent-vine: #5e8c61; /* Verde místico */
+            /* Verde para las enredaderas */
+            --vine-green: #7ab36e; 
+            --vine-dark: #4a7a42;
         }
 
         body {
@@ -37,7 +39,7 @@
         h1, h2, h3, .font-epic { font-family: 'Cinzel', serif; }
         .font-serif-text { font-family: 'Playfair Display', serif; }
 
-        /* Estrellas de fondo con parpadeo y tamaño aumentado */
+        /* Estrellas de fondo */
         .stars-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); overflow: hidden; }
         .star { 
             position: absolute; 
@@ -59,7 +61,6 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
             transition: transform 0.4s ease;
         }
-
         body.scrolled .nav-container { transform: translateY(-100%); }
         
         .nav-link {
@@ -89,47 +90,71 @@
 
         .cover-glow:hover { box-shadow: 0 0 30px rgba(74, 124, 245, 0.6); border-color: var(--accent-blue); }
 
-        /* --- MARCO DE ENREDADERAS MÍSTICAS (PLANT FRAME) --- */
-        .vine-frame {
+        /* --- MARCO DE PLANTAS (VINE FRAME) --- */
+        /* Contenedor que da espacio para que el marco sobresalga */
+        .vine-wrapper {
             position: relative;
-            background-color: var(--color-card);
-            /* Borde base sutil */
-            border: 1px solid rgba(94, 140, 97, 0.3); 
-            box-shadow: 0 0 20px rgba(0,0,0,0.6);
-            /* Decoración de esquinas con SVG en Base64 para simular enredaderas */
-            background-image: 
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 60 V 20 Q 2 2 20 2 H 60' stroke='%235e8c61' stroke-width='3' fill='none' opacity='0.7'/%3E%3Cpath d='M20 20 Q 30 10 40 20 T 60 20' stroke='%23c5a059' stroke-width='1.5' fill='none' opacity='0.6'/%3E%3Ccircle cx='20' cy='20' r='3' fill='%23c5a059'/%3E%3Cpath d='M10 30 Q 0 40 10 50' fill='%235e8c61' opacity='0.8'/%3E%3C/svg%3E"),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M58 60 V 20 Q 58 2 40 2 H 0' stroke='%235e8c61' stroke-width='3' fill='none' opacity='0.7'/%3E%3Ccircle cx='40' cy='20' r='3' fill='%23c5a059'/%3E%3C/svg%3E"),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 0 V 40 Q 2 58 20 58 H 60' stroke='%235e8c61' stroke-width='3' fill='none' opacity='0.7'/%3E%3Ccircle cx='20' cy='40' r='3' fill='%23c5a059'/%3E%3C/svg%3E"),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M58 0 V 40 Q 58 58 40 58 H 0' stroke='%235e8c61' stroke-width='3' fill='none' opacity='0.7'/%3E%3Cpath d='M40 40 Q 30 50 20 40' stroke='%23c5a059' stroke-width='1.5' fill='none' opacity='0.6'/%3E%3Ccircle cx='40' cy='40' r='3' fill='%23c5a059'/%3E%3C/svg%3E");
-            background-position: top left, top right, bottom left, bottom right;
+            padding: 8px; /* Espacio para que el marco respire fuera de la imagen */
+            transition: transform 0.3s ease;
+        }
+        .vine-wrapper:hover {
+            transform: translateY(-5px);
+        }
+
+        /* El borde físico visible */
+        .vine-border {
+            position: absolute;
+            inset: 0;
+            border: 3px solid #5e8c61; /* Tallo principal verde */
+            border-radius: 16px;
+            pointer-events: none;
+            z-index: 20;
+            box-shadow: 0 0 15px rgba(94, 140, 97, 0.3); /* Brillo sutil */
+        }
+
+        /* Esquinas Decorativas (SVG Data URI) */
+        .vine-corner {
+            position: absolute;
+            width: 50px; 
+            height: 50px;
+            z-index: 21;
             background-repeat: no-repeat;
-            background-size: 60px 60px;
-            transition: all 0.4s ease;
+            background-size: contain;
+            /* SVG de enredadera generado */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' fill='none'%3E%3Cpath d='M2 50 C 2 20 20 2 50 2' stroke='%237ab36e' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M15 35 Q 5 35 2 25' stroke='%235e8c61' stroke-width='2'/%3E%3Cpath d='M35 15 Q 35 5 25 2' stroke='%235e8c61' stroke-width='2'/%3E%3Cpath d='M15 35 Q 25 25 25 45' fill='%2388c478'/%3E%3Ccircle cx='15' cy='15' r='3' fill='%23c5a059'/%3E%3C/svg%3E");
         }
 
-        .vine-frame:hover {
-            border-color: rgba(197, 160, 89, 0.6); /* Brillo dorado al hover */
-            box-shadow: 0 0 30px rgba(94, 140, 97, 0.2);
+        /* Posicionamiento y rotación de esquinas */
+        .vc-tl { top: -10px; left: -10px; transform: rotate(0deg); }
+        .vc-tr { top: -10px; right: -10px; transform: rotate(90deg); }
+        .vc-br { bottom: -10px; right: -10px; transform: rotate(180deg); }
+        .vc-bl { bottom: -10px; left: -10px; transform: rotate(270deg); }
+
+        /* Contenido Interno (Recortado) */
+        .vine-content {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            border-radius: 10px; /* Un poco menos que el borde para encajar */
+            overflow: hidden;
+            z-index: 10;
+            background-color: #0f111a; /* Fondo base por si la imagen tarda */
         }
 
-        /* EFECTOS DE CRISTALES (HERO) */
+        /* --- EFECTOS DE CRISTALES --- */
         .crystal-glow {
-            filter: drop-shadow(0 0 20px rgba(74, 124, 245, 0.6)); /* Aura más intensa */
+            filter: drop-shadow(0 0 20px rgba(74, 124, 245, 0.6));
             transition: all 0.4s ease-in-out;
             cursor: pointer;
         }
         .crystal-glow:hover {
-            filter: drop-shadow(0 0 40px rgba(100, 200, 255, 0.9)); /* Brillo intenso al hover */
+            filter: drop-shadow(0 0 40px rgba(100, 200, 255, 0.9));
             transform: scale(1.15) translateY(-5px);
             z-index: 20;
         }
-        .crystal-glow:active { transform: scale(0.95); }
-
-        /* Partículas */
+        
         .crystal-particle {
-            position: fixed;
-            width: 6px; height: 6px;
+            position: fixed; width: 6px; height: 6px;
             background: white;
             clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
             pointer-events: none; z-index: 50;
@@ -141,19 +166,22 @@
             100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0) rotate(180deg); }
         }
 
-        /* Reel Container */
-        .video-wrapper {
-            max-width: 320px;
+        /* Reel */
+        .reel-frame-wrapper {
+            max-width: 340px; 
             margin: 0 auto;
-            border-radius: 10px; /* Redondeado suave para el marco */
-            overflow: hidden;
+            padding: 8px; /* Padding para marco */
+            position: relative;
+        }
+        .reel-content {
             aspect-ratio: 9/16;
-            background: #000;
-            /* Aplicar marco vine al wrapper */
-            @apply vine-frame; 
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: black;
         }
 
-        /* Botones de navegación interna */
+        /* Navegación Interna Slider */
         .inner-nav-btn {
             background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
             width: 40px; height: 40px; border-radius: 50%;
@@ -168,12 +196,11 @@
 
     <div class="stars-wrapper" id="stars-bg"></div>
 
-    <!-- NAVEGACIÓN PRINCIPAL -->
+    <!-- NAVEGACIÓN -->
     <nav class="fixed w-full z-50 nav-container" id="main-nav">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
-            <!-- Izquierda -->
             <div class="w-1/3 flex items-center justify-start">
-                <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()" aria-label="Abrir menú">
+                <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
                 <div class="hidden md:flex gap-4">
@@ -182,7 +209,6 @@
                     <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110"><i class="fa-brands fa-tiktok text-lg"></i></a>
                 </div>
             </div>
-            <!-- Centro -->
             <div class="w-1/3 flex justify-center relative">
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 mt-2">
                     <a href="index.html">
@@ -190,7 +216,6 @@
                     </a>
                 </div>
             </div>
-            <!-- Derecha -->
             <div class="w-1/3 flex justify-end items-center gap-4">
                 <div class="relative group">
                     <button class="text-xs font-bold text-gray-300 hover:text-white uppercase">ES ▼</button>
@@ -223,30 +248,16 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (Cristales reorganizados) -->
+    <!-- HERO SECTION -->
     <header class="relative min-h-screen flex items-center justify-center pt-40 px-6 overflow-hidden">
-        
-        <!-- Capa de Cristales Flotantes -->
         <div class="absolute inset-0 z-10 pointer-events-none">
-            <!-- 1. Arriba Izquierda (Más abierto) -->
+            <!-- Cristales posicionados estratégicamente -->
             <img src="images/GridCrosour.png" class="absolute top-[15%] left-[5%] w-16 md:w-32 opacity-90 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Crosour">
-            
-            <!-- 2. Arriba Derecha (Más abierto) -->
             <img src="images/GridDemocks.png" class="absolute top-[15%] right-[5%] w-14 md:w-28 opacity-90 animate-float-slow crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Democks">
-            
-            <!-- 3. Medio Izquierda -->
             <img src="images/GridMarius.png" class="absolute top-[45%] left-[8%] w-12 md:w-24 opacity-80 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Marius">
-            
-            <!-- 4. Medio Derecha -->
             <img src="images/GridParunis.png" class="absolute top-[45%] right-[8%] w-14 md:w-28 opacity-80 animate-float-slow crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Parunis">
-            
-            <!-- 5. Abajo Izquierda -->
             <img src="images/GridRazzar.png" class="absolute bottom-[20%] left-[15%] w-16 md:w-36 opacity-90 animate-float-fast crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Razzar">
-            
-            <!-- 6. Abajo Derecha -->
             <img src="images/GridVitros.png" class="absolute bottom-[20%] right-[15%] w-16 md:w-32 opacity-90 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Vitros">
-            
-            <!-- 7. Central Superior (Fondo sutil) -->
             <img src="images/GridTrisis.png" class="absolute top-[8%] left-[50%] transform -translate-x-1/2 w-10 md:w-20 opacity-60 animate-float-fast crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Trisis">
         </div>
 
@@ -258,74 +269,113 @@
         </div>
     </header>
 
-    <!-- SECCIÓN UNIVERSO -->
+    <!-- SECCIÓN UNIVERSO CON MARCOS DE PLANTAS -->
     <section id="universo" class="py-24 px-6 relative z-10 bg-gradient-to-b from-transparent to-[#0b0c15]">
         <div class="container mx-auto">
             <h2 class="font-epic text-3xl text-white mb-12 border-b border-gray-800 pb-4">Descubre el Universo</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-8 h-auto md:h-[600px] mb-16">
                 
-                <!-- 1. SLIDER ARTÍCULOS (Con Marco Vine) -->
-                <div class="md:col-span-2 md:row-span-2 vine-frame rounded-lg overflow-hidden relative group">
-                    <div class="slider-container w-full h-full relative">
-                        <!-- Slide 1 -->
-                        <div class="slider-item active flex flex-col justify-end p-8 h-full absolute inset-0">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                            <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition duration-300">
-                                <button onclick="changeSlide(-1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
-                                <button onclick="changeSlide(1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                <!-- 1. SLIDER ARTÍCULOS -->
+                <div class="md:col-span-2 md:row-span-2 vine-wrapper group">
+                    <!-- Marco Decorativo -->
+                    <div class="vine-border"></div>
+                    <div class="vine-corner vc-tl"></div>
+                    <div class="vine-corner vc-tr"></div>
+                    <div class="vine-corner vc-bl"></div>
+                    <div class="vine-corner vc-br"></div>
+                    
+                    <!-- Contenido -->
+                    <div class="vine-content relative">
+                        <div class="slider-container w-full h-full relative">
+                            <!-- Slide 1 -->
+                            <div class="slider-item active flex flex-col justify-end p-8 h-full absolute inset-0">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                                <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition duration-300 z-30">
+                                    <button onclick="changeSlide(-1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                                    <button onclick="changeSlide(1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                                </div>
+                                <div class="relative z-10">
+                                    <span class="text-blue-400 text-xs font-bold uppercase block mb-2">Lore Destacado</span>
+                                    <h3 class="font-epic text-3xl text-white mb-4">La Verdad sobre la Maquiria</h3>
+                                    <p class="text-gray-400 text-sm mb-4">¿Es solo una fuente de energía o algo vivo? Descubre el origen del cristal.</p>
+                                    <a href="wiki.html" class="text-white border-b border-blue-500 pb-1 text-xs">Leer Artículo →</a>
+                                </div>
                             </div>
-                            <div class="relative z-10">
-                                <span class="text-blue-400 text-xs font-bold uppercase block mb-2">Lore Destacado</span>
-                                <h3 class="font-epic text-3xl text-white mb-4">La Verdad sobre la Maquiria</h3>
-                                <p class="text-gray-400 text-sm mb-4">¿Es solo una fuente de energía o algo vivo? Descubre el origen del cristal que conecta a todos.</p>
-                                <a href="wiki.html" class="text-white border-b border-blue-500 pb-1 text-xs">Leer Artículo →</a>
-                            </div>
-                        </div>
-                        <!-- Slide 2 -->
-                        <div class="slider-item flex flex-col justify-end p-8 h-full absolute inset-0">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                            <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition duration-300">
-                                <button onclick="changeSlide(-1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
-                                <button onclick="changeSlide(1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
-                            </div>
-                            <div class="relative z-10">
-                                <span class="text-yellow-500 text-xs font-bold uppercase block mb-2">El Creador</span>
-                                <h3 class="font-epic text-3xl text-white mb-4">Acerca del Autor</h3>
-                                <p class="text-gray-400 text-sm mb-4">Conoce a Carlos Enrique Rodríguez Mata, la mente detrás de este universo.</p>
-                                <a href="#" class="text-white border-b border-yellow-500 pb-1 text-xs">Ver Biografía →</a>
+                            <!-- Slide 2 -->
+                            <div class="slider-item flex flex-col justify-end p-8 h-full absolute inset-0">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                                <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition duration-300 z-30">
+                                    <button onclick="changeSlide(-1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                                    <button onclick="changeSlide(1)" class="inner-nav-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                                </div>
+                                <div class="relative z-10">
+                                    <span class="text-yellow-500 text-xs font-bold uppercase block mb-2">El Creador</span>
+                                    <h3 class="font-epic text-3xl text-white mb-4">Acerca del Autor</h3>
+                                    <p class="text-gray-400 text-sm mb-4">Conoce a Carlos Enrique Rodríguez Mata, la mente detrás de este universo.</p>
+                                    <a href="#" class="text-white border-b border-yellow-500 pb-1 text-xs">Ver Biografía →</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 2. GALERÍA AUTOMÁTICA (Con Marco Vine) -->
-                <a href="ilustraciones.html" class="md:col-span-2 md:row-span-1 vine-frame rounded-lg overflow-hidden relative group cursor-pointer">
-                    <img id="illus-carousel-img" src="images/Ilus1.png" class="w-full h-full object-cover transition-all duration-1000 opacity-100" alt="Ilustración Máksamma" onerror="this.src='https://via.placeholder.com/1536x2400/0b0c15/ffffff?text=Cargando+Arte...'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                    <div class="absolute bottom-6 left-8">
-                        <span class="text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-1 block">Galería de Arte</span>
-                        <h3 class="font-epic text-2xl text-white">Visualiza el Pigtandé</h3>
+                <!-- 2. GALERÍA AUTOMÁTICA -->
+                <a href="ilustraciones.html" class="md:col-span-2 md:row-span-1 vine-wrapper group cursor-pointer block">
+                    <!-- Marco -->
+                    <div class="vine-border"></div>
+                    <div class="vine-corner vc-tl"></div>
+                    <div class="vine-corner vc-tr"></div>
+                    <div class="vine-corner vc-bl"></div>
+                    <div class="vine-corner vc-br"></div>
+
+                    <!-- Contenido -->
+                    <div class="vine-content relative">
+                        <img id="illus-carousel-img" src="images/Ilus1.png" class="w-full h-full object-cover transition-all duration-1000 opacity-100" alt="Ilustración Máksamma" onerror="this.src='https://via.placeholder.com/1536x2400/0b0c15/ffffff?text=Cargando+Arte...'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-8">
+                            <span class="text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-1 block">Galería de Arte</span>
+                            <h3 class="font-epic text-2xl text-white">Visualiza el Pigtandé</h3>
+                        </div>
                     </div>
                 </a>
 
-                <!-- 3. LECTURA GRATUITA (Con Marco Vine) -->
-                <a href="lectura.html" class="md:col-span-2 md:row-span-1 vine-frame rounded-lg p-8 flex items-center justify-between bg-gradient-to-r from-[#0f1016] to-[#1e1b4b] group hover:border-blue-400 transition cursor-pointer">
-                    <div>
-                        <span class="text-blue-300 text-xs font-bold uppercase block mb-1">Lectura Gratuita</span>
-                        <h3 class="font-epic text-2xl text-white">Lee el Prólogo</h3>
-                        <p class="text-[10px] text-gray-500 uppercase tracking-widest">Capítulos I al III online</p>
+                <!-- 3. LECTURA GRATUITA -->
+                <a href="lectura.html" class="md:col-span-2 md:row-span-1 vine-wrapper group cursor-pointer block">
+                    <!-- Marco -->
+                    <div class="vine-border"></div>
+                    <div class="vine-corner vc-tl"></div>
+                    <div class="vine-corner vc-tr"></div>
+                    <div class="vine-corner vc-bl"></div>
+                    <div class="vine-corner vc-br"></div>
+
+                    <!-- Contenido -->
+                    <div class="vine-content flex items-center justify-between p-8 bg-gradient-to-r from-[#0f1016] to-[#1e1b4b] group-hover:bg-gradient-to-r group-hover:from-[#151621] group-hover:to-[#25283d] transition-all duration-500">
+                        <div>
+                            <span class="text-blue-300 text-xs font-bold uppercase block mb-1">Lectura Gratuita</span>
+                            <h3 class="font-epic text-2xl text-white">Lee el Prólogo</h3>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Capítulos I al III online</p>
+                        </div>
+                        <div class="h-12 w-12 rounded-full border border-gray-500 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition">➜</div>
                     </div>
-                    <div class="h-12 w-12 rounded-full border border-gray-500 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition">➜</div>
                 </a>
             </div>
 
-            <!-- REEL CRÓNICAS (Con Marco Vine) -->
+            <!-- REEL CRÓNICAS CON MARCO -->
             <div class="py-12 border-t border-white/5 text-center">
                 <span class="text-blue-400 text-xs font-bold uppercase tracking-[0.3em] mb-2 block">Multimedia</span>
                 <h2 class="font-epic text-3xl text-white mb-10">Conoce más acerca de Máksamma</h2>
-                <div class="video-wrapper vine-frame p-1 bg-black/50 mx-auto">
-                    <iframe src="https://drive.google.com/file/d/1dvOVy_aPZK3JvgzptoRq9QQNoHJCYxPy/preview" width="100%" height="100%" allow="autoplay" frameborder="0"></iframe>
+                
+                <div class="reel-frame-wrapper">
+                    <div class="vine-border"></div>
+                    <div class="vine-corner vc-tl"></div>
+                    <div class="vine-corner vc-tr"></div>
+                    <div class="vine-corner vc-bl"></div>
+                    <div class="vine-corner vc-br"></div>
+                    
+                    <div class="reel-content">
+                        <iframe src="https://drive.google.com/file/d/1dvOVy_aPZK3JvgzptoRq9QQNoHJCYxPy/preview" width="100%" height="100%" allow="autoplay" frameborder="0"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -367,14 +417,13 @@
 
     <!-- SCRIPTS -->
     <script>
-        // 1. Estrellas con parpadeo
         const starsContainer = document.getElementById('stars-bg');
         for (let i = 0; i < 80; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
             star.style.left = `${Math.random() * 100}%`;
             star.style.top = `${Math.random() * 100}%`;
-            const size = Math.random() * 3 + 2; // Más grandes
+            const size = Math.random() * 3 + 2; 
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
             star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
@@ -382,19 +431,15 @@
             starsContainer.appendChild(star);
         }
 
-        // 2. Nav al Scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) document.body.classList.add('scrolled');
             else document.body.classList.remove('scrolled');
         });
 
-        // 3. Menú Hamburguesa
         function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
-        // 4. Slider Lore
         let slideIndex = 0;
         function showSlide(n) {
             const slides = document.querySelectorAll('.slider-item');
@@ -404,7 +449,6 @@
         }
         function changeSlide(n) { showSlide(slideIndex + n); }
 
-        // 5. Carrusel de Ilustraciones (Sincronizado)
         let illusCurrent = 1;
         const totalIllus = 11;
         function rotateIllus() {
@@ -413,9 +457,7 @@
             
             illusCurrent = (illusCurrent % totalIllus) + 1;
             const nextSrc = `images/Ilus${illusCurrent}.png`;
-            
             img.style.opacity = '0';
-            
             const tempImg = new Image();
             tempImg.src = nextSrc;
             tempImg.onload = () => { img.src = nextSrc; img.style.opacity = '1'; };
@@ -423,35 +465,28 @@
         }
         setInterval(rotateIllus, 5000);
 
-        // 6. Efecto de Cristales (Partículas)
         function spawnCrystals(e) {
             const count = 10;
             const centerX = e.clientX;
             const centerY = e.clientY;
-
             for (let i = 0; i < count; i++) {
                 const p = document.createElement('div');
                 p.classList.add('crystal-particle');
                 p.style.left = centerX + 'px';
                 p.style.top = centerY + 'px';
-                
                 const angle = Math.random() * Math.PI * 2;
                 const dist = 60 + Math.random() * 60;
                 const tx = Math.cos(angle) * dist + 'px';
                 const ty = Math.sin(angle) * dist + 'px';
-                
                 p.style.setProperty('--tx', tx);
                 p.style.setProperty('--ty', ty);
-                
                 const hue = 200 + Math.random() * 40; 
                 p.style.background = `hsl(${hue}, 100%, 85%)`; 
-                
                 document.body.appendChild(p);
                 setTimeout(() => p.remove(), 1000);
             }
         }
 
-        // 7. Switcher de Tomos
         const bookData = [
             { title: "El nacimiento del equilibrio", desc: "Elegida por la Maquiria para restaurar el equilibrio entre el poder y el sentimiento.", status: "Disponible Ahora", statusClass: "text-green-400 bg-green-900/30 border-green-500/30", cover: "images/PORTADA.png" },
             { title: "Próximamente", desc: "La historia continúa en un nuevo tomo lleno de misterios sobre el cristal.", status: "En Desarrollo", statusClass: "text-yellow-400 bg-yellow-900/30 border-yellow-500/30", cover: "" }
@@ -484,7 +519,6 @@
         }
     </script>
     
-    <!-- Script Mágico -->
     <script src="magic-cursor.js"></script>
 </body>
 </html>
