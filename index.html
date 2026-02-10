@@ -196,7 +196,7 @@
 
     <div class="stars-wrapper" id="stars-bg"></div>
 
-    <!-- NAVEGACIÓN -->
+    <!-- NAVEGACIÓN PRINCIPAL -->
     <nav class="fixed w-full z-50 nav-container" id="main-nav">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
             <div class="w-1/3 flex items-center justify-start">
@@ -251,14 +251,28 @@
     <!-- HERO SECTION -->
     <header class="relative min-h-screen flex items-center justify-center pt-40 px-6 overflow-hidden">
         <div class="absolute inset-0 z-10 pointer-events-none">
-            <!-- Cristales posicionados estratégicamente -->
-            <img src="images/GridCrosour.png" class="absolute top-[15%] left-[5%] w-16 md:w-32 opacity-90 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Crosour">
-            <img src="images/GridDemocks.png" class="absolute top-[15%] right-[5%] w-14 md:w-28 opacity-90 animate-float-slow crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Democks">
-            <img src="images/GridMarius.png" class="absolute top-[45%] left-[8%] w-12 md:w-24 opacity-80 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Marius">
-            <img src="images/GridParunis.png" class="absolute top-[45%] right-[8%] w-14 md:w-28 opacity-80 animate-float-slow crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Parunis">
-            <img src="images/GridRazzar.png" class="absolute bottom-[20%] left-[15%] w-16 md:w-36 opacity-90 animate-float-fast crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Razzar">
-            <img src="images/GridVitros.png" class="absolute bottom-[20%] right-[15%] w-16 md:w-32 opacity-90 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Vitros">
-            <img src="images/GridTrisis.png" class="absolute top-[8%] left-[50%] transform -translate-x-1/2 w-10 md:w-20 opacity-60 animate-float-fast crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Trisis">
+            <!-- Cristales posicionados estratégicamente y más pequeños -->
+            
+            <!-- 1. Arriba Izquierda (Más pequeño y ajustado) -->
+            <img src="images/GridCrosour.png" class="absolute top-[12%] left-[8%] w-10 md:w-20 opacity-90 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Crosour">
+            
+            <!-- 2. Arriba Derecha -->
+            <img src="images/GridDemocks.png" class="absolute top-[15%] right-[8%] w-9 md:w-18 opacity-90 animate-float-slow crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Democks">
+            
+            <!-- 3. Medio Izquierda -->
+            <img src="images/GridMarius.png" class="absolute top-[42%] left-[5%] w-8 md:w-16 opacity-80 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Marius">
+            
+            <!-- 4. Medio Derecha -->
+            <img src="images/GridParunis.png" class="absolute top-[48%] right-[5%] w-9 md:w-18 opacity-80 animate-float-slow crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Parunis">
+            
+            <!-- 5. Abajo Izquierda -->
+            <img src="images/GridRazzar.png" class="absolute bottom-[18%] left-[12%] w-11 md:w-22 opacity-90 animate-float-fast crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Razzar">
+            
+            <!-- 6. Abajo Derecha -->
+            <img src="images/GridVitros.png" class="absolute bottom-[15%] right-[12%] w-10 md:w-20 opacity-90 animate-float crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Vitros">
+            
+            <!-- 7. Central Superior (Fondo sutil) -->
+            <img src="images/GridTrisis.png" class="absolute top-[8%] left-[50%] transform -translate-x-1/2 w-6 md:w-12 opacity-60 animate-float-fast crystal-glow pointer-events-auto" onclick="spawnCrystals(event)" alt="Trisis">
         </div>
 
         <div class="container mx-auto relative z-10 text-center max-w-5xl">
