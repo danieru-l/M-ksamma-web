@@ -1,237 +1,214 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki Oficial | Máksamma</title>
-    <meta name="description" content="Base de datos oficial del universo Máksamma: Clanes, Historia, Geografía y Personajes.">
-    
-    <!-- Favicon (Icono de la pestaña) -->
+    <meta name="description"
+        content="Base de datos oficial del universo Máksamma: Clanes, Historia, Geografía y Personajes.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Wiki Oficial | Máksamma">
+    <meta property="og:description"
+        content="Base de datos oficial del universo Máksamma: Clanes, Historia, Geografía y Personajes.">
+    <meta property="og:image" content="images/BANNER_WIKI.png">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Wiki Oficial | Máksamma">
+    <meta name="twitter:description"
+        content="Base de datos oficial del universo Máksamma: Clanes, Historia, Geografía y Personajes.">
+    <meta name="twitter:image" content="images/BANNER_WIKI.png">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/Maquiria.png">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- FontAwesome para Iconos (Igual que en Index) -->
+
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Fuentes -->
+
+    <!-- Estilos compartidos -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Estilos específicos de Wiki -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap');
-
-        :root {
-            --color-bg: #050508;
-            --color-card: #151621;
-            --accent-gold: #c5a059;
-            --accent-blue: #4a7cf5;
-        }
-
-        body {
-            background-color: var(--color-bg);
-            color: #e2e8f0;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .font-epic { font-family: 'Cinzel', serif; }
-        .font-serif-text { font-family: 'Playfair Display', serif; }
-
-        /* Estrellas de fondo */
-        .stars-wrapper {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-        }
-        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; }
-
-        /* --- NAVEGACIÓN (IDÉNTICA AL INDEX) --- */
-        .nav-container {
-            background: rgba(5, 5, 8, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.4s ease;
-        }
-
-        /* Ocultar barra al bajar (Efecto Potter) */
-        body.scrolled .nav-container {
-            transform: translateY(-100%); 
-        }
-        
-        .nav-link {
-            position: relative; text-transform: uppercase; font-size: 0.85rem;
-            letter-spacing: 0.1em; font-weight: 600; color: #cbd5e1;
-            transition: color 0.3s; padding: 0.5rem 0;
-        }
-        .nav-link:hover { color: white; }
-        .nav-link::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-            background: var(--accent-gold); transition: width 0.3s;
-        }
-        .nav-link:hover::after { width: 100%; }
-
-        /* Link Activo en Wiki */
-        .nav-link.active { color: white; }
-        .nav-link.active::after { width: 100%; }
-
-        /* --- UTILIDADES --- */
-        .btn-navy {
-            background-color: #0f172a; border: 1px solid #1e3a8a; color: white; transition: all 0.3s;
-        }
-        .btn-navy:hover {
-            background-color: #1e3a8a; box-shadow: 0 0 15px rgba(30, 58, 138, 0.5);
-        }
-
-        /* Idioma Dropdown */
-        .lang-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #151621; border: 1px solid #333; border-radius: 4px; padding: 0.5rem; z-index: 60; }
-        .lang-btn:focus + .lang-dropdown, .lang-dropdown:hover { display: block; }
-
-        /* --- MARCO DECORATIVO --- */
+        /* Marco Decorativo */
         .decorative-frame {
             position: relative;
-            border: 2px solid #334155; 
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            border: 2px solid #334155;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
-        .decorative-frame::before, .decorative-frame::after {
-            content: ''; position: absolute; width: 20px; height: 20px;
-            border-color: var(--accent-gold); border-style: solid;
+
+        .decorative-frame::before,
+        .decorative-frame::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: var(--accent-gold);
+            border-style: solid;
             transition: all 0.3s;
         }
-        .decorative-frame::before { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
-        .decorative-frame::after { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
-        
-        .decorative-frame:hover { border-color: var(--accent-gold); }
-        .decorative-frame:hover::before, .decorative-frame:hover::after { width: 100%; height: 100%; opacity: 0.5; }
+
+        .decorative-frame::before {
+            top: -2px;
+            left: -2px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .decorative-frame::after {
+            bottom: -2px;
+            right: -2px;
+            border-width: 0 2px 2px 0;
+        }
+
+        .decorative-frame:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .decorative-frame:hover::before,
+        .decorative-frame:hover::after {
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+        }
 
         /* Cards Wiki */
         .wiki-card {
             background-color: var(--color-card);
             overflow: hidden;
-            display: flex; flex-direction: column; justify-content: flex-end;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
             padding: 2rem;
             transition: transform 0.4s ease;
         }
-        .wiki-card:hover { transform: translateY(-5px); }
+
+        .wiki-card:hover {
+            transform: translateY(-5px);
+        }
 
         /* Mapa Fullscreen */
         #map-modal {
             transition: opacity 0.3s ease;
             backdrop-filter: blur(5px);
         }
-        #map-modal.hidden { pointer-events: none; opacity: 0; }
-        
-        /* Animaciones */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
-        
+
+        #map-modal.hidden {
+            pointer-events: none;
+            opacity: 0;
+        }
+
         /* Buscador */
         .search-input {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white; transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
         }
+
         .search-input:focus {
-            background: rgba(255,255,255,0.1); border-color: var(--accent-blue); outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-blue);
+            outline: none;
         }
     </style>
 </head>
+
 <body>
 
     <!-- FONDO DE ESTRELLAS -->
     <div class="stars-wrapper" id="stars-bg"></div>
 
-    <!-- NAVEGACIÓN PRINCIPAL (Copia exacta del Index) -->
+    <!-- NAVEGACIÓN PRINCIPAL -->
     <nav class="fixed w-full z-50 nav-container" id="main-nav">
-        
-        <!-- Contenedor Principal Nav -->
         <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
-            
-            <!-- 1. IZQUIERDA (Móvil: Hamburguesa / Desktop: Redes) -->
             <div class="w-1/3 flex items-center justify-start">
-                
-                <!-- Botón Hamburguesa (Solo Móvil) -->
                 <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
                 </button>
-
-                <!-- Redes Sociales (Solo Desktop) -->
                 <div class="hidden md:flex gap-4">
-                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110">
-                        <i class="fa-brands fa-facebook-f text-lg"></i>
-                    </a>
-                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110">
-                        <i class="fa-brands fa-instagram text-lg"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110">
-                        <i class="fa-brands fa-tiktok text-lg"></i>
-                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i
+                            class="fa-brands fa-facebook-f text-lg"></i></a>
+                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i
+                            class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-white transition transform hover:scale-110"><i
+                            class="fa-brands fa-tiktok text-lg"></i></a>
                 </div>
             </div>
 
-            <!-- Centro: LOGO -->
             <div class="w-1/3 flex justify-center relative">
-                <!-- LOGO FLOTANTE GIGANTE: 
-                     Usa 'absolute' para no deformar la barra.
-                     h-32 = Tamaño en Celular (~128px)
-                     md:h-56 = Tamaño en PC (~224px) 
-                -->
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 mt-2">
                     <a href="index.html">
-                        <img src="images/LogoMaks.png" alt="Máksamma" class="h-32 md:h-56 w-auto object-contain hover:scale-105 transition drop-shadow-2xl filter drop-shadow-[0_0_15px_rgba(0,0,0,0.9)]" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block'">
+                        <picture>
+                            <source srcset="images/LogoMaks.webp" type="image/webp">
+                            <img src="images/LogoMaks.png" alt="Máksamma"
+                                class="h-32 md:h-56 w-auto object-contain hover:scale-105 transition drop-shadow-2xl"
+                                onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block'">
+                        </picture>
                     </a>
                 </div>
-                
-                <!-- Texto de respaldo (Invisible si carga la imagen) -->
-                <a href="index.html" id="text-logo" class="text-2xl font-epic font-black tracking-[0.25em] text-white hover:text-blue-300 transition hidden">MÁKSAMMA</a>
+                <a href="index.html" id="text-logo"
+                    class="text-2xl font-epic font-black tracking-[0.25em] text-white hover:text-blue-300 transition hidden">MÁKSAMMA</a>
             </div>
 
-            <!-- 3. DERECHA (Idioma + Botón Desktop) -->
             <div class="w-1/3 flex justify-end items-center gap-4">
-                
-                <!-- Selector Idioma -->
                 <div class="relative group">
-                    <button class="lang-btn flex items-center gap-2 text-xs font-bold text-gray-300 hover:text-white uppercase tracking-wider focus:outline-none">
-                        <span>ES</span> <span class="text-lg">▼</span>
-                    </button>
-                    <!-- Dropdown -->
-                    <div class="lang-dropdown absolute right-0 mt-2 w-32 bg-[#151621] border border-white/10 rounded shadow-xl hidden group-hover:block">
-                        <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 text-xs text-gray-300">
-                            <span class="text-base">🇪🇸</span> Español
-                        </a>
-                        <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-white/5 text-xs text-gray-300">
-                            <span class="text-base">🇺🇸</span> English
-                        </a>
+                    <button class="text-xs font-bold text-gray-300 hover:text-white uppercase">ES ▼</button>
+                    <div
+                        class="absolute right-0 mt-2 w-32 bg-[#151621] border border-white/10 rounded hidden group-hover:block z-50">
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇪🇸 Español</a>
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇺🇸 English</a>
                     </div>
                 </div>
-
-                <!-- Botón Desktop -->
-                <a href="index.html#comprar" class="hidden md:inline-block btn-navy px-5 py-2 rounded-sm text-xs font-bold uppercase tracking-wider shadow-lg">
-                    Adquiere un libro
-                </a>
+                <a href="tienda.html"
+                    class="hidden md:inline-block btn-navy px-5 py-2 rounded-sm text-xs font-bold uppercase tracking-wider shadow-lg">Adquiere
+                    un libro</a>
             </div>
         </div>
 
-        <!-- Barra Inferior Desktop (Links) -->
-        <div class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
+        <div
+            class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
             <a href="index.html#universo" class="nav-link">El Universo</a>
             <a href="index.html#saga" class="nav-link">La Saga</a>
-            <!-- Wiki Activo -->
-            <a href="wiki.html" class="nav-link active text-white border-b border-blue-500">Wiki</a>
-            <a href="#" class="nav-link cursor-not-allowed text-gray-600">Tienda</a>
+            <a href="wiki.html" class="nav-link active">Wiki</a>
+            <a href="tienda.html" class="nav-link">Tienda</a>
         </div>
 
-        <!-- MENÚ MÓVIL DESPLEGABLE (Oculto por defecto) -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#0b0c15] border-t border-white/10 shadow-2xl h-screen flex flex-col p-8">
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute top-full left-0 w-full bg-[#0b0c15]/95 backdrop-blur-xl h-screen flex flex-col p-8 z-40 border-t border-white/10">
             <div class="flex flex-col space-y-6 text-center text-lg font-bold uppercase tracking-widest font-epic mb-8">
-                <a href="index.html#universo" onclick="toggleMenu()" class="text-white hover:text-blue-400">El Universo</a>
+                <a href="index.html#universo" onclick="toggleMenu()" class="text-white hover:text-blue-400">El
+                    Universo</a>
                 <a href="index.html#saga" onclick="toggleMenu()" class="text-white hover:text-blue-400">La Saga</a>
                 <a href="wiki.html" class="text-blue-400 font-bold">Wiki</a>
-                <a href="#" class="text-gray-500">Tienda</a>
+                <a href="tienda.html" onclick="toggleMenu()" class="text-white hover:text-blue-400">Tienda</a>
             </div>
-            
-            <!-- Redes Móvil -->
             <div class="flex justify-center gap-8 border-t border-white/10 pt-8 text-gray-300">
-                 <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"><i class="fa-brands fa-facebook-f text-xl"></i></a>
-                 <a href="https://www.instagram.com/maksamma_oficial/" target="_blank"><i class="fa-brands fa-instagram text-xl"></i></a>
-                 <a href="https://www.tiktok.com/@maksammaoficial" target="_blank"><i class="fa-brands fa-tiktok text-xl"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                    rel="noopener noreferrer"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+                <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-brands fa-tiktok text-xl"></i></a>
             </div>
         </div>
     </nav>
@@ -239,21 +216,24 @@
     <!-- HERO WIKI + BANNER DECORATIVO -->
     <header class="pt-40 pb-12 px-6 text-center relative z-10">
         <h1 class="text-4xl md:text-6xl font-epic text-white mb-8 drop-shadow-lg fade-in">ARCHIVOS DE LA MAQUIRIA</h1>
-        
-        <!-- BANNER PRINCIPAL (Marco Decorado + Personajes) -->
+
         <div class="max-w-5xl mx-auto h-64 md:h-96 relative decorative-frame rounded-lg overflow-hidden fade-in group">
-            <!-- Imagen de Fondo: Usando PNG -->
-            <img src="images/BANNER_WIKI.png" alt="Personajes Máksamma" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700"
-                 onerror="this.style.display='none'; document.getElementById('banner-fallback').style.display='flex'">
-            
-            <!-- Fallback -->
-            <div id="banner-fallback" class="hidden absolute inset-0 bg-gradient-to-r from-green-900/40 to-blue-900/40 flex-col items-center justify-center">
+            <picture>
+                <source srcset="images/BANNER_WIKI.webp" type="image/webp">
+                <img src="images/BANNER_WIKI.png" alt="Personajes Máksamma"
+                    class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700"
+                    loading="lazy"
+                    onerror="this.style.display='none'; document.getElementById('banner-fallback').style.display='flex'">
+            </picture>
+
+            <div id="banner-fallback"
+                class="hidden absolute inset-0 bg-gradient-to-r from-green-900/40 to-blue-900/40 flex-col items-center justify-center">
                 <span class="text-4xl mb-2">🌿</span>
                 <p class="font-serif-text italic text-gray-300">"El destino de los siete clanes"</p>
             </div>
 
-            <!-- Overlay de Texto -->
-            <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/60 to-transparent text-left">
+            <div
+                class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/60 to-transparent text-left">
                 <h2 class="text-2xl font-epic text-white">Personajes y Leyendas</h2>
                 <p class="text-sm text-gray-300">Explora las historias de quienes forjaron el Pigtandé.</p>
             </div>
@@ -261,130 +241,138 @@
     </header>
 
     <!-- MENÚ PRINCIPAL (GRID) -->
-    <section class="container mx-auto px-6 pb-24 relative z-10">
-        
-        <!-- Buscador -->
-        <div class="max-w-xl mx-auto mb-16 relative">
-            <input type="text" placeholder="Buscar en los archivos..." class="search-input w-full py-3 px-6 rounded-full pl-12 bg-white/5 border border-white/10 text-white focus:border-blue-500 outline-none">
-            <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        </div>
+    <main>
+        <section class="container mx-auto px-6 pb-24 relative z-10">
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <!-- 1. CLANES -->
-            <a href="clanes.html" class="decorative-frame rounded-lg overflow-hidden group h-80 relative">
-                <img src="images/WIKI_CLANES.jpg" alt="Clanes" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-100" onerror="this.style.opacity='0.1'">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 p-6">
-                    <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-blue-500 pl-3">CLANES</h3>
-                    <p class="text-sm text-gray-300">Los 7 linajes y sus jerarquías.</p>
-                </div>
-            </a>
+            <!-- Buscador -->
+            <div class="max-w-xl mx-auto mb-16 relative">
+                <input id="wiki-search" type="text" placeholder="Buscar en los archivos..."
+                    class="search-input w-full py-3 px-6 rounded-full pl-12 bg-white/5 border border-white/10 text-white focus:border-blue-500 outline-none"
+                    oninput="filterWikiCards(this.value)">
+                <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
 
-            <!-- 2. PERSONAJES -->
-            <a href="#" class="decorative-frame rounded-lg overflow-hidden group h-80 relative">
-                <img src="images/WIKI_PERSONAJES.jpg" alt="Personajes" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-100" onerror="this.style.opacity='0.1'">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 p-6">
-                    <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-purple-500 pl-3">PERSONAJES</h3>
-                    <p class="text-sm text-gray-300">Biografías de héroes y villanos.</p>
-                </div>
-            </a>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="wiki-cards-grid">
 
-            <!-- 3. GLOSARIO -->
-            <a href="#" class="decorative-frame rounded-lg overflow-hidden group h-80 relative">
-                <img src="images/WIKI_GLOSARIO.jpg" alt="Glosario" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-100" onerror="this.style.opacity='0.1'">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 p-6">
-                    <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-green-500 pl-3">GLOSARIO</h3>
-                    <p class="text-sm text-gray-300">Términos, artefactos y ciencia.</p>
-                </div>
-            </a>
+                <!-- 1. CLANES -->
+                <a href="#" data-wiki-title="clanes"
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 p-6">
+                        <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-blue-500 pl-3">CLANES</h3>
+                        <p class="text-sm text-gray-300">Los 7 linajes y sus jerarquías.</p>
+                        <span
+                            class="text-[10px] text-yellow-500/70 uppercase tracking-widest mt-2 block">Próximamente</span>
+                    </div>
+                </a>
 
-            <!-- 4. MAPA DEL PIGTANDÉ -->
-            <div class="md:col-span-3 mt-12">
-                <div class="flex items-end justify-between mb-6">
-                    <h2 class="text-3xl font-epic text-white border-b-2 border-yellow-600 pb-2">MAPA DEL PIGTANDÉ DE LA MAQUIRIA</h2>
-                </div>
+                <!-- 2. PERSONAJES -->
+                <a href="#" data-wiki-title="personajes"
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 p-6">
+                        <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-purple-500 pl-3">PERSONAJES</h3>
+                        <p class="text-sm text-gray-300">Biografías de héroes y villanos.</p>
+                        <span
+                            class="text-[10px] text-yellow-500/70 uppercase tracking-widest mt-2 block">Próximamente</span>
+                    </div>
+                </a>
 
-                <!-- CONTENEDOR DEL MAPA -->
-                <div class="decorative-frame rounded-lg bg-[#0a0b10] relative group">
-                    <!-- Ajuste de altura para móvil (300px) y PC (600px) -->
-                    <div class="relative w-full h-[300px] md:h-[600px] overflow-hidden cursor-pointer" onclick="expandMap()">
-                        
-                        <!-- IMAGEN MAPA (Adaptada a móvil y PC) -->
-                        <!-- object-contain en móvil para que no se recorte / cover en PC -->
-                        <img src="images/MAPA.jpg" id="wiki-map-img" alt="Mapa del Pigtandé" class="w-full h-full object-contain md:object-cover opacity-80 group-hover:opacity-100 transition duration-500" 
-                             onerror="this.style.display='none'; document.getElementById('map-placeholder').style.display='flex'">
-                        
-                        <!-- Placeholder -->
-                        <div id="map-placeholder" class="hidden absolute inset-0 flex-col items-center justify-center text-center">
-                            <span class="text-4xl mb-4 grayscale opacity-50">🗺️</span>
-                            <p class="text-gray-500 font-epic">Cargando cartografía...</p>
-                        </div>
+                <!-- 3. GLOSARIO -->
+                <a href="#" data-wiki-title="glosario"
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 p-6">
+                        <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-green-500 pl-3">GLOSARIO</h3>
+                        <p class="text-sm text-gray-300">Términos, artefactos y ciencia.</p>
+                        <span
+                            class="text-[10px] text-yellow-500/70 uppercase tracking-widest mt-2 block">Próximamente</span>
+                    </div>
+                </a>
 
-                        <!-- Botón Expandir -->
-                        <div class="absolute top-4 right-4 bg-black/70 text-white p-2 rounded hover:bg-blue-600 transition z-20">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                <!-- 4. MAPA DEL PIGTANDÉ -->
+                <div class="md:col-span-3 mt-12">
+                    <div class="flex items-end justify-between mb-6">
+                        <h2 class="text-3xl font-epic text-white border-b-2 border-yellow-600 pb-2">MAPA DEL PIGTANDÉ DE
+                            LA MAQUIRIA</h2>
+                    </div>
+
+                    <div class="decorative-frame rounded-lg bg-[#0a0b10] relative group">
+                        <div class="relative w-full h-[300px] md:h-[600px] overflow-hidden cursor-pointer"
+                            onclick="expandMap()">
+                            <picture>
+                                <source srcset="images/MAPA.webp" type="image/webp">
+                                <img src="images/MAPA.jpg" id="wiki-map-img" alt="Mapa del Pigtandé"
+                                    class="w-full h-full object-contain md:object-cover opacity-80 group-hover:opacity-100 transition duration-500"
+                                    loading="lazy"
+                                    onerror="this.style.display='none'; document.getElementById('map-placeholder').style.display='flex'">
+                            </picture>
+
+                            <div id="map-placeholder"
+                                class="hidden absolute inset-0 flex-col items-center justify-center text-center">
+                                <span class="text-4xl mb-4 grayscale opacity-50">🗺️</span>
+                                <p class="text-gray-500 font-epic">Cargando cartografía...</p>
+                            </div>
+
+                            <div
+                                class="absolute top-4 right-4 bg-black/70 text-white p-2 rounded hover:bg-blue-600 transition z-20">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
+                                    </path>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
+        </section>
+    </main>
 
-        </div>
-    </section>
-
-    <!-- FOOTER (IDÉNTICO AL INDEX) -->
+    <!-- FOOTER -->
     <footer class="py-12 bg-black border-t border-white/5 text-center relative z-10 flex flex-col items-center">
-        <!-- Logo Footer -->
-        <img src="images/LogoMaks.png" alt="Máksamma" class="h-24 w-auto mb-4 object-contain opacity-80" onerror="this.style.display='none'">
-        
-        <!-- Redes Sociales Enlazadas -->
+        <picture>
+            <source srcset="images/LogoMaks.webp" type="image/webp">
+            <img src="images/LogoMaks.png" alt="Máksamma" class="h-24 w-auto mb-4 object-contain opacity-80"
+                loading="lazy" onerror="this.style.display='none'">
+        </picture>
+
         <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-6 -mt-2">
-            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" class="hover:text-white transition">Instagram</a>
-            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" class="hover:text-white transition">Facebook</a>
-            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" class="hover:text-white transition">TikTok</a>
+            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Facebook</a>
+            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">TikTok</a>
         </div>
-        <p class="text-[10px] text-gray-700">© 2024 Máksamma. Autor: Carlos Enrique Rodríguez Mata.</p>
+        <p class="text-[10px] text-gray-700">© <span class="dynamic-year"></span> Máksamma. Autor: Carlos Enrique
+            Rodríguez Mata.</p>
     </footer>
 
     <!-- MODAL MAPA FULLSCREEN -->
     <div id="map-modal" class="fixed inset-0 z-[100] bg-black/95 hidden flex items-center justify-center p-4">
         <button onclick="closeMap()" class="absolute top-6 right-6 text-white hover:text-red-500 z-50">
-            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
         </button>
         <div class="w-full h-full overflow-auto flex items-center justify-center">
-            <img src="images/MAPA.jpg" class="max-w-none h-auto md:h-full object-contain cursor-zoom-in" alt="Mapa Completo">
+            <picture>
+                <source srcset="images/MAPA.webp" type="image/webp">
+                <img src="images/MAPA.jpg" class="max-w-none h-auto md:h-full object-contain cursor-zoom-in"
+                    alt="Mapa Completo" loading="lazy">
+            </picture>
         </div>
     </div>
 
     <!-- SCRIPTS -->
+    <script src="shared.js"></script>
     <script>
-        // Estrellas
-        const starsContainer = document.getElementById('stars-bg');
-        for (let i = 0; i < 60; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.width = `${Math.random() * 2}px`;
-            star.style.height = star.style.width;
-            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
-            star.style.setProperty('--opacity', Math.random());
-            starsContainer.appendChild(star);
-        }
-
-        // Nav Scroll (Misma lógica que Index)
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) document.body.classList.add('scrolled');
-            else document.body.classList.remove('scrolled');
-        });
-
-        // Menú Móvil
-        function toggleMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        }
-
         // Lógica del Mapa
         function expandMap() {
             const modal = document.getElementById('map-modal');
@@ -398,10 +386,20 @@
             modal.style.opacity = '0';
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
+
+        // Buscador funcional de Wiki cards
+        function filterWikiCards(query) {
+            const cards = document.querySelectorAll('.wiki-card-link');
+            const q = query.toLowerCase().trim();
+            cards.forEach(card => {
+                const title = (card.getAttribute('data-wiki-title') || '') + ' ' + card.textContent;
+                card.style.display = title.toLowerCase().includes(q) || q === '' ? '' : 'none';
+            });
+        }
     </script>
 
-    <!-- SCRIPT MÁGICO -->
     <script src="magic-cursor.js"></script>
 
 </body>
+
 </html>
