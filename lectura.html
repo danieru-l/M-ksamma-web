@@ -195,7 +195,6 @@
 
         <div class="w-1/3 flex justify-center">
             <picture>
-                <source srcset="images/LogoMaks.webp" type="image/webp">
                 <img src="images/LogoMaks.png" alt="Máksamma" class="h-10 md:h-12 w-auto object-contain">
             </picture>
         </div>
@@ -281,10 +280,6 @@
         }
 
         function createPageImg(num) {
-            var picture = document.createElement('picture');
-            var source = document.createElement('source');
-            source.srcset = 'caps/' + num + '.webp';
-            source.type = 'image/webp';
             var img = document.createElement('img');
             img.src = 'caps/' + num + '.png';
             img.alt = 'Página ' + num;
@@ -296,9 +291,7 @@
                 img.style.minWidth = '300px';
                 img.style.minHeight = '400px';
             };
-            picture.appendChild(source);
-            picture.appendChild(img);
-            return picture;
+            return img;
         }
 
         function nextPage() {

@@ -191,7 +191,6 @@
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 mt-2">
                     <a href="index.html">
                         <picture>
-                            <source srcset="images/LogoMaks.webp" type="image/webp">
                             <img src="images/LogoMaks.png" alt="Máksamma"
                                 class="h-32 md:h-56 w-auto object-contain hover:scale-105 transition drop-shadow-2xl">
                         </picture>
@@ -245,43 +244,36 @@
     <header class="relative min-h-screen flex items-center justify-center pt-40 px-6 overflow-hidden">
         <div class="absolute inset-0 z-10 pointer-events-none">
             <picture class="absolute top-[12%] left-[8%] w-10 md:w-20">
-                <source srcset="images/GridCrosour.webp" type="image/webp">
                 <img src="images/GridCrosour.png"
                     class="w-full opacity-90 animate-float crystal-glow pointer-events-auto"
                     onclick="spawnCrystals(event)" alt="Crosour" loading="lazy">
             </picture>
             <picture class="absolute top-[15%] right-[8%] w-9 md:w-18">
-                <source srcset="images/GridDemocks.webp" type="image/webp">
                 <img src="images/GridDemocks.png"
                     class="w-full opacity-90 animate-float-slow crystal-glow pointer-events-auto"
                     onclick="spawnCrystals(event)" alt="Democks" loading="lazy">
             </picture>
             <picture class="absolute top-[42%] left-[5%] w-8 md:w-16">
-                <source srcset="images/GridMarius.webp" type="image/webp">
                 <img src="images/GridMarius.png"
                     class="w-full opacity-80 animate-float crystal-glow pointer-events-auto"
                     onclick="spawnCrystals(event)" alt="Marius" loading="lazy">
             </picture>
             <picture class="absolute top-[48%] right-[5%] w-9 md:w-18">
-                <source srcset="images/GridParunis.webp" type="image/webp">
                 <img src="images/GridParunis.png"
                     class="w-full opacity-80 animate-float-slow crystal-glow pointer-events-auto"
                     onclick="spawnCrystals(event)" alt="Parunis" loading="lazy">
             </picture>
             <picture class="absolute bottom-[18%] left-[12%] w-11 md:w-22">
-                <source srcset="images/GridRazzar.webp" type="image/webp">
                 <img src="images/GridRazzar.png"
                     class="w-full opacity-90 animate-float-fast crystal-glow pointer-events-auto"
                     onclick="spawnCrystals(event)" alt="Razzar" loading="lazy">
             </picture>
             <picture class="absolute bottom-[15%] right-[12%] w-10 md:w-20">
-                <source srcset="images/GridVitros.webp" type="image/webp">
                 <img src="images/GridVitros.png"
                     class="w-full opacity-90 animate-float crystal-glow pointer-events-auto"
                     onclick="spawnCrystals(event)" alt="Vitros" loading="lazy">
             </picture>
             <picture class="absolute top-[8%] left-[50%] transform -translate-x-1/2 w-6 md:w-12">
-                <source srcset="images/GridTrisis.webp" type="image/webp">
                 <img src="images/GridTrisis.png"
                     class="w-full opacity-60 animate-float-fast crystal-glow pointer-events-auto"
                     onclick="spawnCrystals(event)" alt="Trisis" loading="lazy">
@@ -376,7 +368,6 @@
 
                         <div class="vine-content relative">
                             <picture>
-                                <source id="illus-carousel-source" srcset="images/Ilus1.webp" type="image/webp">
                                 <img id="illus-carousel-img" src="images/Ilus1.png"
                                     class="w-full h-full object-cover transition-all duration-1000 opacity-100"
                                     alt="Ilustración Máksamma" loading="lazy">
@@ -447,7 +438,6 @@
                         <a href="tienda.html"
                             class="relative w-64 md:w-80 aspect-[2/3] shadow-2xl transform rotate-y-[-15deg] hover:rotate-y-0 transition duration-700 overflow-hidden">
                             <picture>
-                                <source id="book-source" srcset="images/PORTADA.webp" type="image/webp">
                                 <img id="book-img" src="images/PORTADA.png"
                                     class="w-full h-full object-cover rounded-r-md" alt="Portada Máksamma Tomo I"
                                     loading="lazy"
@@ -489,7 +479,6 @@
     <!-- FOOTER -->
     <footer class="py-12 bg-black text-center flex flex-col items-center relative z-10">
         <picture>
-            <source srcset="images/LogoMaks.webp" type="image/webp">
             <img src="images/LogoMaks.png" class="h-24 mb-6 opacity-80 object-contain" alt="Logo Máksamma"
                 loading="lazy">
         </picture>
@@ -513,16 +502,14 @@
         const totalIllus = 11;
         function rotateIllus() {
             const img = document.getElementById('illus-carousel-img');
-            const source = document.getElementById('illus-carousel-source');
             if (!img) return;
 
             illusCurrent = (illusCurrent % totalIllus) + 1;
             const nextPng = `images/Ilus${illusCurrent}.png`;
-            const nextWebp = `images/Ilus${illusCurrent}.webp`;
             img.style.opacity = '0';
             const tempImg = new Image();
             tempImg.src = nextPng;
-            tempImg.onload = () => { if (source) source.srcset = nextWebp; img.src = nextPng; img.style.opacity = '1'; };
+            tempImg.onload = () => { img.src = nextPng; img.style.opacity = '1'; };
             tempImg.onerror = () => { illusCurrent = (illusCurrent % totalIllus) + 1; img.src = `images/Ilus${illusCurrent}.png`; img.style.opacity = '1'; };
         }
         setInterval(rotateIllus, 5000);

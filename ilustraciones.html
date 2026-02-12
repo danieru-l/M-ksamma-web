@@ -157,7 +157,6 @@
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 mt-2">
                     <a href="index.html">
                         <picture>
-                            <source srcset="images/LogoMaks.webp" type="image/webp">
                             <img src="images/LogoMaks.png" alt="Máksamma"
                                 class="h-32 md:h-56 w-auto object-contain hover:scale-105 transition drop-shadow-2xl">
                         </picture>
@@ -226,7 +225,6 @@
 
         <div class="relative flex flex-col items-center">
             <picture>
-                <source id="lightbox-source" srcset="" type="image/webp">
                 <img id="lightbox-img" src="" alt="Vista previa" class="lightbox-img object-contain">
             </picture>
             <div class="mt-4 text-center">
@@ -244,7 +242,6 @@
     <!-- FOOTER -->
     <footer class="py-12 bg-black text-center flex flex-col items-center relative z-10 border-t border-white/10">
         <picture>
-            <source srcset="images/LogoMaks.webp" type="image/webp">
             <img src="images/LogoMaks.png" class="h-20 mb-6 opacity-80 object-contain" alt="Logo Máksamma"
                 loading="lazy">
         </picture>
@@ -278,7 +275,6 @@
                 <div class="vine-corner vc-br"></div>
                 <div class="vine-content">
                     <picture>
-                        <source srcset="images/Ilus${i}.webp" type="image/webp">
                         <img src="images/Ilus${i}.png" alt="${titles[i - 1] || 'Ilustración ' + i}"
                              class="w-full h-auto object-cover transition duration-500 group-hover:scale-110"
                              loading="lazy"
@@ -296,7 +292,6 @@
         let currentIdx = 1;
         const lightbox = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
-        const lbSource = document.getElementById('lightbox-source');
         const lbTitle = document.getElementById('lightbox-title');
 
         function openLightbox(idx) {
@@ -315,7 +310,6 @@
             lbImg.style.opacity = '0.5';
             setTimeout(() => {
                 lbImg.src = `images/Ilus${currentIdx}.png`;
-                if (lbSource) lbSource.srcset = `images/Ilus${currentIdx}.webp`;
                 lbTitle.innerText = titles[currentIdx - 1] || `Ilustración ${currentIdx}`;
                 lbImg.onload = () => lbImg.style.opacity = '1';
             }, 150);
