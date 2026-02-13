@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda | Máksamma</title>
+    <meta name="description"
+        content="Adquiere los tomos de Máksamma en formato físico o digital. Envíos a todo México.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Tienda | Máksamma">
+    <meta property="og:description"
+        content="Adquiere los tomos de Máksamma en formato físico o digital. Envíos a todo México.">
+    <meta property="og:image" content="images/PORTADA.png">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tienda | Máksamma">
+    <meta name="twitter:description" content="Adquiere los tomos de Máksamma en formato físico o digital.">
+    <meta name="twitter:image" content="images/PORTADA.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Maquiria.png">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Estilos compartidos -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Estilos específicos de Tienda -->
+    <style>
+        /* Tabs de formato */
+        .format-tab {
+            position: relative;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94a3b8;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .format-tab:hover {
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .format-tab.active {
+            color: white;
+            border-color: var(--accent-blue);
+            background: rgba(74, 124, 245, 0.1);
+        }
+
+        /* Paneles de formato */
+        .format-panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .format-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Botones de compra */
+        .btn-amazon {
+            background: linear-gradient(135deg, #FF9900, #e88a00);
+            color: #111;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .btn-amazon:hover {
+            background: linear-gradient(135deg, #ffaa33, #FF9900);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 153, 0, 0.3);
+        }
+
+        .btn-paypal {
+            background: linear-gradient(135deg, #0070ba, #005ea6);
+            color: white;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .btn-paypal:hover {
+            background: linear-gradient(135deg, #008be0, #0070ba);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 112, 186, 0.3);
+        }
+
+        .btn-digital {
+            background: linear-gradient(135deg, var(--accent-gold), #a88640);
+            color: #111;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .btn-digital:hover {
+            background: linear-gradient(135deg, #d4b06a, var(--accent-gold));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(197, 160, 89, 0.3);
+        }
+
+        /* Card de tomo */
+        .tomo-card {
+            background: var(--color-card);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.4s ease;
+        }
+
+        .tomo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Badge de estado */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.625rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 4px;
+            border: 1px solid;
+        }
+
+        .badge-available {
+            color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+            border-color: rgba(74, 222, 128, 0.3);
+        }
+
+        .badge-soon {
+            color: #facc15;
+            background: rgba(250, 204, 21, 0.1);
+            border-color: rgba(250, 204, 21, 0.3);
+        }
+
+        /* Info cards */
+        .info-card {
+            background: var(--color-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        /* Cover glow */
+        .cover-container {
+            position: relative;
+        }
+
+        .cover-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(74, 124, 245, 0.2);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .cover-container:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars-wrapper" id="stars-bg"></div>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="fixed w-full z-50 nav-container" id="main-nav">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
+            <div class="w-1/3 flex items-center justify-start">
+                <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <div class="hidden md:flex gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i
+                            class="fa-brands fa-facebook-f text-lg"></i></a>
+                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i
+                            class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-white transition transform hover:scale-110"><i
+                            class="fa-brands fa-tiktok text-lg"></i></a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-center relative">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 md:mt-2">
+                    <a href="index.html">
+                        <picture>
+                            <img src="images/LogoMaks.png" alt="Máksamma"
+                                class="h-14 md:h-24 max-w-none w-auto object-contain hover:scale-105 transition drop-shadow-2xl">
+                        </picture>
+                    </a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-end items-center gap-4">
+                <div class="relative group hidden md:block">
+                    <button class="text-xs font-bold text-gray-300 hover:text-white uppercase">ES ▼</button>
+                    <div
+                        class="absolute right-0 mt-2 w-32 bg-[#151621] border border-white/10 rounded hidden group-hover:block z-50">
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇪🇸 Español</a>
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇺🇸 English</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
+            <a href="index.html#universo" class="nav-link">El Universo</a>
+            <a href="index.html#saga" class="nav-link">La Saga</a>
+            <a href="wiki.html" class="nav-link">Wiki</a>
+            <a href="tienda.html" class="nav-link active">Tienda</a>
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-[#0b0c15]/95 backdrop-blur-xl h-screen flex flex-col p-8 z-40 border-t border-white/10">
+            <div
+                class="flex flex-col space-y-8 text-center text-xl font-bold uppercase tracking-widest font-epic mt-10">
+                <a href="index.html#universo" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">El
+                    Universo</a>
+                <a href="index.html#saga" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">La
+                    Saga</a>
+                <a href="wiki.html" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">Wiki</a>
+                <a href="tienda.html" class="text-blue-400 font-bold">Tienda</a>
+            </div>
+            <div class="flex justify-center gap-10 border-t border-white/10 mt-12 pt-10 text-gray-400">
+                <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                    rel="noopener noreferrer"><i class="fa-brands fa-facebook-f text-2xl"></i></a>
+                <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-brands fa-instagram text-2xl"></i></a>
+                <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-brands fa-tiktok text-2xl"></i></a>
+            </div>
+            <div class="flex justify-center gap-6 border-t border-white/10 mt-8 pt-8">
+                <a href="#" class="text-sm text-gray-400 hover:text-white transition">🇪🇸 Español</a>
+                <a href="#" class="text-sm text-gray-400 hover:text-white transition">🇺🇸 English</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="pt-40 pb-16 px-6 text-center relative z-10">
+        <span class="text-blue-400 text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Tienda Oficial</span>
+        <h1 class="text-4xl md:text-7xl font-epic text-white mb-6 drop-shadow-[0_0_20px_rgba(74,124,245,0.5)]">
+            ADQUIERE LA SAGA</h1>
+        <p class="text-gray-400 text-lg max-w-xl mx-auto font-light">Lleva contigo la historia de los siete clanes.
+            Disponible en formato físico y digital.</p>
+        <div class="w-32 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mt-8"></div>
+    </header>
+
+    <!-- TOMOS -->
+    <main>
+        <section class="container mx-auto px-6 pb-24 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+
+                <!-- TOMO I -->
+                <div class="vine-wrapper">
+                    <div class="vine-border"></div>
+                    <div class="vine-corner vc-tl"></div>
+                    <div class="vine-corner vc-tr"></div>
+                    <div class="vine-corner vc-bl"></div>
+                    <div class="vine-corner vc-br"></div>
+
+                    <div class="vine-content p-8 md:p-10">
+                        <div class="flex flex-col items-center">
+                            <!-- Badge -->
+                            <span class="badge badge-available mb-6">Disponible Ahora</span>
+
+                            <!-- Portada -->
+                            <div class="cover-container mb-8">
+                                <img src="images/PORTADA.png" alt="Máksamma Tomo I — Portada"
+                                    class="w-48 md:w-56 aspect-[2/3] object-cover rounded-lg shadow-2xl" loading="lazy">
+                            </div>
+
+                            <!-- Info -->
+                            <h2 class="font-epic text-2xl md:text-3xl text-white text-center mb-2">MÁKSAMMA</h2>
+                            <p class="text-sm text-gray-500 uppercase tracking-[0.2em] mb-4">Tomo I</p>
+                            <p class="text-gray-400 text-sm text-center max-w-sm mb-8 leading-relaxed">
+                                El relato de una joven de 17 años del séptimo clan, elegida por la Maquiria para
+                                restaurar el equilibrio entre el poder y el sentimiento.
+                            </p>
+
+                            <!-- Tabs de formato -->
+                            <div class="flex gap-2 mb-8 flex-wrap justify-center">
+                                <button class="format-tab active rounded-l-lg" onclick="switchFormat('fisico', this)">
+                                    <i class="fa-solid fa-book mr-2"></i>Físico
+                                </button>
+                                <button class="format-tab" onclick="switchFormat('digital', this)">
+                                    <i class="fa-solid fa-tablet-screen-button mr-2"></i>Digital
+                                </button>
+                                <button class="format-tab rounded-r-lg" onclick="switchFormat('amazon', this)">
+                                    <i class="fa-brands fa-amazon mr-2"></i>Amazon
+                                </button>
+                            </div>
+
+                            <!-- Panel: Físico -->
+                            <div id="panel-fisico" class="format-panel active w-full max-w-sm">
+                                <div class="text-center mb-6">
+                                    <p class="text-3xl font-bold text-white font-epic">$XXX <span
+                                            class="text-base text-gray-500 font-sans font-normal">MXN</span></p>
+                                    <p class="text-xs text-gray-500 mt-1">Envío a todo México incluido</p>
+                                </div>
+                                <button onclick="buyPhysical()"
+                                    class="btn-paypal w-full py-4 rounded-lg text-sm uppercase tracking-widest flex items-center justify-center gap-3">
+                                    <i class="fa-brands fa-paypal text-lg"></i>
+                                    Comprar con PayPal
+                                </button>
+                                <p class="text-[10px] text-gray-600 text-center mt-3">
+                                    <i class="fa-solid fa-truck text-gray-700 mr-1"></i>
+                                    Envío estimado: 5–10 días hábiles
+                                </p>
+                            </div>
+
+                            <!-- Panel: Digital -->
+                            <div id="panel-digital" class="format-panel w-full max-w-sm">
+                                <div class="text-center mb-6">
+                                    <p class="text-3xl font-bold text-white font-epic">$XXX <span
+                                            class="text-base text-gray-500 font-sans font-normal">MXN</span></p>
+                                    <p class="text-xs text-gray-500 mt-1">Descarga inmediata en PDF</p>
+                                </div>
+                                <button onclick="buyDigital()"
+                                    class="btn-digital w-full py-4 rounded-lg text-sm uppercase tracking-widest flex items-center justify-center gap-3">
+                                    <i class="fa-brands fa-paypal text-lg"></i>
+                                    Comprar Digital con PayPal
+                                </button>
+                                <p class="text-[10px] text-gray-600 text-center mt-3">
+                                    <i class="fa-solid fa-download text-gray-700 mr-1"></i>
+                                    Recibirás un enlace de descarga tras el pago
+                                </p>
+                            </div>
+
+                            <!-- Panel: Amazon -->
+                            <div id="panel-amazon" class="format-panel w-full max-w-sm">
+                                <div class="text-center mb-6">
+                                    <p class="text-lg text-gray-400">Disponible en Amazon</p>
+                                    <p class="text-xs text-gray-500 mt-1">Formato Kindle y pasta blanda</p>
+                                </div>
+                                <a href="https://www.amazon.com/-/es/Carlos-Enrique-Rodr%C3%ADguez-Mata-ebook/dp/B0F1JQK25L"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="btn-amazon w-full py-4 rounded-lg text-sm uppercase tracking-widest flex items-center justify-center gap-3">
+                                    <i class="fa-brands fa-amazon text-lg"></i>
+                                    Ver en Amazon
+                                </a>
+                                <p class="text-[10px] text-gray-600 text-center mt-3">
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-700 mr-1"></i>
+                                    Serás redirigido a Amazon.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TOMO II -->
+                <div class="vine-wrapper">
+                    <div class="vine-border"></div>
+                    <div class="vine-corner vc-tl"></div>
+                    <div class="vine-corner vc-tr"></div>
+                    <div class="vine-corner vc-bl"></div>
+                    <div class="vine-corner vc-br"></div>
+
+                    <div class="vine-content p-8 md:p-10">
+                        <div class="flex flex-col items-center justify-center min-h-[500px]">
+                            <!-- Badge -->
+                            <span class="badge badge-soon mb-6">En Desarrollo</span>
+
+                            <!-- Placeholder portada -->
+                            <div
+                                class="w-48 md:w-56 aspect-[2/3] rounded-lg shadow-2xl mb-8 bg-gradient-to-b from-[#1a1b2e] to-[#0d0e18] border border-white/10 flex flex-col items-center justify-center">
+                                <div class="text-center px-6">
+                                    <p class="font-epic text-xl text-white/80 mb-2">MÁKSAMMA</p>
+                                    <div class="w-12 h-px bg-white/20 mx-auto mb-2"></div>
+                                    <p class="font-epic text-sm text-blue-400/60">TOMO II</p>
+                                </div>
+                            </div>
+
+                            <!-- Info -->
+                            <h2 class="font-epic text-2xl md:text-3xl text-white text-center mb-2">MÁKSAMMA</h2>
+                            <p class="text-sm text-gray-500 uppercase tracking-[0.2em] mb-4">Tomo II</p>
+                            <p class="text-gray-500 text-sm text-center max-w-sm mb-8 leading-relaxed italic">
+                                La historia continúa. Un nuevo tomo lleno de misterios sobre el cristal y el destino de
+                                los siete clanes.
+                            </p>
+
+                            <!-- Sin botones -->
+                            <div
+                                class="w-full max-w-sm py-4 rounded-lg border border-dashed border-white/10 text-center">
+                                <p class="text-gray-600 text-xs uppercase tracking-widest">
+                                    <i class="fa-solid fa-clock mr-2"></i>Próximamente
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INFORMACIÓN -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-20">
+                <div class="info-card">
+                    <div
+                        class="w-14 h-14 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-truck-fast text-blue-400 text-xl"></i>
+                    </div>
+                    <h3 class="font-epic text-white text-lg mb-2">Envíos</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Envíos a todo México. Tiempo estimado de entrega:
+                        5–10 días hábiles.</p>
+                </div>
+
+                <div class="info-card">
+                    <div
+                        class="w-14 h-14 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-shield-halved text-green-400 text-xl"></i>
+                    </div>
+                    <h3 class="font-epic text-white text-lg mb-2">Pago Seguro</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Procesamos todos los pagos a través de PayPal para
+                        tu seguridad y tranquilidad.</p>
+                </div>
+
+                <div class="info-card">
+                    <div
+                        class="w-14 h-14 rounded-full bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-envelope text-yellow-400 text-xl"></i>
+                    </div>
+                    <h3 class="font-epic text-white text-lg mb-2">Contacto</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">¿Dudas sobre tu pedido? Escríbenos en
+                        <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-400 hover:text-blue-300 transition">Instagram</a> o
+                        <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                            rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition">Facebook</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-black text-center flex flex-col items-center relative z-10 border-t border-white/5">
+        <picture>
+            <img src="images/LogoMaks.png" class="h-14 md:h-20 max-w-none mb-6 opacity-80 object-contain"
+                alt="Logo Máksamma" loading="lazy">
+        </picture>
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-6">
+            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Facebook</a>
+            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">TikTok</a>
+        </div>
+        <p class="text-[10px] text-gray-700">© <span class="dynamic-year"></span> Máksamma. Autor: Carlos Enrique
+            Rodríguez Mata.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="shared.js"></script>
+    <script>
+        // --- Tabs de formato ---
+        function switchFormat(format, btn) {
+            // Desactivar todos los tabs y paneles
+            document.querySelectorAll('.format-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.format-panel').forEach(p => p.classList.remove('active'));
+
+            // Activar el seleccionado
+            btn.classList.add('active');
+            const panel = document.getElementById('panel-' + format);
+            if (panel) panel.classList.add('active');
+        }
+
+        // --- Compra física con PayPal ---
+        function buyPhysical() {
+            // TODO: Reemplazar con el enlace real de PayPal Business
+            // Cuando tengas tu cuenta PayPal Business, reemplaza esta URL
+            // con el enlace de pago generado desde PayPal (PayPal.me o botón de pago)
+            alert('¡Próximamente!\n\nEl sistema de pago con PayPal se habilitará muy pronto. Mientras tanto, contáctanos por Instagram o Facebook para adquirir tu libro.');
+        }
+
+        // --- Compra digital con PayPal ---
+        function buyDigital() {
+            // TODO: Reemplazar con el enlace real de PayPal Business
+            // Flujo futuro:
+            // 1. El usuario paga vía PayPal
+            // 2. PayPal redirige a una página de "gracias" con el enlace de Google Drive
+            // 3. O se envía automáticamente por email usando PayPal IPN (Instant Payment Notification)
+            alert('¡Próximamente!\n\nEl sistema de pago con PayPal se habilitará muy pronto. Mientras tanto, contáctanos por Instagram o Facebook para adquirir la versión digital.');
+        }
+    </script>
+
+    <script src="magic-cursor.js"></script>
+</body>
+
+</html>
