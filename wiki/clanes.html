@@ -1,1 +1,700 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los 7 Clanes | Wiki Máksamma</title>
+    <meta name="description"
+        content="Conoce los siete clanes del universo Máksamma: Trisis, Marius, Crosour, Parunis, Vitros, Democks y Razzar.">
+    <link rel="icon" type="image/png" href="../images/Maquiria.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .clan-card {
+            background: var(--color-card);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .clan-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .gridsku {
+            width: 24px;
+            height: 24px;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .member-tag {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .member-tag.hembra {
+            border-color: rgba(236, 72, 153, 0.3);
+            color: #f9a8d4;
+        }
+
+        .member-tag.varon {
+            border-color: rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+        }
+
+        .clan-nav-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            transition: all 0.3s;
+            color: #94a3b8;
+        }
+
+        .clan-nav-btn:hover {
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .clan-nav-btn.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars-wrapper" id="stars-bg"></div>
+
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 nav-container" id="main-nav">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
+            <div class="w-1/3 flex items-center justify-start">
+                <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <div class="hidden md:flex gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i
+                            class="fa-brands fa-facebook-f text-lg"></i></a>
+                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i
+                            class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-white transition transform hover:scale-110"><i
+                            class="fa-brands fa-tiktok text-lg"></i></a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-center relative">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 md:mt-2">
+                    <a href="../index.html">
+                        <picture>
+                            <img src="../images/LogoMaks.png" alt="Máksamma"
+                                class="h-14 md:h-20 max-w-none w-auto object-contain hover:scale-105 transition drop-shadow-2xl">
+                        </picture>
+                    </a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-end items-center gap-4">
+                <div class="relative group hidden md:block">
+                    <button class="text-xs font-bold text-gray-300 hover:text-white uppercase">ES ▼</button>
+                    <div
+                        class="absolute right-0 mt-2 w-32 bg-[#151621] border border-white/10 rounded hidden group-hover:block z-50">
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇪🇸 Español</a>
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇺🇸 English</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
+            <a href="../index.html#universo" class="nav-link">El Universo</a>
+            <a href="../index.html#saga" class="nav-link">La Saga</a>
+            <a href="../wiki.html" class="nav-link active">Wiki</a>
+            <a href="../tienda.html" class="nav-link">Tienda</a>
+        </div>
+        <div id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-[#0b0c15]/95 backdrop-blur-xl h-screen flex flex-col p-8 z-40 border-t border-white/10">
+            <div
+                class="flex flex-col space-y-8 text-center text-xl font-bold uppercase tracking-widest font-epic mt-10">
+                <a href="../index.html#universo" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">El Universo</a>
+                <a href="../index.html#saga" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">La
+                    Saga</a>
+                <a href="../wiki.html" class="text-blue-400 font-bold">Wiki</a>
+                <a href="../tienda.html" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">Tienda</a>
+            </div>
+            <div class="flex justify-center gap-10 border-t border-white/10 mt-12 pt-10 text-gray-400">
+                <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                    rel="noopener noreferrer"><i class="fa-brands fa-facebook-f text-2xl"></i></a>
+                <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-brands fa-instagram text-2xl"></i></a>
+                <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-brands fa-tiktok text-2xl"></i></a>
+            </div>
+            <div class="flex justify-center gap-6 border-t border-white/10 mt-8 pt-8">
+                <a href="#" class="text-sm text-gray-400 hover:text-white transition">🇪🇸 Español</a>
+                <a href="#" class="text-sm text-gray-400 hover:text-white transition">🇺🇸 English</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB + HERO -->
+    <header class="pt-36 pb-8 px-6 relative z-10">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex items-center gap-2 text-xs text-gray-500 mb-6">
+                <a href="../wiki.html" class="hover:text-blue-400 transition">Wiki</a>
+                <span>›</span>
+                <span class="text-gray-300">Clanes</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-epic text-white mb-4">LOS 7 CLANES</h1>
+            <p class="text-gray-400 text-lg max-w-2xl font-light">70 guerreros divididos en siete linajes, cada uno con
+                habilidades, idioma y hábitat únicos.</p>
+            <div class="w-32 h-1 bg-gradient-to-r from-blue-500 to-transparent mt-6"></div>
+        </div>
+    </header>
+
+    <!-- CLAN NAV -->
+    <div class="sticky top-[60px] z-40 bg-[#0a0b10]/95 backdrop-blur-xl border-y border-white/5 py-3 px-6">
+        <div class="container mx-auto max-w-6xl flex gap-2 overflow-x-auto scrollbar-hide">
+            <a href="#trisis" class="clan-nav-btn whitespace-nowrap" style="border-color: rgba(234,179,8,0.3)">🟡
+                Trisis</a>
+            <a href="#marius" class="clan-nav-btn whitespace-nowrap" style="border-color: rgba(59,130,246,0.3)">🔵
+                Marius</a>
+            <a href="#crosour" class="clan-nav-btn whitespace-nowrap" style="border-color: rgba(34,197,94,0.3)">🟢
+                Crosour</a>
+            <a href="#parunis" class="clan-nav-btn whitespace-nowrap" style="border-color: rgba(249,115,22,0.3)">🟠
+                Parunis</a>
+            <a href="#vitros" class="clan-nav-btn whitespace-nowrap" style="border-color: rgba(6,182,212,0.3)">🩵
+                Vitros</a>
+            <a href="#democks" class="clan-nav-btn whitespace-nowrap" style="border-color: rgba(107,114,128,0.3)">⚫
+                Democks</a>
+            <a href="#razzar" class="clan-nav-btn whitespace-nowrap" style="border-color: rgba(255,255,255,0.3)">⚪
+                Razzar</a>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 py-12 max-w-6xl relative z-10">
+
+        <!-- ═══════════ TRISIS ═══════════ -->
+        <section id="trisis" class="mb-20 scroll-mt-32">
+            <div class="vine-wrapper">
+                <div class="vine-border"></div>
+                <div class="vine-corner vc-tl"></div>
+                <div class="vine-corner vc-tr"></div>
+                <div class="vine-corner vc-bl"></div>
+                <div class="vine-corner vc-br"></div>
+                <div class="vine-content p-8 md:p-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="gridsku bg-yellow-400"></div>
+                        <h2 class="font-epic text-3xl text-white">TRISIS</h2>
+                        <span
+                            class="text-[10px] text-yellow-400 uppercase tracking-widest border border-yellow-500/30 bg-yellow-500/10 px-2 py-1 rounded">Clan
+                            #1</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xs text-yellow-500 uppercase tracking-widest font-bold mb-3">Características
+                                Físicas</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Seres parecidos a insectos, como las
+                                mantis religiosas. De color amarillo, cuatro piernas y dos brazos, con ojos muy grandes
+                                de color amarillo y pupilas negras. De su espalda sobresalen dos membranas.</p>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Líder</span><span
+                                        class="text-white font-bold">Versina</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Gridsku</span><span
+                                        class="text-yellow-400 font-bold">Amarillo</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Hábitat</span><span
+                                        class="text-white font-bold">Gobbrentz</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Victorias</span><span
+                                        class="text-white font-bold">8</span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xs text-yellow-500 uppercase tracking-widest font-bold mb-3">Rasgos &
+                                Técnicas</h3>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Personalidad:</strong>
+                                Trabajadores, serios, creativos, unidos, tradicionalistas, analíticos</p>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Técnicas:</strong>
+                                Golpeo con múltiples piernas, ráfagas de energía, generación de tormentas</p>
+                            <p class="text-gray-500 text-xs mb-4"><strong class="text-gray-300">Idioma:</strong>
+                                Estridulación (como chicharras y saltamontes), hipnótico</p>
+                            <h3 class="text-xs text-yellow-500 uppercase tracking-widest font-bold mb-3">Miembros</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="member-tag hembra">Versina ♀</span>
+                                <span class="member-tag hembra">Kaorina ♀</span>
+                                <span class="member-tag varon">Trakasio ♂</span>
+                                <span class="member-tag varon">Plawdred ♂</span>
+                                <span class="member-tag hembra">Nahombry ♀</span>
+                                <span class="member-tag varon">Gomcilued ♂</span>
+                                <span class="member-tag hembra">Greysmid ♀</span>
+                                <span class="member-tag hembra">Verzabiha ♀</span>
+                                <span class="member-tag varon">Tahiters ♂</span>
+                                <span class="member-tag varon">Ledrymis ♂</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ MARIUS ═══════════ -->
+        <section id="marius" class="mb-20 scroll-mt-32">
+            <div class="vine-wrapper">
+                <div class="vine-border"></div>
+                <div class="vine-corner vc-tl"></div>
+                <div class="vine-corner vc-tr"></div>
+                <div class="vine-corner vc-bl"></div>
+                <div class="vine-corner vc-br"></div>
+                <div class="vine-content p-8 md:p-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="gridsku bg-blue-400"></div>
+                        <h2 class="font-epic text-3xl text-white">MARIUS</h2>
+                        <span
+                            class="text-[10px] text-blue-400 uppercase tracking-widest border border-blue-500/30 bg-blue-500/10 px-2 py-1 rounded">Clan
+                            #2</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xs text-blue-500 uppercase tracking-widest font-bold mb-3">Características
+                                Físicas</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Seres anfibios parecidos a los peces,
+                                de la misma estatura que los trisis. Cuerpos y ojos azules como los de un pez, pupilas
+                                negras, nariz pequeña, boca grande, dientes afilados y piel escamosa y brillante.</p>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Líder</span><span
+                                        class="text-white font-bold">Mixtock</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Gridsku</span><span
+                                        class="text-blue-400 font-bold">Azul</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Hábitat</span><span
+                                        class="text-white font-bold">Sitnalta</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Victorias</span><span
+                                        class="text-white font-bold">2</span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xs text-blue-500 uppercase tracking-widest font-bold mb-3">Rasgos & Técnicas
+                            </h3>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Personalidad:</strong>
+                                Naturalistas, meditabundos, valientes, amistosos, solidarios, agradables</p>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Técnicas:</strong>
+                                Manipulación del agua en sus 3 estados, nebulización y liberación de toxinas,
+                                congelamiento</p>
+                            <p class="text-gray-500 text-xs mb-4"><strong class="text-gray-300">Idioma:</strong>
+                                Acústica acuática, sonidos por boca y aletas, luz refractada por agua</p>
+                            <h3 class="text-xs text-blue-500 uppercase tracking-widest font-bold mb-3">Miembros</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="member-tag varon">Mixtock ♂</span>
+                                <span class="member-tag varon">Sigwe ♂</span>
+                                <span class="member-tag hembra">Merdry ♀</span>
+                                <span class="member-tag varon">Mardinio ♂</span>
+                                <span class="member-tag hembra">Nizvia ♀</span>
+                                <span class="member-tag varon">Trisby ♂</span>
+                                <span class="member-tag hembra">Mesbrinya ♀</span>
+                                <span class="member-tag hembra">Celestiha ♀</span>
+                                <span class="member-tag hembra">Budnawe ♀</span>
+                                <span class="member-tag varon">Edwirs ♂</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ CROSOUR ═══════════ -->
+        <section id="crosour" class="mb-20 scroll-mt-32">
+            <div class="vine-wrapper">
+                <div class="vine-border"></div>
+                <div class="vine-corner vc-tl"></div>
+                <div class="vine-corner vc-tr"></div>
+                <div class="vine-corner vc-bl"></div>
+                <div class="vine-corner vc-br"></div>
+                <div class="vine-content p-8 md:p-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="gridsku bg-green-500"></div>
+                        <h2 class="font-epic text-3xl text-white">CROSOUR</h2>
+                        <span
+                            class="text-[10px] text-green-400 uppercase tracking-widest border border-green-500/30 bg-green-500/10 px-2 py-1 rounded">Clan
+                            #3</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xs text-green-500 uppercase tracking-widest font-bold mb-3">Características
+                                Físicas</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Similares a reptiles, más pequeños que
+                                los trisis y los marius. Piel escamosa de color verde con amarillo, ojos con pupilas
+                                negras, nariz grande y pezuñas enormes. No tienen boca; se alimentan de energía pura al
+                                tocar árboles, seres vivos o minerales.</p>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Líder</span><span
+                                        class="text-white font-bold">Blocksowe</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Gridsku</span><span
+                                        class="text-green-400 font-bold">Verde</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Hábitat</span><span
+                                        class="text-white font-bold">Fapairmed</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Victorias</span><span
+                                        class="text-white font-bold">2</span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xs text-green-500 uppercase tracking-widest font-bold mb-3">Rasgos &
+                                Técnicas</h3>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Personalidad:</strong>
+                                Intelectuales, desconfiados, determinados, eficaces, críticos, conscientes</p>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Técnicas:</strong>
+                                Absorción de energía del oponente, producción de toxinas por los ojos, explosiones de
+                                alta energía</p>
+                            <p class="text-gray-500 text-xs mb-4"><strong class="text-gray-300">Idioma:</strong>
+                                Pictográfico y de señas (sin boca), quimiorreceptores de piel, escritura tipo Mayas</p>
+                            <h3 class="text-xs text-green-500 uppercase tracking-widest font-bold mb-3">Miembros</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="member-tag varon">Blocksowe ♂</span>
+                                <span class="member-tag varon">Zuhwua ♂</span>
+                                <span class="member-tag varon">Froksuk ♂</span>
+                                <span class="member-tag hembra">Wisweka ♀</span>
+                                <span class="member-tag hembra">Gizmid ♀</span>
+                                <span class="member-tag hembra">Vasiliha ♀</span>
+                                <span class="member-tag hembra">Trevaniha ♀</span>
+                                <span class="member-tag varon">Tarsidry ♂</span>
+                                <span class="member-tag hembra">Zuxidis ♀</span>
+                                <span class="member-tag varon">Osmelder ♂</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ PARUNIS ═══════════ -->
+        <section id="parunis" class="mb-20 scroll-mt-32">
+            <div class="vine-wrapper">
+                <div class="vine-border"></div>
+                <div class="vine-corner vc-tl"></div>
+                <div class="vine-corner vc-tr"></div>
+                <div class="vine-corner vc-bl"></div>
+                <div class="vine-corner vc-br"></div>
+                <div class="vine-content p-8 md:p-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="gridsku bg-orange-400"></div>
+                        <h2 class="font-epic text-3xl text-white">PARUNIS</h2>
+                        <span
+                            class="text-[10px] text-orange-400 uppercase tracking-widest border border-orange-500/30 bg-orange-500/10 px-2 py-1 rounded">Clan
+                            #4</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xs text-orange-500 uppercase tracking-widest font-bold mb-3">Características
+                                Físicas</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Similares a topos. Los seres más
+                                pequeños, raros y extraordinarios de todos los clanes. En vez de ojos tienen cerdas
+                                diminutas de ubicación extrasensorial. Su piel es trigueña y llena de verrugas. Poseen
+                                un gran sentido de la orientación.</p>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Líder</span><span
+                                        class="text-white font-bold">Patsury</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Gridsku</span><span
+                                        class="text-orange-400 font-bold">Naranja</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Hábitat</span><span
+                                        class="text-white font-bold">Croocorius</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Victorias</span><span
+                                        class="text-white font-bold">10</span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xs text-orange-500 uppercase tracking-widest font-bold mb-3">Rasgos &
+                                Técnicas</h3>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Personalidad:</strong>
+                                Distantes, fervorosos, disciplinados, sabios, perseverantes, humildes</p>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Técnicas:</strong>
+                                Ataques acrobáticos, corrupción del espacio, remolinos de energía</p>
+                            <p class="text-gray-500 text-xs mb-4"><strong class="text-gray-300">Idioma:</strong> Ondas
+                                infrasónicas vocales, aromas y feromonas para comunicación secreta</p>
+                            <h3 class="text-xs text-orange-500 uppercase tracking-widest font-bold mb-3">Miembros</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="member-tag varon">Patsury ♂</span>
+                                <span class="member-tag varon">Cerymis ♂</span>
+                                <span class="member-tag hembra">Lubdinya ♀</span>
+                                <span class="member-tag hembra">Solcedry ♀</span>
+                                <span class="member-tag varon">Karivio ♂</span>
+                                <span class="member-tag hembra">Galakza ♀</span>
+                                <span class="member-tag varon">Dixfiry ♂</span>
+                                <span class="member-tag hembra">Sanewe ♀</span>
+                                <span class="member-tag varon">Lonmicord ♂</span>
+                                <span class="member-tag hembra">Taciluha ♀</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ VITROS ═══════════ -->
+        <section id="vitros" class="mb-20 scroll-mt-32">
+            <div class="vine-wrapper">
+                <div class="vine-border"></div>
+                <div class="vine-corner vc-tl"></div>
+                <div class="vine-corner vc-tr"></div>
+                <div class="vine-corner vc-bl"></div>
+                <div class="vine-corner vc-br"></div>
+                <div class="vine-content p-8 md:p-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="gridsku bg-cyan-300"></div>
+                        <h2 class="font-epic text-3xl text-white">VITROS</h2>
+                        <span
+                            class="text-[10px] text-cyan-400 uppercase tracking-widest border border-cyan-500/30 bg-cyan-500/10 px-2 py-1 rounded">Clan
+                            #5</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xs text-cyan-500 uppercase tracking-widest font-bold mb-3">Características
+                                Físicas</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Seres similares a las aves y los más
+                                hermosos entre los clanes. Su cuerpo es transparente, no tienen nariz (solo dos pequeños
+                                orificios) y una boca diminuta. Sus brazos y piernas son grandes, y cuentan con enormes
+                                alas retráctiles.</p>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Líder</span><span
+                                        class="text-white font-bold">Migred</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Gridsku</span><span
+                                        class="text-cyan-400 font-bold">Celeste</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Hábitat</span><span
+                                        class="text-white font-bold">Sanzifed</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Victorias</span><span
+                                        class="text-white font-bold">18</span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xs text-cyan-500 uppercase tracking-widest font-bold mb-3">Rasgos & Técnicas
+                            </h3>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Personalidad:</strong>
+                                Espirituales, aprendientes, elocuentes, estéticos, perceptivos, profundos</p>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Técnicas:</strong> Flor
+                                de loto, proyecciones psíquicas, manipulación mental, megalión</p>
+                            <p class="text-gray-500 text-xs mb-4"><strong class="text-gray-300">Idioma:</strong>
+                                Silbidos (como canto de aves), también hablan demock y razzar</p>
+                            <h3 class="text-xs text-cyan-500 uppercase tracking-widest font-bold mb-3">Miembros</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="member-tag hembra">Migred ♀</span>
+                                <span class="member-tag varon">Troxys ♂</span>
+                                <span class="member-tag varon">Cazadrón ♂</span>
+                                <span class="member-tag varon">Morsoled ♂</span>
+                                <span class="member-tag hembra">Fyra ♀</span>
+                                <span class="member-tag hembra">Nusmed ♀</span>
+                                <span class="member-tag varon">Soldrón ♂</span>
+                                <span class="member-tag hembra">Seinfrismid ♀</span>
+                                <span class="member-tag hembra">Vicmcsdiah ♀</span>
+                                <span class="member-tag varon">Delmers ♂</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ DEMOCKS ═══════════ -->
+        <section id="democks" class="mb-20 scroll-mt-32">
+            <div class="vine-wrapper">
+                <div class="vine-border"></div>
+                <div class="vine-corner vc-tl"></div>
+                <div class="vine-corner vc-tr"></div>
+                <div class="vine-corner vc-bl"></div>
+                <div class="vine-corner vc-br"></div>
+                <div class="vine-content p-8 md:p-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="gridsku bg-gray-800 border border-gray-600"></div>
+                        <h2 class="font-epic text-3xl text-white">DEMOCKS</h2>
+                        <span
+                            class="text-[10px] text-gray-400 uppercase tracking-widest border border-gray-500/30 bg-gray-500/10 px-2 py-1 rounded">Clan
+                            #6</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xs text-gray-400 uppercase tracking-widest font-bold mb-3">Características
+                                Físicas</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Físicamente los más fuertes de todos
+                                los clanes. Seres con protuberancias en todo su cuerpo (tobillos, rodillas, cadera,
+                                codos). Cuernos en la cabeza, flexibles y móviles a voluntad. Poseen doble columna
+                                vertebral. Piel de color marrón. Sus puños se mueven hacia adelante o atrás de maneras
+                                extraordinarias.</p>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Líder</span><span
+                                        class="text-white font-bold">Droknos</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Gridsku</span><span
+                                        class="text-gray-300 font-bold">Negro</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Hábitat</span><span
+                                        class="text-white font-bold">Orucsbo</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Victorias</span><span
+                                        class="text-white font-bold">13</span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xs text-gray-400 uppercase tracking-widest font-bold mb-3">Rasgos & Técnicas
+                            </h3>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Personalidad:</strong>
+                                Fuertes, tenaces, empíricos, dominadores, seguros, disidentes</p>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Técnicas:</strong> Poder
+                                compartido, agujeros negros, ráfagas de energía negra</p>
+                            <p class="text-gray-500 text-xs mb-4"><strong class="text-gray-300">Idioma:</strong>
+                                Parecido a las primeras lenguas del medio oriente + gritos y gestos, escritura tipo
+                                fenicios</p>
+                            <h3 class="text-xs text-gray-400 uppercase tracking-widest font-bold mb-3">Miembros</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="member-tag varon">Droknos ♂</span>
+                                <span class="member-tag hembra">Ceriah ♀</span>
+                                <span class="member-tag varon">Fabilong ♂</span>
+                                <span class="member-tag varon">Betzador ♂</span>
+                                <span class="member-tag hembra">Dkmaza ♀</span>
+                                <span class="member-tag hembra">Rojdana ♀</span>
+                                <span class="member-tag hembra">Oxilis ♀</span>
+                                <span class="member-tag varon">Macdror ♂</span>
+                                <span class="member-tag hembra">Cazayra ♀</span>
+                                <span class="member-tag varon">Teracfrom ♂</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ RAZZAR ═══════════ -->
+        <section id="razzar" class="mb-20 scroll-mt-32">
+            <div class="vine-wrapper">
+                <div class="vine-border"></div>
+                <div class="vine-corner vc-tl"></div>
+                <div class="vine-corner vc-tr"></div>
+                <div class="vine-corner vc-bl"></div>
+                <div class="vine-corner vc-br"></div>
+                <div class="vine-content p-8 md:p-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="gridsku bg-white"></div>
+                        <h2 class="font-epic text-3xl text-white">RAZZAR</h2>
+                        <span
+                            class="text-[10px] text-white uppercase tracking-widest border border-white/30 bg-white/10 px-2 py-1 rounded">Clan
+                            #7</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xs text-white/70 uppercase tracking-widest font-bold mb-3">Características
+                                Físicas</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">Similares a los humanos. Los más altos
+                                de todos los clanes, dotados de fuerza similar a la de los democks. Piel blanca, rostro
+                                hexagonal, sin orejas, ojos negros con pupilas blancas. Solo los varones pueden cambiar
+                                su piel a negra (sistema de autodefensa). Ingeniosos en arquitectura.</p>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Líder</span><span
+                                        class="text-white font-bold">Gotzing</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Gridsku</span><span
+                                        class="text-white font-bold">Blanco</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Hábitat</span><span
+                                        class="text-white font-bold">Arcamndar</span></div>
+                                <div class="bg-white/5 rounded-lg p-3"><span
+                                        class="text-gray-500 block mb-1">Victorias</span><span
+                                        class="text-white font-bold">15</span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xs text-white/70 uppercase tracking-widest font-bold mb-3">Rasgos & Técnicas
+                            </h3>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Personalidad:</strong>
+                                Inteligentes, innovadores, vanguardistas, protectores, curiosos, planificadores</p>
+                            <p class="text-gray-500 text-xs mb-2"><strong class="text-gray-300">Técnicas:</strong>
+                                Energía astral, sistema de autodefensa (cambio de color), colapso espacio-temporal,
+                                poder 2×1</p>
+                            <p class="text-gray-500 text-xs mb-4"><strong class="text-gray-300">Idioma:</strong>
+                                Parecido al latín + maullidos felinos para expresiones cotidianas</p>
+                            <h3 class="text-xs text-white/70 uppercase tracking-widest font-bold mb-3">Miembros</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="member-tag hembra">Gotzing ♀</span>
+                                <span class="member-tag varon">Zoracrón ♂</span>
+                                <span class="member-tag hembra">Mervidria ♀</span>
+                                <span class="member-tag hembra">Crikxia ♀</span>
+                                <span class="member-tag varon">Alcatrón ♂</span>
+                                <span class="member-tag hembra">Ciludya ♀</span>
+                                <span class="member-tag hembra">Piritsya ♀</span>
+                                <span class="member-tag hembra">Serzanya ♀</span>
+                                <span class="member-tag varon">Crodmor ♂</span>
+                                <span class="member-tag hembra">Máksamma ♀</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BACK TO WIKI -->
+        <div class="text-center pt-8">
+            <a href="../wiki.html"
+                class="btn-navy px-8 py-3 rounded-sm text-xs font-bold uppercase tracking-widest inline-block">
+                <i class="fa-solid fa-arrow-left mr-2"></i>Volver a la Wiki
+            </a>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-black text-center flex flex-col items-center relative z-10 border-t border-white/5">
+        <picture>
+            <img src="../images/LogoMaks.png" class="h-14 md:h-20 max-w-none mb-6 opacity-80 object-contain"
+                alt="Logo Máksamma" loading="lazy">
+        </picture>
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-6">
+            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Facebook</a>
+            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">TikTok</a>
+        </div>
+        <p class="text-[10px] text-gray-700">© <span class="dynamic-year"></span> Máksamma. Autor: Carlos Enrique
+            Rodríguez Mata.</p>
+    </footer>
+
+    <script src="../shared.js"></script>
+    <script src="../magic-cursor.js"></script>
+</body>
+
+</html>
