@@ -1,1 +1,443 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronología y Estadísticas | Wiki Máksamma</title>
+    <meta name="description" content="Línea de tiempo del Tomo I de Máksamma y estadísticas de combate de los clanes.">
+    <link rel="icon" type="image/png" href="../images/Maquiria.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #6366f1, #8b5cf6, #a855f7, #d946ef);
+        }
+
+        .timeline-node {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem;
+            top: 0.25rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 3px solid;
+            background: #0d0e18;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background: var(--color-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 3px solid;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(4px);
+        }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-bar-bg {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.5s ease;
+        }
+
+        .combat-card {
+            background: var(--color-card);
+            border-radius: 10px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .combat-card:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars-wrapper" id="stars-bg"></div>
+
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 nav-container" id="main-nav">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
+            <div class="w-1/3 flex items-center justify-start">
+                <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <div class="hidden md:flex gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i
+                            class="fa-brands fa-facebook-f text-lg"></i></a>
+                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i
+                            class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-white transition transform hover:scale-110"><i
+                            class="fa-brands fa-tiktok text-lg"></i></a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-center relative">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 md:mt-2">
+                    <a href="../index.html">
+                        <picture><img src="../images/LogoMaks.png" alt="Máksamma"
+                                class="h-14 md:h-20 max-w-none w-auto object-contain hover:scale-105 transition drop-shadow-2xl">
+                        </picture>
+                    </a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-end items-center gap-4">
+                <div class="relative group hidden md:block">
+                    <button class="text-xs font-bold text-gray-300 hover:text-white uppercase">ES ▼</button>
+                    <div
+                        class="absolute right-0 mt-2 w-32 bg-[#151621] border border-white/10 rounded hidden group-hover:block z-50">
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇪🇸 Español</a>
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇺🇸 English</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
+            <a href="../index.html#universo" class="nav-link">El Universo</a>
+            <a href="../index.html#saga" class="nav-link">La Saga</a>
+            <a href="../wiki.html" class="nav-link active">Wiki</a>
+            <a href="../tienda.html" class="nav-link">Tienda</a>
+        </div>
+        <div id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-[#0b0c15]/95 backdrop-blur-xl h-screen flex flex-col p-8 z-40 border-t border-white/10">
+            <div
+                class="flex flex-col space-y-8 text-center text-xl font-bold uppercase tracking-widest font-epic mt-10">
+                <a href="../index.html#universo" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">El Universo</a>
+                <a href="../index.html#saga" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">La
+                    Saga</a>
+                <a href="../wiki.html" class="text-blue-400 font-bold">Wiki</a>
+                <a href="../tienda.html" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">Tienda</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB + HERO -->
+    <header class="pt-36 pb-8 px-6 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            <div class="flex items-center gap-2 text-xs text-gray-500 mb-6">
+                <a href="../wiki.html" class="hover:text-blue-400 transition">Wiki</a>
+                <span>›</span>
+                <span class="text-gray-300">Cronología</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-epic text-white mb-4">CRONOLOGÍA</h1>
+            <p class="text-gray-400 text-lg max-w-2xl font-light">Flecha del tiempo de los hechos sucedidos en el Tomo
+                I, y estadísticas de combate.</p>
+            <div class="w-32 h-1 bg-gradient-to-r from-cyan-500 to-transparent mt-6"></div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 max-w-5xl relative z-10">
+
+        <!-- TIMELINE -->
+        <section class="mb-24">
+            <h2 class="font-epic text-2xl text-white mb-10 flex items-center gap-3">
+                <i class="fa-solid fa-clock-rotate-left text-indigo-500"></i>
+                Flecha del Tiempo — Tomo I
+            </h2>
+
+            <div class="timeline">
+                <!-- Node 1 -->
+                <div class="timeline-node">
+                    <div class="timeline-dot border-indigo-500"></div>
+                    <div class="timeline-content border-indigo-500">
+                        <span class="text-[10px] text-indigo-400 uppercase tracking-widest font-bold">Entre 5 y 3
+                            millones de años</span>
+                        <h3 class="text-white font-epic text-lg mt-2 mb-2">El Origen</h3>
+                        <p class="text-gray-400 text-sm">La Maquiria, en su espacio sin fin, decide dar origen a la vida
+                            en un plano astral.</p>
+                    </div>
+                </div>
+
+                <!-- Node 2 -->
+                <div class="timeline-node">
+                    <div class="timeline-dot border-violet-500"></div>
+                    <div class="timeline-content border-violet-500">
+                        <span class="text-[10px] text-violet-400 uppercase tracking-widest font-bold">3 – 2 millones de
+                            años</span>
+                        <h3 class="text-white font-epic text-lg mt-2 mb-2">La Generación</h3>
+                        <p class="text-gray-400 text-sm">Generación de los 7 Primeros Creados hasta llegar a los 70
+                            integrantes de los clanes.</p>
+                    </div>
+                </div>
+
+                <!-- Node 3 -->
+                <div class="timeline-node">
+                    <div class="timeline-dot border-purple-500"></div>
+                    <div class="timeline-content border-purple-500">
+                        <span class="text-[10px] text-purple-400 uppercase tracking-widest font-bold">2 – 1 millón de
+                            años</span>
+                        <h3 class="text-white font-epic text-lg mt-2 mb-2">La 69ª Fausta</h3>
+                        <p class="text-gray-400 text-sm">El nacimiento de Máksamma y la noticia de que habrá una Fausta
+                            más para que llegue el Nuevo Ser.</p>
+                    </div>
+                </div>
+
+                <!-- Node 4 -->
+                <div class="timeline-node">
+                    <div class="timeline-dot border-fuchsia-500"></div>
+                    <div class="timeline-content border-fuchsia-500">
+                        <span class="text-[10px] text-fuchsia-400 uppercase tracking-widest font-bold">1 millón – 100
+                            mil años</span>
+                        <h3 class="text-white font-epic text-lg mt-2 mb-2">El Último Torneo y la 70ª Fausta</h3>
+                        <p class="text-gray-400 text-sm">Se desarrolla el último torneo de combates y luego la 70ma
+                            Fausta, que se consagra con la llegada del Nuevo Ser (Diros).</p>
+                    </div>
+                </div>
+
+                <!-- Node 5 -->
+                <div class="timeline-node">
+                    <div class="timeline-dot border-pink-500"></div>
+                    <div class="timeline-content border-pink-500">
+                        <span class="text-[10px] text-pink-400 uppercase tracking-widest font-bold">Post-Diros</span>
+                        <h3 class="text-white font-epic text-lg mt-2 mb-2">La Revolución Emocional</h3>
+                        <p class="text-gray-400 text-sm">Con la llegada de Diros empiezan a originarse emociones y
+                            sentimientos nunca antes percibidos por los seres de los 7 clanes, revolucionando su
+                            historia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMBATES DEL ÚLTIMO TORNEO -->
+        <section class="mb-24">
+            <h2 class="font-epic text-2xl text-white mb-10 flex items-center gap-3">
+                <i class="fa-solid fa-bolt text-amber-500"></i>
+                El Último Torneo — Combates de Máksamma
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="combat-card border border-yellow-500/20">
+                    <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-2">Ronda 1</span>
+                    <p class="text-white font-epic text-sm">Versina</p>
+                    <p class="text-yellow-400 text-xs">vs Máksamma</p>
+                    <span class="text-[10px] text-gray-600 block mt-2">Cap. II</span>
+                </div>
+                <div class="combat-card border border-blue-500/20">
+                    <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-2">Ronda 2</span>
+                    <p class="text-white font-epic text-sm">Mixtock</p>
+                    <p class="text-blue-400 text-xs">vs Máksamma</p>
+                    <span class="text-[10px] text-gray-600 block mt-2">Cap. III</span>
+                </div>
+                <div class="combat-card border border-green-500/20">
+                    <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-2">Ronda 3</span>
+                    <p class="text-white font-epic text-sm">Blocksowe</p>
+                    <p class="text-green-400 text-xs">vs Máksamma</p>
+                    <span class="text-[10px] text-gray-600 block mt-2">Cap. IV</span>
+                </div>
+                <div class="combat-card border border-orange-500/20">
+                    <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-2">Ronda 4</span>
+                    <p class="text-white font-epic text-sm">Patsury</p>
+                    <p class="text-orange-400 text-xs">vs Máksamma</p>
+                    <span class="text-[10px] text-gray-600 block mt-2">Cap. V</span>
+                </div>
+                <div class="combat-card border border-cyan-500/20">
+                    <span class="text-[10px] text-gray-500 uppercase tracking-widest block mb-2">Semifinal</span>
+                    <p class="text-white font-epic text-sm">Migred</p>
+                    <p class="text-cyan-400 text-xs">vs Máksamma</p>
+                    <span class="text-[10px] text-gray-600 block mt-2">Cap. VI</span>
+                </div>
+                <div class="combat-card border border-gray-400/20 bg-gradient-to-br from-amber-950/20 to-transparent">
+                    <span class="text-[10px] text-amber-500 uppercase tracking-widest block mb-2">★ Final</span>
+                    <p class="text-white font-epic text-sm">Droknos</p>
+                    <p class="text-amber-400 text-xs">vs Máksamma</p>
+                    <span class="text-[10px] text-gray-600 block mt-2">Cap. VII</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESTADÍSTICAS -->
+        <section class="mb-20">
+            <h2 class="font-epic text-2xl text-white mb-10 flex items-center gap-3">
+                <i class="fa-solid fa-chart-bar text-green-500"></i>
+                Estadísticas de Combate
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Individual -->
+                <div>
+                    <h3 class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-6">Top 5 — Victorias
+                        Individuales</h3>
+                    <div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Migred</span>
+                            <span class="text-[10px] text-cyan-400 w-12">Vitros</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-cyan-500" style="width:100%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">15</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Gotzing</span>
+                            <span class="text-[10px] text-white w-12">Razzar</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-white" style="width:80%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">12</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Droknos</span>
+                            <span class="text-[10px] text-gray-400 w-12">Democks</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-gray-500" style="width:73%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">11</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Patsury</span>
+                            <span class="text-[10px] text-orange-400 w-12">Parunis</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-orange-500" style="width:60%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">9</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Versina</span>
+                            <span class="text-[10px] text-yellow-400 w-12">Trisis</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-yellow-500" style="width:47%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Por Clan -->
+                <div>
+                    <h3 class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-6">Victorias por Clan</h3>
+                    <div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Vitros</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-cyan-500" style="width:100%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">18</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Razzar</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-white" style="width:83%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">15</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Democks</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-gray-500" style="width:72%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">13</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Parunis</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-orange-500" style="width:56%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">10</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Trisis</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-yellow-500" style="width:44%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">8</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Marius</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-blue-500" style="width:11%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">2</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="text-white font-bold text-sm w-24">Crosour</span>
+                            <div class="stat-bar-bg">
+                                <div class="stat-bar-fill bg-green-500" style="width:11%"></div>
+                            </div>
+                            <span class="text-white font-bold text-xs w-6 text-right">2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BACK TO WIKI -->
+        <div class="text-center pt-8">
+            <a href="../wiki.html"
+                class="btn-navy px-8 py-3 rounded-sm text-xs font-bold uppercase tracking-widest inline-block">
+                <i class="fa-solid fa-arrow-left mr-2"></i>Volver a la Wiki
+            </a>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-black text-center flex flex-col items-center relative z-10 border-t border-white/5">
+        <picture><img src="../images/LogoMaks.png" class="h-14 md:h-20 max-w-none mb-6 opacity-80 object-contain"
+                alt="Logo" loading="lazy"></picture>
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-6">
+            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Facebook</a>
+            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">TikTok</a>
+        </div>
+        <p class="text-[10px] text-gray-700">© <span class="dynamic-year"></span> Máksamma. Autor: Carlos Enrique
+            Rodríguez Mata.</p>
+    </footer>
+    <script src="../shared.js"></script>
+    <script src="../magic-cursor.js"></script>
+</body>
+
+</html>
