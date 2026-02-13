@@ -258,73 +258,93 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="wiki-cards-grid">
 
                 <!-- 1. CLANES -->
-                <a href="#" data-wiki-title="clanes"
-                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link">
+                <a href="wiki/clanes.html" data-wiki-title="clanes"
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link bg-gradient-to-br from-blue-950/50 to-[#0d0e18]">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute top-6 right-6 text-blue-500/30 group-hover:text-blue-400/50 transition">
+                        <i class="fa-solid fa-shield-halved text-4xl"></i>
+                    </div>
                     <div class="absolute bottom-0 p-6">
                         <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-blue-500 pl-3">CLANES</h3>
-                        <p class="text-sm text-gray-300">Los 7 linajes y sus jerarquías.</p>
-                        <span
-                            class="text-[10px] text-yellow-500/70 uppercase tracking-widest mt-2 block">Próximamente</span>
+                        <p class="text-sm text-gray-300">Los 7 linajes, sus miembros y jerarquías.</p>
+                        <span class="text-[10px] text-blue-400 uppercase tracking-widest mt-2 block">70 integrantes · 7
+                            clanes</span>
                     </div>
                 </a>
 
                 <!-- 2. PERSONAJES -->
-                <a href="#" data-wiki-title="personajes"
-                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link">
+                <a href="wiki/personajes.html" data-wiki-title="personajes"
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link bg-gradient-to-br from-purple-950/50 to-[#0d0e18]">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute top-6 right-6 text-purple-500/30 group-hover:text-purple-400/50 transition">
+                        <i class="fa-solid fa-users text-4xl"></i>
+                    </div>
                     <div class="absolute bottom-0 p-6">
                         <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-purple-500 pl-3">PERSONAJES</h3>
-                        <p class="text-sm text-gray-300">Biografías de héroes y villanos.</p>
-                        <span
-                            class="text-[10px] text-yellow-500/70 uppercase tracking-widest mt-2 block">Próximamente</span>
+                        <p class="text-sm text-gray-300">Los líderes y guerreros principales.</p>
+                        <span class="text-[10px] text-purple-400 uppercase tracking-widest mt-2 block">9 personajes
+                            clave</span>
                     </div>
                 </a>
 
                 <!-- 3. GLOSARIO -->
-                <a href="#" data-wiki-title="glosario"
-                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link">
+                <a href="wiki/glosario.html" data-wiki-title="glosario"
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link bg-gradient-to-br from-green-950/50 to-[#0d0e18]">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute top-6 right-6 text-green-500/30 group-hover:text-green-400/50 transition">
+                        <i class="fa-solid fa-book-open text-4xl"></i>
+                    </div>
                     <div class="absolute bottom-0 p-6">
                         <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-green-500 pl-3">GLOSARIO</h3>
-                        <p class="text-sm text-gray-300">Términos, artefactos y ciencia.</p>
-                        <span
-                            class="text-[10px] text-yellow-500/70 uppercase tracking-widest mt-2 block">Próximamente</span>
+                        <p class="text-sm text-gray-300">Términos, técnicas y artefactos.</p>
+                        <span class="text-[10px] text-green-400 uppercase tracking-widest mt-2 block">50+
+                            definiciones</span>
                     </div>
                 </a>
 
-                <!-- 4. MAPA DEL PIGTANDÉ -->
-                <div class="md:col-span-3 mt-12">
-                    <div class="flex items-end justify-between mb-6">
-                        <h2 class="text-3xl font-epic text-white border-b-2 border-yellow-600 pb-2">MAPA DEL PIGTANDÉ DE
-                            LA MAQUIRIA</h2>
+                <!-- 4. LEYES -->
+                <a href="wiki/leyes.html" data-wiki-title="leyes maquiria universo fausta"
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link bg-gradient-to-br from-yellow-950/50 to-[#0d0e18]">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute top-6 right-6 text-yellow-500/30 group-hover:text-yellow-400/50 transition">
+                        <i class="fa-solid fa-scroll text-4xl"></i>
                     </div>
+                    <div class="absolute bottom-0 p-6">
+                        <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-yellow-500 pl-3">EL UNIVERSO
+                        </h3>
+                        <p class="text-sm text-gray-300">La Maquiria, La Fausta y las 7 Leyes.</p>
+                        <span class="text-[10px] text-yellow-400 uppercase tracking-widest mt-2 block">Origen · Creación
+                            · Leyes</span>
+                    </div>
+                </a>
 
-                    <div class="decorative-frame rounded-lg bg-[#0a0b10] relative group">
-                        <div class="relative w-full h-[300px] md:h-[600px] overflow-hidden cursor-pointer"
-                            onclick="expandMap()">
-                            <picture>
-                                <img src="images/MAPA.jpg" id="wiki-map-img" alt="Mapa del Pigtandé"
-                                    class="w-full h-full object-contain md:object-cover opacity-80 group-hover:opacity-100 transition duration-500"
-                                    loading="lazy"
-                                    onerror="this.style.display='none'; document.getElementById('map-placeholder').style.display='flex'">
-                            </picture>
+                <!-- 5. CRONOLOGÍA -->
+                <a href="wiki/cronologia.html" data-wiki-title="cronología tiempo combates estadísticas"
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link bg-gradient-to-br from-cyan-950/50 to-[#0d0e18]">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute top-6 right-6 text-cyan-500/30 group-hover:text-cyan-400/50 transition">
+                        <i class="fa-solid fa-timeline text-4xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 p-6">
+                        <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-cyan-500 pl-3">CRONOLOGÍA</h3>
+                        <p class="text-sm text-gray-300">Línea de tiempo y estadísticas de combate.</p>
+                        <span class="text-[10px] text-cyan-400 uppercase tracking-widest mt-2 block">Millones de años de
+                            historia</span>
+                    </div>
+                </a>
 
-                            <div id="map-placeholder"
-                                class="hidden absolute inset-0 flex-col items-center justify-center text-center">
-                                <span class="text-4xl mb-4 grayscale opacity-50">🗺️</span>
-                                <p class="text-gray-500 font-epic">Cargando cartografía...</p>
-                            </div>
-
-                            <div
-                                class="absolute top-4 right-4 bg-black/70 text-white p-2 rounded hover:bg-blue-600 transition z-20">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
-                                    </path>
-                                </svg>
-                            </div>
-                        </div>
+                <!-- 6. MAPA (card que abre fullscreen) -->
+                <div class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link bg-gradient-to-br from-amber-950/50 to-[#0d0e18] cursor-pointer"
+                    data-wiki-title="mapa pingtandé hábitats" onclick="expandMap()">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute top-6 right-6 text-amber-500/30 group-hover:text-amber-400/50 transition">
+                        <i class="fa-solid fa-map text-4xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 p-6">
+                        <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-amber-500 pl-3">MAPA</h3>
+                        <p class="text-sm text-gray-300">El Pingtandé de la Maquiria.</p>
+                        <span class="text-[10px] text-amber-400 uppercase tracking-widest mt-2 block"><i
+                                class="fa-solid fa-expand mr-1"></i>Click para expandir</span>
                     </div>
                 </div>
 
@@ -360,7 +380,7 @@
         </button>
         <div class="w-full h-full overflow-auto flex items-center justify-center">
             <picture>
-                <img src="images/MAPA.jpg" class="max-w-none h-auto md:h-full object-contain cursor-zoom-in"
+                <img src="images/MAPA.png" class="max-w-none h-auto md:h-full object-contain cursor-zoom-in"
                     alt="Mapa Completo" loading="lazy">
             </picture>
         </div>
