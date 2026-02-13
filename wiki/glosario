@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glosario | Wiki Máksamma</title>
+    <meta name="description" content="Glosario completo de términos, técnicas y artefactos del universo Máksamma.">
+    <link rel="icon" type="image/png" href="../images/Maquiria.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .glossary-term {
+            background: var(--color-card);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            border-left: 3px solid;
+            transition: all 0.3s;
+        }
+
+        .glossary-term:hover {
+            transform: translateX(4px);
+        }
+
+        .letter-nav a {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #64748b;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .letter-nav a:hover,
+        .letter-nav a.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .search-glosario {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .search-glosario:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #22c55e;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars-wrapper" id="stars-bg"></div>
+
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 nav-container" id="main-nav">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
+            <div class="w-1/3 flex items-center justify-start">
+                <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <div class="hidden md:flex gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i
+                            class="fa-brands fa-facebook-f text-lg"></i></a>
+                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i
+                            class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-white transition transform hover:scale-110"><i
+                            class="fa-brands fa-tiktok text-lg"></i></a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-center relative">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 md:mt-2">
+                    <a href="../index.html">
+                        <picture><img src="../images/LogoMaks.png" alt="Máksamma"
+                                class="h-14 md:h-20 max-w-none w-auto object-contain hover:scale-105 transition drop-shadow-2xl">
+                        </picture>
+                    </a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-end items-center gap-4">
+                <div class="relative group hidden md:block">
+                    <button class="text-xs font-bold text-gray-300 hover:text-white uppercase">ES ▼</button>
+                    <div
+                        class="absolute right-0 mt-2 w-32 bg-[#151621] border border-white/10 rounded hidden group-hover:block z-50">
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇪🇸 Español</a>
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇺🇸 English</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
+            <a href="../index.html#universo" class="nav-link">El Universo</a>
+            <a href="../index.html#saga" class="nav-link">La Saga</a>
+            <a href="../wiki.html" class="nav-link active">Wiki</a>
+            <a href="../tienda.html" class="nav-link">Tienda</a>
+        </div>
+        <div id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-[#0b0c15]/95 backdrop-blur-xl h-screen flex flex-col p-8 z-40 border-t border-white/10">
+            <div
+                class="flex flex-col space-y-8 text-center text-xl font-bold uppercase tracking-widest font-epic mt-10">
+                <a href="../index.html#universo" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">El Universo</a>
+                <a href="../index.html#saga" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">La
+                    Saga</a>
+                <a href="../wiki.html" class="text-blue-400 font-bold">Wiki</a>
+                <a href="../tienda.html" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">Tienda</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB + HERO -->
+    <header class="pt-36 pb-8 px-6 relative z-10">
+        <div class="container mx-auto max-w-5xl">
+            <div class="flex items-center gap-2 text-xs text-gray-500 mb-6">
+                <a href="../wiki.html" class="hover:text-blue-400 transition">Wiki</a>
+                <span>›</span>
+                <span class="text-gray-300">Glosario</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-epic text-white mb-4">GLOSARIO</h1>
+            <p class="text-gray-400 text-lg max-w-2xl font-light">Términos, técnicas de combate y artefactos del
+                universo Máksamma.</p>
+            <div class="w-32 h-1 bg-gradient-to-r from-green-500 to-transparent mt-6"></div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 max-w-5xl relative z-10">
+
+        <!-- SEARCH -->
+        <div class="mb-8 relative max-w-md">
+            <input type="text" id="glossary-search" placeholder="Buscar término..."
+                class="search-glosario w-full py-3 px-5 pl-11" oninput="filterGlossary(this.value)">
+            <i class="fa-solid fa-search text-gray-500 absolute left-4 top-1/2 -translate-y-1/2 text-sm"></i>
+        </div>
+
+        <!-- LETTER NAV -->
+        <div class="letter-nav flex flex-wrap gap-1 mb-10" id="letter-nav"></div>
+
+        <!-- TERMS -->
+        <div id="glossary-list" class="space-y-3">
+
+            <div class="glossary-term border-green-600" data-letter="A">
+                <h3 class="text-white font-bold text-sm mb-1">Absorción de energía</h3>
+                <p class="text-gray-400 text-xs">Habilidad fulminante de los crosour; arrebataban la energía vital a sus
+                    contendientes, dejándolos al borde de la derrota.</p>
+            </div>
+            <div class="glossary-term border-green-600" data-letter="A">
+                <h3 class="text-white font-bold text-sm mb-1">Agujero negro</h3>
+                <p class="text-gray-400 text-xs">Remolino de alcance cósmico formado por los miembros más potentes de
+                    los clanes. Poder destructivo gigantesco, empleado bajo circunstancias muy especiales.</p>
+            </div>
+            <div class="glossary-term border-green-600" data-letter="A">
+                <h3 class="text-white font-bold text-sm mb-1">Arcamndar</h3>
+                <p class="text-gray-400 text-xs">Hogar sagrado del clan razzar, con arquitectura y belleza fascinantes.
+                    También conocido como "la Cúpula".</p>
+            </div>
+            <div class="glossary-term border-green-600" data-letter="A">
+                <h3 class="text-white font-bold text-sm mb-1">Arma de vientos</h3>
+                <p class="text-gray-400 text-xs">Capacidad de controlar y dirigir los vientos, generando instrumentos de
+                    combate muy poderosos y difíciles de contrarrestar.</p>
+            </div>
+            <div class="glossary-term border-green-600" data-letter="A">
+                <h3 class="text-white font-bold text-sm mb-1">Aura celeste</h3>
+                <p class="text-gray-400 text-xs">Técnica de los vitros para acelerar el metabolismo de sus
+                    contendientes, desgastando rápidamente su poder.</p>
+            </div>
+            <div class="glossary-term border-blue-600" data-letter="B">
+                <h3 class="text-white font-bold text-sm mb-1">Barsmú</h3>
+                <p class="text-gray-400 text-xs">Planta parecida al bambú, pero de color celeste y con anillos blancos.
+                </p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Candado chino</h3>
+                <p class="text-gray-400 text-xs">Llave de lucha cuerpo a cuerpo que consiste en atrapar la cabeza del
+                    adversario con los brazos para derribarlo y someterlo.</p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Cata</h3>
+                <p class="text-gray-400 text-xs">Tipo de guardia de combate en la cual el guerrero concentra su fuerza
+                    para lanzar su ataque.</p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Cerdas</h3>
+                <p class="text-gray-400 text-xs">Pequeñas extensiones de piel y nervios en la cabeza de algunos clanes
+                    (parunis, trisis, crosour) para reconocer aspectos del ambiente.</p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Círculos de energía</h3>
+                <p class="text-gray-400 text-xs">Radiaciones de alto poder que los guerreros constituían al hacer girar
+                    sus manos para impactar adversarios.</p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Clanes</h3>
+                <p class="text-gray-400 text-xs">Grupos con características físicas y psíquicas similares. No eran
+                    familia por vínculos sanguíneos, sino seres con cualidades especiales que conformaban una hermandad.
+                </p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Colisionar el entorno</h3>
+                <p class="text-gray-400 text-xs">Destreza rara para manipular el tejido espacio-temporal y amoldarlo a
+                    condiciones beneficiosas contra rivales.</p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Congelación del cuerpo</h3>
+                <p class="text-gray-400 text-xs">Técnica perfeccionada de los marius. Utilizaban el agua del hábitat
+                    para formar hielo y aprisionar adversarios.</p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Congelamiento del tiempo</h3>
+                <p class="text-gray-400 text-xs">Técnica difícil de lograr. Solo algunos crosour, vitros y el Maestro
+                    Patsury podían ralentizar el tiempo de sus contrincantes.</p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Corromper el espacio</h3>
+                <p class="text-gray-400 text-xs">Habilidad de Maestros como Patsury: congelar todos los objetos y
+                    sujetos durante breves instantes para vencerlos.</p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Cristales Gridsku</h3>
+                <p class="text-gray-400 text-xs">Cristal en el pecho de cada uno de los 70 miembros. Confiere la vida
+                    como un corazón de energía pura. Si es retirado brevemente puede regresar; si es quitado
+                    permanentemente, el ser desaparece, regresando a la Maquiria.</p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Cristales Shizen</h3>
+                <p class="text-gray-400 text-xs">Provenientes de la flora y fauna. Adquieren el color de su hábitat.
+                    Cada criatura puede atesorar de 1 a 10 cristales según su complejidad, tamaño, fuerza y edad.</p>
+            </div>
+            <div class="glossary-term border-yellow-600" data-letter="C">
+                <h3 class="text-white font-bold text-sm mb-1">Croocorius</h3>
+                <p class="text-gray-400 text-xs">Hábitat de los parunis.</p>
+            </div>
+            <div class="glossary-term border-purple-600" data-letter="F">
+                <h3 class="text-white font-bold text-sm mb-1">Fapairmed</h3>
+                <p class="text-gray-400 text-xs">Hábitat de los crosour.</p>
+            </div>
+            <div class="glossary-term border-purple-600" data-letter="G">
+                <h3 class="text-white font-bold text-sm mb-1">Gobbrentz</h3>
+                <p class="text-gray-400 text-xs">Hábitat de los trisis, donde se encuentra el Santuario del Templo
+                    Sagrado.</p>
+            </div>
+            <div class="glossary-term border-red-600" data-letter="M">
+                <h3 class="text-white font-bold text-sm mb-1">Megalión</h3>
+                <p class="text-gray-400 text-xs">Técnica perfeccionada del control del tiempo y el espacio; el guerrero
+                    podía manipularlos a voluntad por unos segundos. Desarrollada por los vitros y Patsury.</p>
+            </div>
+            <div class="glossary-term border-red-600" data-letter="M">
+                <h3 class="text-white font-bold text-sm mb-1">Muralla grande</h3>
+                <p class="text-gray-400 text-xs">Técnica para rodear y atrapar temporalmente al contrario por medio de
+                    un campo de energía impenetrable.</p>
+            </div>
+            <div class="glossary-term border-orange-600" data-letter="N">
+                <h3 class="text-white font-bold text-sm mb-1">Nebulización</h3>
+                <p class="text-gray-400 text-xs">Destreza de los marius para vaporizar el agua y convertirla en neblina
+                    manipulable con toxinas o sustancias debilitantes.</p>
+            </div>
+            <div class="glossary-term border-cyan-600" data-letter="O">
+                <h3 class="text-white font-bold text-sm mb-1">Ondas simultáneas</h3>
+                <p class="text-gray-400 text-xs">Lanzar varias ondas de energía al mismo tiempo en forma de olas. Los
+                    parunis eran expertos en este ataque.</p>
+            </div>
+            <div class="glossary-term border-cyan-600" data-letter="O">
+                <h3 class="text-white font-bold text-sm mb-1">Ondas ultrasónicas</h3>
+                <p class="text-gray-400 text-xs">Vibraciones percibidas y utilizadas por los parunis para ubicar
+                    adversarios y emitir ondas para aturdirlos.</p>
+            </div>
+            <div class="glossary-term border-cyan-600" data-letter="O">
+                <h3 class="text-white font-bold text-sm mb-1">Orucsbo</h3>
+                <p class="text-gray-400 text-xs">Abismo donde los democks construyeron su santuario. También conocido
+                    como "El Límite".</p>
+            </div>
+            <div class="glossary-term border-pink-600" data-letter="P">
+                <h3 class="text-white font-bold text-sm mb-1">Piel-lou</h3>
+                <p class="text-gray-400 text-xs">Piel exótica y exuberante que les crece a las hembras de los clanes en
+                    general.</p>
+            </div>
+            <div class="glossary-term border-pink-600" data-letter="P">
+                <h3 class="text-white font-bold text-sm mb-1">Pingtandé de la Maquiria</h3>
+                <p class="text-gray-400 text-xs">Plano global de los hábitats, representado en diversos mapas.</p>
+            </div>
+            <div class="glossary-term border-pink-600" data-letter="P">
+                <h3 class="text-white font-bold text-sm mb-1">Plataformas</h3>
+                <p class="text-gray-400 text-xs">Estructuras circulares a cierta altura donde se llevaban a cabo los
+                    combates. Rodeadas de picos verticales de protección.</p>
+            </div>
+            <div class="glossary-term border-pink-600" data-letter="P">
+                <h3 class="text-white font-bold text-sm mb-1">Poder compartido</h3>
+                <p class="text-gray-400 text-xs">Técnica demock para identificar el nivel de energía del rival,
+                    igualarlo y arrebatárselo.</p>
+            </div>
+            <div class="glossary-term border-pink-600" data-letter="P">
+                <h3 class="text-white font-bold text-sm mb-1">Poder "2 en 1"</h3>
+                <p class="text-gray-400 text-xs">Doble ataque simultáneo desde dos lados para que, al detener uno, el
+                    segundo impacte al adversario.</p>
+            </div>
+            <div class="glossary-term border-pink-600" data-letter="P">
+                <h3 class="text-white font-bold text-sm mb-1">Proyección</h3>
+                <p class="text-gray-400 text-xs">Ilusiones de sí mismos que no sufren daño pero sí pueden atacar. Los
+                    crosour y vitros eran los más reconocidos.</p>
+            </div>
+            <div class="glossary-term border-rose-600" data-letter="S">
+                <h3 class="text-white font-bold text-sm mb-1">Santuario del Templo Sagrado</h3>
+                <p class="text-gray-400 text-xs">Espacio en el hábitat trisis para las Faustas, adorar a la Maquiria y
+                    recibir sus mandamientos.</p>
+            </div>
+            <div class="glossary-term border-rose-600" data-letter="S">
+                <h3 class="text-white font-bold text-sm mb-1">Sanzifed</h3>
+                <p class="text-gray-400 text-xs">Fortificación del clan vitros, también conocida como "el Nido". Repleta
+                    de laberintos, túneles y bóvedas, flotando a la orilla de un gran lago.</p>
+            </div>
+            <div class="glossary-term border-rose-600" data-letter="S">
+                <h3 class="text-white font-bold text-sm mb-1">Sistema de autodefensa</h3>
+                <p class="text-gray-400 text-xs">Habilidad exclusiva de los varones razzar: cambiar de color blanco a
+                    negro para incrementar fortaleza, resistencia y poder.</p>
+            </div>
+            <div class="glossary-term border-rose-600" data-letter="S">
+                <h3 class="text-white font-bold text-sm mb-1">Sitnalta</h3>
+                <p class="text-gray-400 text-xs">Hogar mágico de los marius. Se mimetiza con el ambiente y puede hacerse
+                    invisible. También conocido como "la Almeja".</p>
+            </div>
+            <div class="glossary-term border-rose-600" data-letter="S">
+                <h3 class="text-white font-bold text-sm mb-1">Supernova</h3>
+                <p class="text-gray-400 text-xs">La mayor explosión posible. Capaz de desestabilizar los 7 hábitats. Uso
+                    muy restringido en duelos.</p>
+            </div>
+            <div class="glossary-term border-teal-600" data-letter="T">
+                <h3 class="text-white font-bold text-sm mb-1">Telequinesis</h3>
+                <p class="text-gray-400 text-xs">Capacidad de mover objetos y estructuras con la mente. Especialmente en
+                    vitros, razzar y parunis.</p>
+            </div>
+            <div class="glossary-term border-teal-600" data-letter="T">
+                <h3 class="text-white font-bold text-sm mb-1">Teletransportación</h3>
+                <p class="text-gray-400 text-xs">Uso de la energía del gridsku para trasladarse casi instantáneamente.
+                    Condicionada durante combates.</p>
+            </div>
+            <div class="glossary-term border-teal-600" data-letter="T">
+                <h3 class="text-white font-bold text-sm mb-1">Trans-penetración</h3>
+                <p class="text-gray-400 text-xs">Transformaciones entre elementos de la naturaleza. Patsury era el gran
+                    maestre en esta área.</p>
+            </div>
+            <div class="glossary-term border-teal-600" data-letter="T">
+                <h3 class="text-white font-bold text-sm mb-1">Toxinas</h3>
+                <p class="text-gray-400 text-xs">Sustancias empleadas especialmente por crosour y parunis para
+                    controlar, debilitar o dejar inconscientes a sus contrincantes. Ningún combatiente era inmune a
+                    todas ellas.</p>
+            </div>
+            <div class="glossary-term border-teal-600" data-letter="T">
+                <h3 class="text-white font-bold text-sm mb-1">Túnica blanca de energía personal</h3>
+                <p class="text-gray-400 text-xs">Túnica energizada a través del cristal de la wismerdier, mediante un
+                    código y ritual único por clan. Se adhería al nuevo ser durante La Fausta para darle su vestimenta.
+                </p>
+            </div>
+            <div class="glossary-term border-amber-600" data-letter="V">
+                <h3 class="text-white font-bold text-sm mb-1">Vacío sin fin</h3>
+                <p class="text-gray-400 text-xs">Término para todo lo que rodea los hábitats: un lugar oscuro donde no
+                    hay nada.</p>
+            </div>
+            <div class="glossary-term border-amber-600" data-letter="V">
+                <h3 class="text-white font-bold text-sm mb-1">Valores</h3>
+                <p class="text-gray-400 text-xs">Principios que regían a cada clan e integrante. Tan respetados como
+                    admirados; la ética se fundamentaba en ellos.</p>
+            </div>
+            <div class="glossary-term border-amber-600" data-letter="V">
+                <h3 class="text-white font-bold text-sm mb-1">Viltz</h3>
+                <p class="text-gray-400 text-xs">Piedras blancas del santuario de la Fausta con símbolos grabados que
+                    representan a cada integrante de los clanes.</p>
+            </div>
+
+        </div>
+
+        <!-- BACK TO WIKI -->
+        <div class="text-center pt-16">
+            <a href="../wiki.html"
+                class="btn-navy px-8 py-3 rounded-sm text-xs font-bold uppercase tracking-widest inline-block">
+                <i class="fa-solid fa-arrow-left mr-2"></i>Volver a la Wiki
+            </a>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-black text-center flex flex-col items-center relative z-10 border-t border-white/5">
+        <picture><img src="../images/LogoMaks.png" class="h-14 md:h-20 max-w-none mb-6 opacity-80 object-contain"
+                alt="Logo" loading="lazy"></picture>
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-6">
+            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Facebook</a>
+            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">TikTok</a>
+        </div>
+        <p class="text-[10px] text-gray-700">© <span class="dynamic-year"></span> Máksamma. Autor: Carlos Enrique
+            Rodríguez Mata.</p>
+    </footer>
+
+    <script src="../shared.js"></script>
+    <script>
+        // Build letter navigation
+        const letters = new Set();
+        document.querySelectorAll('.glossary-term').forEach(t => letters.add(t.dataset.letter));
+        const nav = document.getElementById('letter-nav');
+        [...letters].sort().forEach(l => {
+            const a = document.createElement('a');
+            a.href = '#';
+            a.textContent = l;
+            a.onclick = (e) => { e.preventDefault(); scrollToLetter(l); };
+            nav.appendChild(a);
+        });
+
+        function scrollToLetter(letter) {
+            const el = document.querySelector(`.glossary-term[data-letter="${letter}"]`);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function filterGlossary(query) {
+            const q = query.toLowerCase().trim();
+            document.querySelectorAll('.glossary-term').forEach(term => {
+                const text = term.textContent.toLowerCase();
+                term.style.display = text.includes(q) || q === '' ? '' : 'none';
+            });
+        }
+    </script>
+    <script src="../magic-cursor.js"></script>
+</body>
+
+</html>
