@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Autor | Máksamma</title>
+    <meta name="description"
+        content="Conoce a Carlos Enrique Rodríguez Mata, la mente detrás del universo de Máksamma.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="El Autor | Máksamma">
+    <meta property="og:description"
+        content="Conoce a Carlos Enrique Rodríguez Mata, la mente detrás del universo de Máksamma.">
+    <meta property="og:image" content="images/Autor.png">
+    <meta property="og:type" content="profile">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="El Autor | Máksamma">
+    <meta name="twitter:description" content="Conoce a Carlos Enrique Rodríguez Mata, creador de Máksamma.">
+    <meta name="twitter:image" content="images/Autor.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Maquiria.png">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Estilos compartidos -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Estilos específicos -->
+    <style>
+        .author-photo {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .author-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            border: 2px solid var(--color-bg);
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.4);
+            flex-shrink: 0;
+        }
+
+        .timeline-line {
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-gold), transparent);
+            flex-shrink: 0;
+        }
+
+        .quote-mark {
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            line-height: 1;
+            color: var(--accent-gold);
+            opacity: 0.3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars-wrapper" id="stars-bg"></div>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="fixed w-full z-50 nav-container" id="main-nav">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
+            <div class="w-1/3 flex items-center justify-start">
+                <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <div class="hidden md:flex gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i
+                            class="fa-brands fa-facebook-f text-lg"></i></a>
+                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i
+                            class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-white transition transform hover:scale-110"><i
+                            class="fa-brands fa-tiktok text-lg"></i></a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-center relative">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 md:mt-2">
+                    <a href="index.html">
+                        <picture>
+                            <img src="images/LogoMaks.png" alt="Máksamma"
+                                class="h-14 md:h-20 max-w-none w-auto object-contain hover:scale-105 transition drop-shadow-2xl">
+                        </picture>
+                    </a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-end items-center gap-4">
+                <div class="relative group hidden md:block">
+                    <button class="text-xs font-bold text-gray-300 hover:text-white uppercase">ES ▼</button>
+                    <div
+                        class="absolute right-0 mt-2 w-32 bg-[#151621] border border-white/10 rounded hidden group-hover:block z-50">
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇪🇸 Español</a>
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇺🇸 English</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
+            <a href="index.html#universo" class="nav-link">El Universo</a>
+            <a href="index.html#saga" class="nav-link">La Saga</a>
+            <a href="wiki.html" class="nav-link">Wiki</a>
+            <a href="tienda.html" class="nav-link">Tienda</a>
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-[#0b0c15]/95 backdrop-blur-xl h-screen flex flex-col p-8 z-40 border-t border-white/10">
+            <div
+                class="flex flex-col space-y-8 text-center text-xl font-bold uppercase tracking-widest font-epic mt-10">
+                <a href="index.html#universo" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">El Universo</a>
+                <a href="index.html#saga" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">La
+                    Saga</a>
+                <a href="wiki.html" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">Wiki</a>
+                <a href="tienda.html" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">Tienda</a>
+            </div>
+            <div class="flex justify-center gap-10 border-t border-white/10 mt-12 pt-10 text-gray-400">
+                <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                    rel="noopener noreferrer"><i class="fa-brands fa-facebook-f text-2xl"></i></a>
+                <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-brands fa-instagram text-2xl"></i></a>
+                <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"><i
+                        class="fa-brands fa-tiktok text-2xl"></i></a>
+            </div>
+            <div class="flex justify-center gap-6 border-t border-white/10 mt-8 pt-8">
+                <a href="#" class="text-sm text-gray-400 hover:text-white transition">🇪🇸 Español</a>
+                <a href="#" class="text-sm text-gray-400 hover:text-white transition">🇺🇸 English</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="pt-40 pb-8 px-6 text-center relative z-10">
+        <span class="text-yellow-500 text-xs font-bold uppercase tracking-[0.3em] mb-4 block">El Creador</span>
+        <h1 class="text-4xl md:text-7xl font-epic text-white mb-6 drop-shadow-[0_0_20px_rgba(197,160,89,0.4)]">
+            ACERCA DEL AUTOR</h1>
+        <div class="w-32 h-1 bg-gradient-to-r from-transparent via-yellow-600 to-transparent mx-auto mt-4"></div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="relative z-10">
+        <article class="container mx-auto px-6 pb-24 max-w-5xl">
+
+            <!-- Foto + Nombre -->
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center mb-20">
+
+                <!-- Foto del autor -->
+                <div class="w-64 md:w-80 flex-shrink-0">
+                    <div class="vine-wrapper">
+                        <div class="vine-border"></div>
+                        <div class="vine-corner vc-tl"></div>
+                        <div class="vine-corner vc-tr"></div>
+                        <div class="vine-corner vc-bl"></div>
+                        <div class="vine-corner vc-br"></div>
+                        <div class="vine-content">
+                            <div class="author-photo">
+                                <img src="images/Autor.png" alt="Carlos Enrique Rodríguez Mata — Autor de Máksamma"
+                                    class="w-full aspect-[3/4] object-cover" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nombre y presentación -->
+                <div class="text-center lg:text-left">
+                    <h2 class="font-epic text-3xl md:text-4xl text-white mb-4">Carlos Enrique<br>Rodríguez Mata</h2>
+                    <div class="flex items-center gap-3 justify-center lg:justify-start mb-6">
+                        <div class="w-10 h-px bg-yellow-600"></div>
+                        <span class="text-yellow-500 text-xs font-bold uppercase tracking-[0.2em]">Escritor &
+                            Creador</span>
+                        <div class="w-10 h-px bg-yellow-600"></div>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed max-w-md">
+                        Ingeniero, soñador y narrador. Creó el universo de Máksamma durante 9 años de trabajo,
+                        dando vida a una guerrera que lo acompañó en sus propias batallas.
+                    </p>
+
+                    <!-- Datos rápidos -->
+                    <div class="grid grid-cols-2 gap-4 mt-8 max-w-sm mx-auto lg:mx-0">
+                        <div class="bg-[#151621] border border-white/5 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-epic text-white">9</p>
+                            <p class="text-[10px] text-gray-600 uppercase tracking-widest mt-1">Años de escritura</p>
+                        </div>
+                        <div class="bg-[#151621] border border-white/5 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-epic text-white">2022</p>
+                            <p class="text-[10px] text-gray-600 uppercase tracking-widest mt-1">Novela completada</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Semblanza completa -->
+            <div class="max-w-3xl mx-auto">
+                <div class="relative mb-16">
+                    <span class="quote-mark absolute -top-8 -left-4">"</span>
+                    <div class="bg-[#151621]/50 border border-white/5 rounded-xl p-8 md:p-12">
+                        <h3 class="font-epic text-xl text-white mb-8 text-center">Semblanza</h3>
+
+                        <div
+                            class="space-y-6 text-gray-400 text-sm md:text-base leading-relaxed font-light font-serif-text">
+                            <p>Carlos Enrique Rodríguez Mata, nació en Ciudad Victoria, Tamaulipas, cuando aún era una
+                                ciudad apacible y tranquila, el 30 de octubre de 1973. Creció jugando con sus primos y
+                                los vecinos de su cuadra durante los fines de semana, mientras los adultos jugaban
+                                cartas
+                                en el porche de la casa de sus abuelos, en un enriquecedor ambiente familiar.</p>
+
+                            <p>Ahí vivió hasta los 17 años, edad en la que fue enviado, con grandes esfuerzos por parte
+                                de su madre, para continuar sus estudios universitarios en la ciudad de Monterrey, Nuevo
+                                León. Fue ahí en donde el autor estudió la carrera de Ingeniero Mecánico Eléctrico en la
+                                Facultad de Ingeniería Mecánica Eléctrica (FIME) de la Universidad Autónoma de Nuevo
+                                León (UANL).</p>
+
+                            <p>En el último año de su carrera, conoció a su actual esposa, quien estudiaba con él en su
+                                misma facultad, quedándose en esta ciudad por casi 10 años. Más tarde, en 1998 empezó a
+                                laborar en la empresa Petróleos Mexicanos (PEMEX) en Monterrey, para después desplazarse
+                                en el año 2000 a la Ciudad de México, siendo parte de la misma compañía.</p>
+
+                            <p>Después de un año de labores, se casó con su esposa, procreando a dos niñas. Él vivió en
+                                esta metrópoli por espacio de 20 años, hasta que en 2017 el autor sufrió un accidente,
+                                el cual lo dejó con una discapacidad ocular, por lo que al año siguiente fue jubilado de
+                                manera temprana, a los 45 años.</p>
+
+                            <p>Tres años después, en el 2020, decidió irse a vivir a la ciudad de Mérida, Yucatán, en
+                                donde logró completar su novela en el 2022, habiéndola iniciado el 13 de agosto del
+                                2013.</p>
+
+                            <p class="text-gray-300 italic border-l-2 border-yellow-600 pl-6">El resultado de estos 9
+                                años de trabajo es la presente historia de Máksamma, una guerrera que combatió a su lado
+                                entre los 12 y los 19 años, hasta llevarlo al equilibrio que él buscaba en medio de
+                                muchas batallas y aprendizajes. Es una narración que sin duda dejará una huella inmensa
+                                en todo aquel que la lea…</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Línea de tiempo -->
+                <div class="mb-16">
+                    <h3 class="font-epic text-xl text-white mb-10 text-center">Cronología</h3>
+                    <div class="space-y-8 max-w-lg mx-auto">
+                        <div class="flex items-start gap-4">
+                            <div class="flex flex-col items-center">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line h-12"></div>
+                            </div>
+                            <div>
+                                <p class="text-yellow-500 text-xs font-bold">1973</p>
+                                <p class="text-gray-400 text-sm">Nace en Ciudad Victoria, Tamaulipas</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex flex-col items-center">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line h-12"></div>
+                            </div>
+                            <div>
+                                <p class="text-yellow-500 text-xs font-bold">1990</p>
+                                <p class="text-gray-400 text-sm">Se traslada a Monterrey para estudiar Ing. Mecánico
+                                    Eléctrico en FIME — UANL</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex flex-col items-center">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line h-12"></div>
+                            </div>
+                            <div>
+                                <p class="text-yellow-500 text-xs font-bold">1998</p>
+                                <p class="text-gray-400 text-sm">Comienza a laborar en Petróleos Mexicanos (PEMEX)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex flex-col items-center">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line h-12"></div>
+                            </div>
+                            <div>
+                                <p class="text-yellow-500 text-xs font-bold">2000</p>
+                                <p class="text-gray-400 text-sm">Se traslada a la Ciudad de México con PEMEX</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex flex-col items-center">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line h-12"></div>
+                            </div>
+                            <div>
+                                <p class="text-yellow-500 text-xs font-bold">2013</p>
+                                <p class="text-gray-400 text-sm">Inicia la escritura de Máksamma el 13 de agosto</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex flex-col items-center">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line h-12"></div>
+                            </div>
+                            <div>
+                                <p class="text-yellow-500 text-xs font-bold">2017</p>
+                                <p class="text-gray-400 text-sm">Sufre un accidente que le causa discapacidad ocular</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex flex-col items-center">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line h-12"></div>
+                            </div>
+                            <div>
+                                <p class="text-yellow-500 text-xs font-bold">2020</p>
+                                <p class="text-gray-400 text-sm">Se muda a Mérida, Yucatán</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex flex-col items-center">
+                                <div class="timeline-dot"></div>
+                            </div>
+                            <div>
+                                <p class="text-yellow-500 text-xs font-bold">2022</p>
+                                <p class="text-gray-400 text-sm">Completa la novela de Máksamma tras 9 años de trabajo
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="text-center border-t border-white/5 pt-16">
+                    <p class="text-gray-500 text-sm mb-6 italic font-serif-text">"Una narración que sin duda dejará una
+                        huella inmensa en todo aquel que la lea…"</p>
+                    <a href="tienda.html"
+                        class="btn-navy px-8 py-3 rounded-sm text-xs font-bold uppercase tracking-widest inline-block">
+                        <i class="fa-solid fa-book mr-2"></i>Adquiere la Saga
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-black text-center flex flex-col items-center relative z-10 border-t border-white/5">
+        <picture>
+            <img src="images/LogoMaks.png" class="h-14 md:h-20 max-w-none mb-6 opacity-80 object-contain"
+                alt="Logo Máksamma" loading="lazy">
+        </picture>
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-6">
+            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Facebook</a>
+            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">TikTok</a>
+        </div>
+        <p class="text-[10px] text-gray-700">© <span class="dynamic-year"></span> Máksamma. Autor: Carlos Enrique
+            Rodríguez Mata.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="shared.js"></script>
+    <script src="magic-cursor.js"></script>
+</body>
+
+</html>
