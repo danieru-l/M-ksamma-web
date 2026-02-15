@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Último Torneo — La Fausta que lo Cambió Todo | Máksamma</title>
+    <meta name="description"
+        content="La historia detrás de los siete combates que decidieron el destino de todos los clanes. Cronología y análisis de La Fausta.">
+    <link rel="icon" type="image/png" href="../images/Maquiria.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .article-body p {
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .article-body h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: white;
+            margin: 3rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .article-body h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            margin: 2rem 0 0.75rem;
+        }
+
+        .article-body blockquote {
+            border-left: 3px solid #ef4444;
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            background: rgba(239, 68, 68, 0.05);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #fca5a5;
+        }
+
+        .pullquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-style: italic;
+            color: #f87171;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin: 2.5rem 0;
+            border-top: 1px solid rgba(248, 113, 113, 0.2);
+            border-bottom: 1px solid rgba(248, 113, 113, 0.2);
+            line-height: 1.5;
+        }
+
+        .combat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        .combat-card:hover {
+            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.03);
+        }
+
+        .round-badge {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars-wrapper" id="stars-bg"></div>
+
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 nav-container" id="main-nav">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
+            <div class="w-1/3 flex items-center justify-start">
+                <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <div class="hidden md:flex gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i
+                            class="fa-brands fa-facebook-f text-lg"></i></a>
+                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i
+                            class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-white transition transform hover:scale-110"><i
+                            class="fa-brands fa-tiktok text-lg"></i></a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-center relative">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 md:mt-2">
+                    <a href="../index.html">
+                        <picture><img src="../images/LogoMaks.png" alt="Máksamma"
+                                class="h-14 md:h-20 max-w-none w-auto object-contain hover:scale-105 transition drop-shadow-2xl">
+                        </picture>
+                    </a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-end items-center gap-4">
+                <div class="relative group hidden md:block">
+                    <button class="text-xs font-bold text-gray-300 hover:text-white uppercase">ES ▼</button>
+                    <div
+                        class="absolute right-0 mt-2 w-32 bg-[#151621] border border-white/10 rounded hidden group-hover:block z-50">
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇪🇸 Español</a>
+                        <a href="#" class="block px-4 py-2 text-xs text-gray-300 hover:bg-white/5">🇺🇸 English</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
+            <a href="../index.html#universo" class="nav-link">El Universo</a>
+            <a href="../index.html#saga" class="nav-link">La Saga</a>
+            <a href="../wiki.html" class="nav-link">Wiki</a>
+            <a href="../tienda.html" class="nav-link">Tienda</a>
+        </div>
+        <div id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-[#0b0c15]/95 backdrop-blur-xl h-screen flex flex-col p-8 z-40 border-t border-white/10">
+            <div
+                class="flex flex-col space-y-8 text-center text-xl font-bold uppercase tracking-widest font-epic mt-10">
+                <a href="../index.html#universo" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">El Universo</a>
+                <a href="../index.html#saga" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">La
+                    Saga</a>
+                <a href="../wiki.html" onclick="toggleMenu()" class="text-white hover:text-blue-400 transition">Wiki</a>
+                <a href="../tienda.html" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">Tienda</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="relative pt-24 pb-0 overflow-hidden">
+        <div class="relative h-[50vh] md:h-[60vh]">
+            <picture>
+                <img src="../images/Ilus9.png" alt="El Último Torneo"
+                    class="absolute inset-0 w-full h-full object-cover" loading="eager">
+            </picture>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0d0e18] via-[#0d0e18]/70 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 md:p-16">
+                <div class="container mx-auto max-w-3xl">
+                    <div class="flex items-center gap-2 text-xs text-gray-500 mb-4">
+                        <a href="../index.html" class="hover:text-blue-400 transition">Inicio</a>
+                        <span>›</span>
+                        <span class="text-gray-300">Lore</span>
+                    </div>
+                    <span class="text-red-400 text-xs font-bold uppercase tracking-widest block mb-3">Guerra
+                        Épica</span>
+                    <h1 class="text-4xl md:text-6xl font-epic text-white leading-tight mb-4">El Último Torneo</h1>
+                    <p class="text-gray-400 text-lg font-light">Siete combates que decidirán el destino de todos los
+                        clanes.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ARTICLE -->
+    <main class="container mx-auto px-6 py-16 max-w-3xl relative z-10">
+        <article class="article-body">
+
+            <p>La Fausta es un torneo ceremonial organizado por la Maquiria para mantener el equilibrio entre los
+                clanes. No es un acto de guerra: es un acto de justicia cósmica. A lo largo de eones, cada vez que la
+                tensión entre los siete clanes amenazaba con fracturar la armonía del Pingtandé, la Maquiria convocaba
+                una nueva Fausta.</p>
+
+            <p>Pero la última Fausta fue diferente. La primera vez que un ser ajeno al sistema de liderazgo original fue
+                elegido como representante para combatir. Su nombre: <strong class="text-white">Máksamma</strong>.</p>
+
+            <div class="pullquote">"No importa de qué clan seas. La Maquiria te eligió, y eso es suficiente."</div>
+
+            <h2>El Formato del Torneo</h2>
+
+            <p>Cada Fausta sigue la misma estructura, un enfrentamiento eliminatorio entre los representantes de cada
+                clan. Siete combates en total: cuatro en la primera ronda, después semifinales, y una gran final que se
+                disputa bajo la luz directa de la Maquiria.</p>
+
+            <p>Las reglas son claras y antiguas, establecidas por la <strong class="text-white">Tercera Ley</strong>:
+                combate directo, sin armas externas, utilizando solo el cuerpo y las técnicas propias del clan. No se
+                combate hasta la muerte — se combate hasta la rendición o la extracción temporal del Gridsku rival.</p>
+
+            <h2>Los Combates</h2>
+
+            <div class="combat-card">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="round-badge bg-blue-900/50 text-blue-400 border border-blue-500/30">Ronda 1</span>
+                    <span class="text-xs text-gray-600">Combate 1</span>
+                </div>
+                <p class="mb-0 text-sm"><strong class="text-yellow-400">Trisis</strong> vs <strong
+                        class="text-blue-400">Marius</strong> — Un choque de velocidad contra precisión. Los Trisis, con
+                    su estilo fulgurante, buscaron abrumar a los calculadores Marius. Sin embargo, la defensa
+                    impenetrable de Marius mantuvo la ventaja.</p>
+            </div>
+
+            <div class="combat-card">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="round-badge bg-blue-900/50 text-blue-400 border border-blue-500/30">Ronda 1</span>
+                    <span class="text-xs text-gray-600">Combate 2</span>
+                </div>
+                <p class="mb-0 text-sm"><strong class="text-green-400">Crosour</strong> vs <strong
+                        class="text-orange-400">Parunis</strong> — La fuerza bruta de los Parunis enfrentada contra la
+                    capacidad de absorción de energía de los Crosour. Un duelo de resistencia donde cada golpe recibido
+                    fortalecía al adversario.</p>
+            </div>
+
+            <div class="combat-card">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="round-badge bg-blue-900/50 text-blue-400 border border-blue-500/30">Ronda 1</span>
+                    <span class="text-xs text-gray-600">Combate 3</span>
+                </div>
+                <p class="mb-0 text-sm"><strong class="text-cyan-400">Vitros</strong> vs <strong
+                        class="text-white">Razzar</strong> — El combate más impredecible. Los Vitros, con su flor de
+                    loto y técnicas de manipulación de frecuencias, contra los Razzar y su brutal estilo directo. La
+                    inteligencia táctica marcó la diferencia.</p>
+            </div>
+
+            <div class="combat-card">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="round-badge bg-purple-900/50 text-purple-400 border border-purple-500/30">Ronda
+                        1</span>
+                    <span class="text-xs text-gray-600">Combate 4</span>
+                </div>
+                <p class="mb-0 text-sm"><strong class="text-gray-300">Democks</strong> — Avanzaron automáticamente. Como
+                    portadores del clan más temido y con su líder invicto, nadie se atrevió a disputar su lugar en las
+                    semifinales. Una victoria que sabe a advertencia.</p>
+            </div>
+
+            <h2>Las Semifinales</h2>
+
+            <p>Llegar a las semifinales de una Fausta no es solo un honor: es una prueba de que tu clan merece su lugar
+                en el equilibrio. Los dos combates semifinales pusieron a prueba no solo la técnica, sino la voluntad de
+                cada guerrero.</p>
+
+            <div class="combat-card" style="border-color: rgba(234,179,8,0.2);">
+                <div class="flex items-center gap-3 mb-2">
+                    <span
+                        class="round-badge bg-yellow-900/50 text-yellow-400 border border-yellow-500/30">Semifinal</span>
+                </div>
+                <p class="mb-0 text-sm">Los vencedores de los combates 1 y 2 se enfrentaron en un duelo que puso al
+                    límite las técnicas más avanzadas de ambos clanes. El ambiente vibraba con la energía de la
+                    Maquiria, amplificando cada movimiento.</p>
+            </div>
+
+            <div class="combat-card" style="border-color: rgba(234,179,8,0.2);">
+                <div class="flex items-center gap-3 mb-2">
+                    <span
+                        class="round-badge bg-yellow-900/50 text-yellow-400 border border-yellow-500/30">Semifinal</span>
+                </div>
+                <p class="mb-0 text-sm">Los Democks y el ganador del combate 3 midieron fuerzas. El poder compartido de
+                    los Democks demostró ser una ventaja abrumadora, canalizando la energía de todos sus miembros en un
+                    solo guerrero.</p>
+            </div>
+
+            <h2>La Gran Final</h2>
+
+            <blockquote>La Maquiria iluminó el cielo del Pingtandé con un brillo que no se veía desde la creación. Todos
+                los 70 seres detuvieron su existencia para observar. El cristal de cada uno palpitó al ritmo de la
+                batalla final.</blockquote>
+
+            <p>La gran final de una Fausta es más que un combate. Es un ritual. La Maquiria desciende su energía sobre
+                la arena de combate, creando un campo donde las técnicas se amplifican y los Gridsku brillan con una
+                intensidad sobrenatural. Son los momentos en los que la línea entre lo mortal y lo divino se difumina.
+            </p>
+
+            <p>Lo que ocurrió en esa final cambió las reglas de todo. Un resultado que nadie — ni la propia Maquiria —
+                podía haber anticipado.</p>
+
+            <h2>Las Consecuencias</h2>
+
+            <p>Toda Fausta tiene consecuencias que redefinen el orden del Pingtandé. El clan vencedor obtiene
+                privilegios en recursos y territorio, pero más importante: obtiene la <strong class="text-white">Voz de
+                    la Maquiria</strong>, el derecho a ser escuchado directamente por la Creadora durante los próximos
+                eones.</p>
+
+            <p>La última Fausta no solo redistribuyó el poder. Reveló una verdad que había permanecido oculta desde la
+                creación misma de los clanes. Una verdad que obligó a cada uno de los 70 seres a cuestionar su propia
+                existencia.</p>
+
+            <p class="text-center text-lg font-epic text-white mt-8">¿Quieres conocer toda la verdad?<br>
+                <a href="../lectura.html"
+                    class="text-red-400 border-b border-red-500/50 hover:text-red-300 transition">Lee el Tomo I de
+                    Máksamma →</a>
+            </p>
+
+        </article>
+
+        <!-- RELATED -->
+        <div class="border-t border-white/5 mt-16 pt-12">
+            <h3 class="font-epic text-sm text-gray-500 uppercase tracking-widest mb-6">Sigue explorando</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <a href="../wiki/cronologia.html"
+                    class="bg-white/5 border border-white/10 rounded-lg p-4 hover:border-cyan-500/30 transition group">
+                    <span class="text-xs text-cyan-400 block mb-1">Wiki</span>
+                    <span class="text-white text-sm font-bold group-hover:text-cyan-400 transition">Cronología
+                        Completa</span>
+                </a>
+                <a href="cristales-gridsku.html"
+                    class="bg-white/5 border border-white/10 rounded-lg p-4 hover:border-green-500/30 transition group">
+                    <span class="text-xs text-green-400 block mb-1">Artículo</span>
+                    <span class="text-white text-sm font-bold group-hover:text-green-400 transition">Los Cristales
+                        Gridsku</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- BACK -->
+        <div class="text-center pt-12">
+            <a href="../index.html"
+                class="btn-navy px-8 py-3 rounded-sm text-xs font-bold uppercase tracking-widest inline-block">
+                <i class="fa-solid fa-arrow-left mr-2"></i>Volver al Inicio
+            </a>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-black text-center flex flex-col items-center relative z-10 border-t border-white/5">
+        <picture><img src="../images/LogoMaks.png" class="h-14 md:h-20 max-w-none mb-6 opacity-80 object-contain"
+                alt="Logo" loading="lazy"></picture>
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-6">
+            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Facebook</a>
+            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">TikTok</a>
+        </div>
+        <p class="text-[10px] text-gray-700">© <span class="dynamic-year"></span> Máksamma. Autor: Carlos Enrique
+            Rodríguez Mata.</p>
+    </footer>
+    <script src="../shared.js"></script>
+    <script src="../magic-cursor.js"></script>
+</body>
+
+</html>
