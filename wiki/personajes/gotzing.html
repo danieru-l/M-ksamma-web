@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gotzing — Líder Razzar | Wiki Máksamma</title>
+    <meta name="description"
+        content="Perfil de Gotzing, la primera razzar creada y líder del clan. Guerrera, estratega y mentora de Máksamma.">
+    <link rel="icon" type="image/png" href="../../images/Maquiria.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .char-hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .char-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(10, 11, 16, 0.95) 60%);
+            z-index: 1;
+        }
+
+        .char-image-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .char-image-container img {
+            max-height: 500px;
+            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.15));
+        }
+
+        .stat-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+
+        .wiki-link {
+            color: #60a5fa;
+            border-bottom: 1px dotted rgba(96, 165, 250, 0.4);
+            transition: all 0.2s;
+        }
+
+        .wiki-link:hover {
+            color: #93bbfc;
+            border-bottom-color: #93bbfc;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars-wrapper" id="stars-bg"></div>
+
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 nav-container" id="main-nav">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
+            <div class="w-1/3 flex items-center justify-start">
+                <button class="md:hidden text-white p-2 focus:outline-none" onclick="toggleMenu()">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <div class="hidden md:flex gap-4">
+                    <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#1877F2] transition transform hover:scale-110"><i
+                            class="fa-brands fa-facebook-f text-lg"></i></a>
+                    <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-[#E4405F] transition transform hover:scale-110"><i
+                            class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-white transition transform hover:scale-110"><i
+                            class="fa-brands fa-tiktok text-lg"></i></a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-center relative">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 md:mt-2">
+                    <a href="../../index.html"><img src="../../images/LogoMaks.png" alt="Máksamma"
+                            class="h-14 md:h-20 max-w-none w-auto object-contain hover:scale-105 transition drop-shadow-2xl"></a>
+                </div>
+            </div>
+            <div class="w-1/3 flex justify-end items-center gap-4"></div>
+        </div>
+        <div
+            class="hidden md:flex container mx-auto px-6 py-2 justify-center items-center gap-12 border-t border-white/5 bg-black/20">
+            <a href="../../index.html#universo" class="nav-link">El Universo</a>
+            <a href="../../index.html#saga" class="nav-link">La Saga</a>
+            <a href="../../wiki.html" class="nav-link active">Wiki</a>
+            <a href="../../tienda.html" class="nav-link">Tienda</a>
+        </div>
+        <div id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-[#0b0c15]/95 backdrop-blur-xl h-screen flex flex-col p-8 z-40 border-t border-white/10">
+            <div
+                class="flex flex-col space-y-8 text-center text-xl font-bold uppercase tracking-widest font-epic mt-10">
+                <a href="../../index.html#universo" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">El Universo</a>
+                <a href="../../index.html#saga" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">La Saga</a>
+                <a href="../../wiki.html" class="text-blue-400 font-bold">Wiki</a>
+                <a href="../../tienda.html" onclick="toggleMenu()"
+                    class="text-white hover:text-blue-400 transition">Tienda</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="pt-32 px-6 relative z-10">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex items-center gap-2 text-xs text-gray-500 mb-4">
+                <a href="../../wiki.html" class="hover:text-blue-400 transition">Wiki</a><span>›</span>
+                <a href="../personajes.html" class="hover:text-blue-400 transition">Personajes</a><span>›</span>
+                <span class="text-gray-300">Gotzing</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHARACTER HERO -->
+    <section class="char-hero px-6">
+        <div class="container mx-auto max-w-6xl grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="char-image-container flex justify-center">
+                <img src="../../images/gotzing.png" alt="Gotzing" class="w-full max-w-sm object-contain"
+                    loading="eager">
+            </div>
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="../../images/GridRazzar.png" alt="Gridsku Razzar" class="w-10 h-10 object-contain">
+                    <span
+                        class="text-[10px] text-white uppercase tracking-widest border border-white/30 bg-white/10 px-3 py-1 rounded">Líder
+                        · Clan Razzar</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-epic text-white mb-4">GOTZING</h1>
+                <p class="text-gray-400 text-lg leading-relaxed mb-6">La primera razzar creada por la <a
+                        href="../leyes.html" class="wiki-link">Maquiria</a>, líder absoluta del séptimo clan. Guerrera
+                    intrépida, estratega brillante y mentora de <a href="maksamma.html" class="wiki-link">Máksamma</a>.
+                </p>
+                <div class="grid grid-cols-2 gap-3 text-xs">
+                    <div class="info-card"><span class="text-gray-500 block mb-1">Clan</span><a
+                            href="../clanes.html#razzar" class="text-white font-bold hover:underline">Razzar</a></div>
+                    <div class="info-card"><span class="text-gray-500 block mb-1">Gridsku</span><span
+                            class="text-white font-bold">Blanco</span></div>
+                    <div class="info-card"><span class="text-gray-500 block mb-1">Género</span><span
+                            class="text-pink-400 font-bold">Hembra ♀</span></div>
+                    <div class="info-card"><span class="text-gray-500 block mb-1">Victorias Fausta</span><span
+                            class="text-white font-bold">15 (Clan)</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT -->
+    <main class="container mx-auto px-6 py-16 max-w-4xl relative z-10">
+        <div class="vine-wrapper">
+            <div class="vine-border"></div>
+            <div class="vine-corner vc-tl"></div>
+            <div class="vine-corner vc-tr"></div>
+            <div class="vine-corner vc-bl"></div>
+            <div class="vine-corner vc-br"></div>
+            <div class="vine-content p-8 md:p-12">
+                <h2 class="font-epic text-2xl text-white mb-6 border-l-4 border-white pl-4">Historia</h2>
+                <p class="text-gray-400 leading-relaxed mb-4">Gotzing es la primogénita y líder del clan <a
+                        href="../clanes.html#razzar" class="wiki-link">Razzar</a>, el séptimo y último clan creado por
+                    la <a href="../leyes.html" class="wiki-link">Maquiria</a>. Los razzar son los seres más parecidos a
+                    los humanos y los más altos de todos los clanes, dotados de una fuerza comparable a la de los <a
+                        href="../clanes.html#democks" class="wiki-link">democks</a>.</p>
+                <p class="text-gray-400 leading-relaxed mb-4">Como líder, Gotzing ha sido la columna vertebral de su
+                    clan. Es ella quien entrena a los guerreros razzar en las técnicas de energía astral, el sistema de
+                    autodefensa (cambio de piel a negra) y el colapso espacio-temporal. Su hogar es el <a
+                        href="../glosario.html" class="wiki-link">Arcamndar</a>, la edificación razzar donde se
+                    encuentra su cristal Wismerdier.</p>
+                <p class="text-gray-400 leading-relaxed mb-4">Gotzing fue una figura crucial en el conflicto por la
+                    custodia de <strong class="text-purple-300">Dirós</strong>. Como líder de los <a
+                        href="../glosario.html" class="wiki-link">Momnaries</a>, defendió el derecho de <a
+                        href="maksamma.html" class="wiki-link">Máksamma</a> a cuidar al ser #71, el futuro Nuevo
+                    Creador.</p>
+
+                <h2 class="font-epic text-2xl text-white mb-6 mt-10 border-l-4 border-white pl-4">Habilidades de Combate
+                </h2>
+                <p class="text-gray-400 leading-relaxed mb-4">Los <a href="../clanes.html#razzar"
+                        class="wiki-link">razzar</a> están entre los clanes más poderosos. Gotzing domina las técnicas
+                    exclusivas de su linaje:</p>
+                <ul class="text-gray-400 text-sm space-y-2 mb-6 ml-4 list-disc">
+                    <li><strong class="text-gray-200">Energía astral</strong> — proyecciones de energía pura canalizadas
+                        desde el <a href="../glosario.html" class="wiki-link">Gridsku</a></li>
+                    <li><strong class="text-gray-200">Autodefensa</strong> — los varones razzar pueden cambiar su piel a
+                        negra; los líderes perfeccionan esta técnica</li>
+                    <li><strong class="text-gray-200">Colapso espacio-temporal</strong> — manipulación del espacio
+                        durante los combates</li>
+                    <li><strong class="text-gray-200">Poder 2×1</strong> — técnica avanzada compartida por los guerreros
+                        razzar de élite</li>
+                </ul>
+
+                <h2 class="font-epic text-2xl text-white mb-6 mt-10 border-l-4 border-white pl-4">Nivel de Poder</h2>
+                <div class="space-y-3 mb-8">
+                    <div>
+                        <div class="flex justify-between text-xs mb-1"><span class="text-gray-400">Fuerza</span><span
+                                class="text-white">9/10</span></div>
+                        <div class="stat-bar">
+                            <div class="stat-bar-fill bg-white" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1"><span
+                                class="text-gray-400">Estrategia</span><span class="text-white">9/10</span></div>
+                        <div class="stat-bar">
+                            <div class="stat-bar-fill bg-white" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1"><span class="text-gray-400">Liderazgo</span><span
+                                class="text-white">10/10</span></div>
+                        <div class="stat-bar">
+                            <div class="stat-bar-fill bg-white" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="font-epic text-2xl text-white mb-6 mt-10 border-l-4 border-white pl-4">Relaciones Clave</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="maksamma.html" class="info-card hover:border-white/20 transition group">
+                        <span class="text-gray-500 text-xs block">Protegida</span>
+                        <span class="text-white font-bold group-hover:text-blue-400 transition">Máksamma</span>
+                        <span class="text-gray-600 text-xs block mt-1">Razzar #70, protagonista</span>
+                    </a>
+                    <a href="drocknos.html" class="info-card hover:border-white/20 transition group">
+                        <span class="text-gray-500 text-xs block">Rival político</span>
+                        <span class="text-white font-bold group-hover:text-blue-400 transition">Droknos</span>
+                        <span class="text-gray-600 text-xs block mt-1">Líder Democks, opositor</span>
+                    </a>
+                    <a href="migred.html" class="info-card hover:border-white/20 transition group">
+                        <span class="text-gray-500 text-xs block">Aliada</span>
+                        <span class="text-white font-bold group-hover:text-blue-400 transition">Migred</span>
+                        <span class="text-gray-600 text-xs block mt-1">Lideresa Vitros</span>
+                    </a>
+                    <a href="versina.html" class="info-card hover:border-white/20 transition group">
+                        <span class="text-gray-500 text-xs block">Par entre líderes</span>
+                        <span class="text-white font-bold group-hover:text-blue-400 transition">Versina</span>
+                        <span class="text-gray-600 text-xs block mt-1">Lideresa Trisis</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4 justify-center mt-12">
+            <a href="../clanes.html#razzar"
+                class="btn-navy px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-widest"><i
+                    class="fa-solid fa-users mr-2"></i>Clan Razzar</a>
+            <a href="../personajes.html"
+                class="btn-navy px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-widest"><i
+                    class="fa-solid fa-arrow-left mr-2"></i>Todos los Personajes</a>
+        </div>
+    </main>
+
+    <footer class="py-12 bg-black text-center flex flex-col items-center relative z-10 border-t border-white/5">
+        <img src="../../images/LogoMaks.png" class="h-14 md:h-20 max-w-none mb-6 opacity-80 object-contain"
+            alt="Logo Máksamma" loading="lazy">
+        <div class="flex justify-center gap-8 text-xs text-gray-500 font-bold uppercase tracking-widest mb-6">
+            <a href="https://www.instagram.com/maksamma_oficial/" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61581647797097" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">Facebook</a>
+            <a href="https://www.tiktok.com/@maksammaoficial" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition">TikTok</a>
+        </div>
+        <p class="text-[10px] text-gray-700">© <span class="dynamic-year"></span> Máksamma. Autor: Carlos Enrique
+            Rodríguez Mata.</p>
+    </footer>
+
+    <script src="../../shared.js"></script>
+    <script src="../../magic-cursor.js"></script>
+</body>
+
+</html>
