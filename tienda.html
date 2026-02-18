@@ -479,6 +479,408 @@
                 </div>
             </div>
         </section>
+
+        <!-- LECTURA DIGITAL -->
+        <section id="digital-reading" class="py-20 bg-black/30 border-t border-white/5 relative z-10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-purple-400 text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Experiencia
+                        Interactiva</span>
+                    <h2 class="font-epic text-3xl md:text-5xl text-white mb-6">LECTURA DIGITAL</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto font-light">Lee los primeros 3 capítulos gratis.
+                        Desbloquea el resto individualmente o adquiere el tomo completo.</p>
+                </div>
+
+                <!-- Grid de Capítulos -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+
+                    <!-- Cap 1: Gratis -->
+                    <div class="chapter-card free group" onclick="openChapter(1)">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p1.png" alt="Capítulo I" class="chapter-img" loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">I</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">El Origen</span>
+                            </div>
+                            <div class="chapter-overlay">
+                                <span class="btn-read"><i class="fa-solid fa-book-open mr-2"></i>LEER GRATIS</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Capítulo
+                                    I</span>
+                                <span class="badge badge-free">GRATIS</span>
+                            </div>
+                            <h3 class="font-epic text-white text-lg">El Origen</h3>
+                        </div>
+                    </div>
+
+                    <!-- Cap 2: Gratis -->
+                    <div class="chapter-card free group" onclick="openChapter(2)">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p2.png" alt="Capítulo II" class="chapter-img" loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">II</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">Versina</span>
+                            </div>
+                            <div class="chapter-overlay">
+                                <span class="btn-read"><i class="fa-solid fa-book-open mr-2"></i>LEER GRATIS</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Capítulo
+                                    II</span>
+                                <span class="badge badge-free">GRATIS</span>
+                            </div>
+                            <h3 class="font-epic text-white text-lg">Versina</h3>
+                        </div>
+                    </div>
+
+                    <!-- Cap 3: Gratis -->
+                    <div class="chapter-card free group" onclick="openChapter(3)">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p3.png" alt="Capítulo III" class="chapter-img" loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">III</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">Mixtock</span>
+                            </div>
+                            <div class="chapter-overlay">
+                                <span class="btn-read"><i class="fa-solid fa-book-open mr-2"></i>LEER GRATIS</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Capítulo
+                                    III</span>
+                                <span class="badge badge-free">GRATIS</span>
+                            </div>
+                            <h3 class="font-epic text-white text-lg">Mixtock</h3>
+                        </div>
+                    </div>
+
+                    <!-- Cap 4: Bloqueado -->
+                    <div class="chapter-card locked group" onclick="unlockChapter(4, 'Blocksowe')">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p4.png" alt="Capítulo IV" class="chapter-img opacity-50"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">IV</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">Blocksowe</span>
+                            </div>
+                            <div class="lock-overlay">
+                                <i class="fa-solid fa-lock text-3xl text-white/80 mb-2 drop-shadow-lg"></i>
+                                <span class="font-bold text-white text-sm tracking-widest">BLOQUEADO</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Capítulo
+                                    IV</span>
+                                <span class="badge badge-price">$0.99</span>
+                            </div>
+                            <h3 class="font-epic text-gray-400 text-lg group-hover:text-white transition">Blocksowe</h3>
+                        </div>
+                    </div>
+
+                    <!-- Cap 5: Bloqueado -->
+                    <div class="chapter-card locked group" onclick="unlockChapter(5, 'Patsury')">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p5.png" alt="Capítulo V" class="chapter-img opacity-50" loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">V</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">Patsury</span>
+                            </div>
+                            <div class="lock-overlay">
+                                <i class="fa-solid fa-lock text-3xl text-white/80 mb-2 drop-shadow-lg"></i>
+                                <span class="font-bold text-white text-sm tracking-widest">BLOQUEADO</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Capítulo
+                                    V</span>
+                                <span class="badge badge-price">$0.99</span>
+                            </div>
+                            <h3 class="font-epic text-gray-400 text-lg group-hover:text-white transition">Patsury</h3>
+                        </div>
+                    </div>
+
+                    <!-- Cap 6: Bloqueado -->
+                    <div class="chapter-card locked group" onclick="unlockChapter(6, 'Migred')">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p6.png" alt="Capítulo VI" class="chapter-img opacity-50"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">VI</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">Migred</span>
+                            </div>
+                            <div class="lock-overlay">
+                                <i class="fa-solid fa-lock text-3xl text-white/80 mb-2 drop-shadow-lg"></i>
+                                <span class="font-bold text-white text-sm tracking-widest">BLOQUEADO</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Capítulo
+                                    VI</span>
+                                <span class="badge badge-price">$0.99</span>
+                            </div>
+                            <h3 class="font-epic text-gray-400 text-lg group-hover:text-white transition">Migred</h3>
+                        </div>
+                    </div>
+
+                    <!-- Cap 7: Bloqueado -->
+                    <div class="chapter-card locked group" onclick="unlockChapter(7, 'Droknos')">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p7.png" alt="Capítulo VII" class="chapter-img opacity-50"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">VII</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">Droknos</span>
+                            </div>
+                            <div class="lock-overlay">
+                                <i class="fa-solid fa-lock text-3xl text-white/80 mb-2 drop-shadow-lg"></i>
+                                <span class="font-bold text-white text-sm tracking-widest">BLOQUEADO</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Capítulo
+                                    VII</span>
+                                <span class="badge badge-price">$0.99</span>
+                            </div>
+                            <h3 class="font-epic text-gray-400 text-lg group-hover:text-white transition">Droknos</h3>
+                        </div>
+                    </div>
+
+                    <!-- Cap 8: Bloqueado -->
+                    <div class="chapter-card locked group" onclick="unlockChapter(8, 'Capítulo VIII')">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p8.png" alt="Capítulo VIII" class="chapter-img opacity-50"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">VIII</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">Capítulo VIII</span>
+                            </div>
+                            <div class="lock-overlay">
+                                <i class="fa-solid fa-lock text-3xl text-white/80 mb-2 drop-shadow-lg"></i>
+                                <span class="font-bold text-white text-sm tracking-widest">BLOQUEADO</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Capítulo
+                                    VIII</span>
+                                <span class="badge badge-price">$0.99</span>
+                            </div>
+                            <h3 class="font-epic text-gray-400 text-lg group-hover:text-white transition">El Vacío</h3>
+                        </div>
+                    </div>
+
+                    <!-- Cap 9: Bloqueado -->
+                    <div class="chapter-card locked group" onclick="unlockChapter(9, 'Capítulo IX')">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p9.png" alt="Capítulo IX" class="chapter-img opacity-50"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">IX</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">Capítulo IX</span>
+                            </div>
+                            <div class="lock-overlay">
+                                <i class="fa-solid fa-lock text-3xl text-white/80 mb-2 drop-shadow-lg"></i>
+                                <span class="font-bold text-white text-sm tracking-widest">BLOQUEADO</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Capítulo
+                                    IX</span>
+                                <span class="badge badge-price">$0.99</span>
+                            </div>
+                            <h3 class="font-epic text-gray-400 text-lg group-hover:text-white transition">El Renacer
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Cap 10: Bloqueado -->
+                    <div class="chapter-card locked group" onclick="unlockChapter(10, 'Capítulo X')">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p10.png" alt="Capítulo X" class="chapter-img opacity-50"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">X</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">Capítulo X</span>
+                            </div>
+                            <div class="lock-overlay">
+                                <i class="fa-solid fa-lock text-3xl text-white/80 mb-2 drop-shadow-lg"></i>
+                                <span class="font-bold text-white text-sm tracking-widest">BLOQUEADO</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Capítulo
+                                    X</span>
+                                <span class="badge badge-price">$0.99</span>
+                            </div>
+                            <h3 class="font-epic text-gray-400 text-lg group-hover:text-white transition">La Decisión
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Cap 11: Bloqueado -->
+                    <div class="chapter-card locked group" onclick="unlockChapter(11, 'Capítulo XI')">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p11.png" alt="Capítulo XI" class="chapter-img opacity-50"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">XI</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">Capítulo XI</span>
+                            </div>
+                            <div class="lock-overlay">
+                                <i class="fa-solid fa-lock text-3xl text-white/80 mb-2 drop-shadow-lg"></i>
+                                <span class="font-bold text-white text-sm tracking-widest">BLOQUEADO</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Capítulo
+                                    XI</span>
+                                <span class="badge badge-price">$0.99</span>
+                            </div>
+                            <h3 class="font-epic text-gray-400 text-lg group-hover:text-white transition">El Final</h3>
+                        </div>
+                    </div>
+
+                    <!-- Cap 12: Bloqueado -->
+                    <div class="chapter-card locked group" onclick="unlockChapter(12, 'Capítulo XII')">
+                        <div class="chapter-p-container">
+                            <img src="images/caps/p12.png" alt="Capítulo XII" class="chapter-img opacity-50"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div
+                                class="chapter-fallback hidden flex-col items-center justify-center h-full bg-[#1a1b2e] text-center p-4">
+                                <span class="font-epic text-4xl text-white/20 mb-2">XII</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-widest">Capítulo XII</span>
+                            </div>
+                            <div class="lock-overlay">
+                                <i class="fa-solid fa-lock text-3xl text-white/80 mb-2 drop-shadow-lg"></i>
+                                <span class="font-bold text-white text-sm tracking-widest">BLOQUEADO</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-[#151621] border-t border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Capítulo
+                                    XII</span>
+                                <span class="badge badge-price">$0.99</span>
+                            </div>
+                            <h3 class="font-epic text-gray-400 text-lg group-hover:text-white transition">Epílogo</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL DE COMPRA -->
+        <div id="purchase-modal" class="fixed inset-0 z-[100] hidden">
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+
+            <!-- Contenido -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-lg p-6">
+                <div class="bg-[#151621] border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative">
+                    <!-- Botón cerrar -->
+                    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white z-20">
+                        <i class="fa-solid fa-xmark text-2xl"></i>
+                    </button>
+
+                    <div class="p-8 text-center relative overflow-hidden">
+                        <!-- Fondo decorativo -->
+                        <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
+
+                        <div class="relative z-10">
+                            <!-- Icono Candado -->
+                            <div
+                                class="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-6">
+                                <i class="fa-solid fa-lock text-2xl text-purple-400"></i>
+                            </div>
+
+                            <p class="text-purple-400 text-xs font-bold uppercase tracking-[0.2em] mb-2">Contenido
+                                Premium</p>
+                            <h3 id="modal-chapter-title" class="font-epic text-3xl text-white mb-4">Capítulo IV:
+                                Blocksowe</h3>
+                            <p class="text-gray-400 text-sm mb-8 leading-relaxed">Este capítulo está bloqueado.
+                                Adquiérelo individualmente o desbloquea toda la saga para continuar la historia.</p>
+
+                            <!-- Opciones -->
+                            <div class="space-y-4">
+                                <button onclick="buyChapter()"
+                                    class="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg group transition flex items-center justify-between px-6">
+                                    <div class="text-left">
+                                        <span class="block text-white font-bold text-sm">Comprar Capítulo</span>
+                                        <span class="text-xs text-gray-500">Acceso inmediato PDF</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="block text-purple-400 font-bold text-lg">$0.99</span>
+                                    </div>
+                                    <i
+                                        class="fa-brands fa-paypal text-xl text-gray-400 group-hover:text-white transition ml-2"></i>
+                                </button>
+
+                                <div class="relative py-2">
+                                    <div class="absolute inset-0 flex items-center">
+                                        <div class="w-full border-t border-white/5"></div>
+                                    </div>
+                                    <div class="relative flex justify-center"><span
+                                            class="bg-[#151621] px-4 text-xs text-gray-500 uppercase tracking-widest">Mejor
+                                            Oferta</span></div>
+                                </div>
+
+                                <button onclick="buyDigital()"
+                                    class="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 rounded-lg group transition shadow-lg shadow-purple-900/30 flex items-center justify-between px-6">
+                                    <div class="text-left">
+                                        <span class="block text-white font-bold text-sm">Comprar Tomo Completo</span>
+                                        <span class="text-xs text-blue-100/80">Todos los 12 capítulos</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="block text-white font-bold text-lg">$9.99</span>
+                                    </div>
+                                    <i class="fa-solid fa-bolt text-xl text-yellow-400 animate-pulse ml-2"></i>
+                                </button>
+                            </div>
+
+                            <p class="text-[10px] text-gray-600 mt-6 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-shield-halved"></i> Pago 100% seguro vía PayPal
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- FOOTER -->
@@ -501,37 +903,7 @@
 
     <!-- SCRIPTS -->
     <script src="shared.js"></script>
-    <script>
-        // --- Tabs de formato ---
-        function switchFormat(format, btn) {
-            // Desactivar todos los tabs y paneles
-            document.querySelectorAll('.format-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.format-panel').forEach(p => p.classList.remove('active'));
 
-            // Activar el seleccionado
-            btn.classList.add('active');
-            const panel = document.getElementById('panel-' + format);
-            if (panel) panel.classList.add('active');
-        }
-
-        // --- Compra física con PayPal ---
-        function buyPhysical() {
-            // TODO: Reemplazar con el enlace real de PayPal Business
-            // Cuando tengas tu cuenta PayPal Business, reemplaza esta URL
-            // con el enlace de pago generado desde PayPal (PayPal.me o botón de pago)
-            alert('¡Próximamente!\n\nEl sistema de pago con PayPal se habilitará muy pronto. Mientras tanto, contáctanos por Instagram o Facebook para adquirir tu libro.');
-        }
-
-        // --- Compra digital con PayPal ---
-        function buyDigital() {
-            // TODO: Reemplazar con el enlace real de PayPal Business
-            // Flujo futuro:
-            // 1. El usuario paga vía PayPal
-            // 2. PayPal redirige a una página de "gracias" con el enlace de Google Drive
-            // 3. O se envía automáticamente por email usando PayPal IPN (Instant Payment Notification)
-            alert('¡Próximamente!\n\nEl sistema de pago con PayPal se habilitará muy pronto. Mientras tanto, contáctanos por Instagram o Facebook para adquirir la versión digital.');
-        }
-    </script>
 
     <script src="magic-cursor.js"></script>
 </body>

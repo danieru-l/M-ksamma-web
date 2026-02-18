@@ -61,4 +61,54 @@
     } else {
         init();
     }
+    // --- TIENDA DIGITAL ---
+    window.openChapter = function (num) {
+        // En el futuro, esto redirigirá al lector específico
+        // window.location.href = 'lectura.html?cap=' + num;
+        alert('Abriendo lector para el Capítulo ' + num + '...');
+    };
+
+    window.unlockChapter = function (num, title) {
+        var modal = document.getElementById('purchase-modal');
+        var titleEl = document.getElementById('modal-chapter-title');
+        if (modal && titleEl) {
+            titleEl.textContent = 'Capítulo ' + num + ': ' + title;
+            modal.classList.remove('hidden');
+            // Bloquear scroll
+            document.body.style.overflow = 'hidden';
+        }
+    };
+
+    window.closeModal = function () {
+        var modal = document.getElementById('purchase-modal');
+        if (modal) {
+            modal.classList.add('hidden');
+            // Restaurar scroll
+            document.body.style.overflow = '';
+        }
+    };
+
+    window.buyChapter = function () {
+        alert('Redirigiendo seguramanete a PayPal ($0.99 ESD)...');
+    };
+
+    window.buyDigital = function () {
+        alert('Redirigiendo seguramente a PayPal ($9.99 USD) por el Tomo Completo...');
+    };
+
+    window.switchFormat = function (format, btn) {
+        // Desactivar todos los tabs y paneles
+        document.querySelectorAll('.format-tab').forEach(function (t) { t.classList.remove('active'); });
+        document.querySelectorAll('.format-panel').forEach(function (p) { p.classList.remove('active'); });
+
+        // Activar el seleccionado
+        btn.classList.add('active');
+        var panel = document.getElementById('panel-' + format);
+        if (panel) panel.classList.add('active');
+    };
+
+    window.buyPhysical = function () {
+        alert('¡Próximamente!\n\nEl sistema de pago con PayPal se habilitará muy pronto. Mientras tanto, contáctanos por Instagram o Facebook para adquirir tu libro.');
+    };
+
 })();
