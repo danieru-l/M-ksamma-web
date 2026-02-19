@@ -216,3 +216,133 @@ body.scrolled .nav-container {
 footer {
     background: black;
 }
+
+/* --- TIENDA DIGITAL --- */
+.chapter-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #0f1016;
+}
+
+.chapter-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.chapter-card.free:hover {
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+    border-color: rgba(56, 189, 248, 0.4);
+}
+
+.chapter-card.locked {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.chapter-card.locked:hover {
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.15);
+}
+
+.chapter-p-container {
+    aspect-ratio: 1536/2400;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.chapter-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.chapter-card:hover .chapter-img {
+    transform: scale(1.05);
+}
+
+.chapter-fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    /* JS lo activa si falla imagen */
+}
+
+/* Overlay "Leer Gratis" */
+.chapter-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.chapter-card.free:hover .chapter-overlay {
+    opacity: 1;
+}
+
+.btn-read {
+    padding: 0.75rem 1.5rem;
+    background: white;
+    color: black;
+    font-weight: bold;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    border-radius: 99px;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.chapter-card.free:hover .btn-read {
+    transform: translateY(0);
+}
+
+/* Overlay "Bloqueado" */
+.lock-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 16, 22, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    /* Siempre visible */
+    transition: background 0.3s ease;
+}
+
+.chapter-card.locked:hover .lock-overlay {
+    background: rgba(15, 16, 22, 0.4);
+    /* Se aclara un poco al hover */
+}
+
+/* Badges */
+.badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-free {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.badge-price {
+    background: rgba(168, 85, 247, 0.1);
+    color: #a855f7;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+}
