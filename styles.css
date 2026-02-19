@@ -309,20 +309,20 @@ footer {
 .lock-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(15, 16, 22, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(1px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     opacity: 1;
     /* Siempre visible */
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .chapter-card.locked:hover .lock-overlay {
-    background: rgba(15, 16, 22, 0.4);
-    /* Se aclara un poco al hover */
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0);
 }
 
 /* Badges */
