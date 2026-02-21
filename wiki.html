@@ -213,30 +213,12 @@
         </div>
     </nav>
 
-    <!-- HERO WIKI + BANNER DECORATIVO -->
+    <!-- HERO WIKI -->
     <header class="pt-40 pb-12 px-6 text-center relative z-10">
-        <h1 class="text-4xl md:text-6xl font-epic text-white mb-8 drop-shadow-lg fade-in">ARCHIVOS DE LA MAQUIRIA</h1>
-
-        <div class="max-w-5xl mx-auto h-64 md:h-96 relative decorative-frame rounded-lg overflow-hidden fade-in group">
-            <picture>
-                <img src="images/BANNER_WIKI.png" alt="Personajes Máksamma"
-                    class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700"
-                    loading="lazy"
-                    onerror="this.style.display='none'; document.getElementById('banner-fallback').style.display='flex'">
-            </picture>
-
-            <div id="banner-fallback"
-                class="hidden absolute inset-0 bg-gradient-to-r from-green-900/40 to-blue-900/40 flex-col items-center justify-center">
-                <span class="text-4xl mb-2">🌿</span>
-                <p class="font-serif-text italic text-gray-300">"El destino de los siete clanes"</p>
-            </div>
-
-            <div
-                class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/60 to-transparent text-left">
-                <h2 class="text-2xl font-epic text-white">Personajes y Leyendas</h2>
-                <p class="text-sm text-gray-300">Explora las historias de quienes forjaron el Pingtande.</p>
-            </div>
-        </div>
+        <h1 class="text-4xl md:text-6xl font-epic text-white mb-4 drop-shadow-lg fade-in">ARCHIVOS DE LA MAQUIRIA</h1>
+        <p class="text-gray-400 text-lg font-light max-w-2xl mx-auto">Explora las historias de quienes forjaron el
+            Pingtande.</p>
+        <div class="w-24 h-1 bg-gradient-to-r from-transparent via-yellow-600 to-transparent mx-auto mt-6"></div>
     </header>
 
     <!-- MENÚ PRINCIPAL (GRID) -->
@@ -274,8 +256,11 @@
 
                 <!-- 2. PERSONAJES -->
                 <a href="wiki/personajes.html" data-wiki-title="personajes"
-                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link bg-gradient-to-br from-purple-950/50 to-[#0d0e18]">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link">
+                    <img src="images/BANNER_WIKI.png" alt="Personajes"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition duration-500"
+                        loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                     <div class="absolute top-6 right-6 text-purple-500/30 group-hover:text-purple-400/50 transition">
                         <i class="fa-solid fa-users text-4xl"></i>
                     </div>
@@ -289,8 +274,11 @@
 
                 <!-- 3. GLOSARIO -->
                 <a href="wiki/glosario.html" data-wiki-title="glosario"
-                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link bg-gradient-to-br from-green-950/50 to-[#0d0e18]">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link">
+                    <img src="images/Ange2.png" alt="Glosario"
+                        class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition duration-500"
+                        loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                     <div class="absolute top-6 right-6 text-green-500/30 group-hover:text-green-400/50 transition">
                         <i class="fa-solid fa-book-open text-4xl"></i>
                     </div>
@@ -302,10 +290,13 @@
                     </div>
                 </a>
 
-                <!-- 4. LEYES -->
+                <!-- 4. UNIVERSO -->
                 <a href="wiki/leyes.html" data-wiki-title="leyes maquiria universo fausta"
-                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link bg-gradient-to-br from-yellow-950/50 to-[#0d0e18]">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link">
+                    <img src="images/Maquiria.png" alt="La Maquiria"
+                        class="absolute inset-0 w-full h-full object-contain opacity-40 group-hover:opacity-60 transition duration-500 p-8"
+                        loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                     <div class="absolute top-6 right-6 text-yellow-500/30 group-hover:text-yellow-400/50 transition">
                         <i class="fa-solid fa-scroll text-4xl"></i>
                     </div>
@@ -320,8 +311,11 @@
 
                 <!-- 5. CRONOLOGÍA -->
                 <a href="wiki/cronologia.html" data-wiki-title="cronología tiempo combates estadísticas"
-                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link bg-gradient-to-br from-cyan-950/50 to-[#0d0e18]">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link">
+                    <img src="images/Ilus6.png" alt="Cronología"
+                        class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition duration-500"
+                        loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                     <div class="absolute top-6 right-6 text-cyan-500/30 group-hover:text-cyan-400/50 transition">
                         <i class="fa-solid fa-timeline text-4xl"></i>
                     </div>
@@ -333,20 +327,7 @@
                     </div>
                 </a>
 
-                <!-- 6. MAPA (card que abre fullscreen) -->
-                <div class="decorative-frame rounded-lg overflow-hidden group h-80 relative wiki-card-link bg-gradient-to-br from-amber-950/50 to-[#0d0e18] cursor-pointer"
-                    data-wiki-title="mapa Pingtande hábitats" onclick="expandMap()">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                    <div class="absolute top-6 right-6 text-amber-500/30 group-hover:text-amber-400/50 transition">
-                        <i class="fa-solid fa-map text-4xl"></i>
-                    </div>
-                    <div class="absolute bottom-0 p-6">
-                        <h3 class="text-2xl font-epic text-white mb-2 border-l-4 border-amber-500 pl-3">MAPA</h3>
-                        <p class="text-sm text-gray-300">El Pingtande de la Maquiria.</p>
-                        <span class="text-[10px] text-amber-400 uppercase tracking-widest mt-2 block"><i
-                                class="fa-solid fa-expand mr-1"></i>Click para expandir</span>
-                    </div>
-                </div>
+
 
             </div>
         </section>
