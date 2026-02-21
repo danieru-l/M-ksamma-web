@@ -158,7 +158,7 @@
                     <a href="index.html">
                         <picture>
                             <img src="images/LogoMaks.png" alt="Máksamma"
-                                class="h-14 md:h-20 max-w-none w-auto object-contain hover:scale-105 transition drop-shadow-2xl">
+                                class="h-14 md:h-18 max-w-none w-auto object-contain hover:scale-105 transition drop-shadow-2xl">
                         </picture>
                     </a>
                 </div>
@@ -205,7 +205,7 @@
     <!-- HEADER GALERÍA -->
     <header class="pt-40 pb-10 px-6 text-center relative z-10">
         <h1 class="text-4xl md:text-6xl font-epic text-white mb-4 drop-shadow-[0_0_15px_rgba(74,124,245,0.5)]">Visiones
-            del Pigtandé</h1>
+            del Pigtande</h1>
         <p class="text-gray-400 font-serif-text italic text-lg">Arte conceptual y momentos clave de la saga</p>
         <div class="w-24 h-1 bg-gradient-to-r from-transparent via-yellow-600 to-transparent mx-auto mt-6"></div>
     </header>
@@ -213,6 +213,33 @@
     <!-- GALERÍA MASONRY -->
     <main>
         <section class="container mx-auto px-6 pb-24 relative z-10">
+
+            <!-- MAPA DESTACADO -->
+            <div class="max-w-4xl mx-auto mb-16 cursor-pointer" onclick="openLightbox(12)">
+                <div class="vine-wrapper group">
+                    <div class="vine-border"></div>
+                    <div class="vine-corner vc-tl"></div>
+                    <div class="vine-corner vc-tr"></div>
+                    <div class="vine-corner vc-bl"></div>
+                    <div class="vine-corner vc-br"></div>
+                    <div class="vine-content">
+                        <picture>
+                            <img src="images/MAPA.jpg" alt="El Plano de la Maquiria"
+                                class="w-full h-auto object-cover transition duration-500 group-hover:scale-105"
+                                loading="lazy">
+                        </picture>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-8">
+                            <span
+                                class="text-amber-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-1 block">Plano
+                                Oficial</span>
+                            <h3 class="font-epic text-2xl md:text-3xl text-white">El Plano de la Maquiria</h3>
+                            <p class="text-gray-400 text-sm mt-1">Mapa completo del Pigtande y los 7 hábitats</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="masonry-grid" id="gallery-grid">
                 <!-- Las imágenes se insertan vía JS -->
             </div>
@@ -262,14 +289,20 @@
     <script>
         // Generar Galería (11 Imágenes)
         const galleryGrid = document.getElementById('gallery-grid');
-        const totalImages = 11;
+        const totalImages = 12;
 
         const titles = [
             "El Despertar", "La Torre del Silencio", "Sombras en el Bosque",
             "El Pacto", "Reflejos de Cristal", "La Guardia Real",
             "Horizonte Lejano", "El Séptimo Clan", "Secretos Antiguos",
-            "La Batalla", "El Nuevo Amanecer"
+            "La Batalla", "El Nuevo Amanecer", "El Plano de la Maquiria"
         ];
+
+        // Image sources: 1-11 = Ilus*.png, 12 = MAPA.jpg
+        function getImageSrc(idx) {
+            if (idx === 12) return 'images/MAPA.jpg';
+            return 'images/Ilus' + idx + '.png';
+        }
 
         for (let i = 1; i <= totalImages; i++) {
             const wrapper = document.createElement('div');
@@ -284,7 +317,7 @@
                 <div class="vine-corner vc-br"></div>
                 <div class="vine-content">
                     <picture>
-                        <img src="images/Ilus${i}.png" alt="${titles[i - 1] || 'Ilustración ' + i}"
+                        <img src="${getImageSrc(i)}" alt="${titles[i - 1] || 'Ilustración ' + i}"
                              class="w-full h-auto object-cover transition duration-500 group-hover:scale-110"
                              loading="lazy"
                              onerror="this.style.display='none'">
@@ -318,7 +351,7 @@
         function updateLightbox() {
             lbImg.style.opacity = '0.5';
             setTimeout(() => {
-                lbImg.src = `images/Ilus${currentIdx}.png`;
+                lbImg.src = getImageSrc(currentIdx);
                 lbTitle.innerText = titles[currentIdx - 1] || `Ilustración ${currentIdx}`;
                 lbImg.onload = () => lbImg.style.opacity = '1';
             }, 150);

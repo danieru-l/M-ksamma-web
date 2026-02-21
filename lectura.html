@@ -175,6 +175,48 @@
             height: 100%;
             align-items: center;
         }
+
+        /* CTA Overlay */
+        .cta-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            background: rgba(0, 0, 0, 0.92);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .cta-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #c5a059, #e8c97a);
+            color: #0a0b10;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
+        }
     </style>
 </head>
 
@@ -218,6 +260,18 @@
     <!-- PROGRESO -->
     <div class="progress-bar-container">
         <div class="progress-fill" id="progress-bar"></div>
+    </div>
+
+    <!-- CTA COMPRAR CAPÍTULO 4 -->
+    <div class="cta-overlay" id="cta-overlay">
+        <p class="text-gray-500 text-xs uppercase tracking-[0.3em] mb-4">Has terminado los capítulos gratuitos</p>
+        <h2 class="font-epic text-3xl md:text-5xl text-white mb-4">¿Quieres seguir leyendo?</h2>
+        <p class="text-gray-400 text-sm md:text-base max-w-md mb-8">Continúa la aventura de Máksamma adquiriendo el
+            Capítulo IV y los siguientes en nuestra tienda.</p>
+        <a href="tienda.html" class="cta-btn">Comprar Capítulo IV</a>
+        <button onclick="closeCTA()"
+            class="mt-6 text-gray-600 text-xs hover:text-gray-400 transition uppercase tracking-widest">Volver al
+            lector</button>
     </div>
 
     <script>
@@ -302,7 +356,14 @@
             } else if (!isMobile() && currentPage + 1 === totalPages) {
                 currentPage = totalPages;
                 renderPages('turn-next');
+            } else {
+                // Show CTA when reaching the end
+                document.getElementById('cta-overlay').classList.add('active');
             }
+        }
+
+        function closeCTA() {
+            document.getElementById('cta-overlay').classList.remove('active');
         }
 
         function prevPage() {
